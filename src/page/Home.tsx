@@ -9,6 +9,8 @@ import WhyChooseUs from "./sections/WhyChooseUs";
 import ContactUs from "./sections/ContactUs";
 
 import Footer from "../components/Footer";
+import HackathonTeamSelection from "../components/HackathonTeamSelection";
+import HappeningNow from "./sections/HappeningNow";
 export default function Home() {
   return (
     <>
@@ -22,6 +24,8 @@ export default function Home() {
         <WhoWeAre />
         <WhatWeDo />
         <WhyChooseUs />
+        <HappeningNow />
+        <HackathonTeamSelection />
         <ContactUs />
       </Box>
 
