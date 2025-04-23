@@ -64,6 +64,7 @@ export default function HackathonTeamSelection() {
   const handleTeamSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
+    setModalOpen(false);
 
     // Validation
     if (!teamCode.trim()) {
