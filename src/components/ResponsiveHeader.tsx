@@ -145,7 +145,7 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                 color: "inherit",
                 textDecoration: "none",
               }}>
-              <Typography component={"img"} src={logoUrl} alt={title} />
+              <Typography component={"img"} src={logoUrl} alt={title} sx={{width: "100%", maxWidth: "11em"}} />
             </Typography>
 
             {/* Mobile Menu Icon */}
