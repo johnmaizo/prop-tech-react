@@ -17,13 +17,8 @@ import {
   CardContent,
   IconButton,
   Snackbar,
-  Alert,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@mui/material";
-
+  Alert,} from "@mui/material";
+import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import LockIcon from "@mui/icons-material/Lock";
@@ -35,81 +30,6 @@ interface TeamData {
   code: string;
   points: number;
 }
-
-const teamData: TeamData[] = [
-  {
-    id: 1,
-    name: "DEBMAC",
-    code: "D4E2B1M3", // First letter, Number of unique letters
-    points: 91.2,
-  },
-  {
-    id: 2,
-    name: "CTRL+ALT+ELITE",
-    code: "C6T2R1L4",
-    points: 86.7,
-  },
-  {
-    id: 3,
-    name: "PANTHER CODERS",
-    code: "P7A1N2C5",
-    points: 83.7,
-  },
-  {
-    id: 4,
-    name: "MIGHTYBANDITS",
-    code: "M5I1G2B6",
-    points: 83.5,
-  },
-  {
-    id: 5,
-    name: "ESTATECH",
-    code: "E3S1T2C4",
-    points: 81.9,
-  },
-  {
-    id: 6,
-    name: "GIT GUD",
-    code: "G3I1T2",
-    points: 81.8,
-  },
-  {
-    id: 7,
-    name: "CYBERKNIGHTS",
-    code: "C6Y1B2K5",
-    points: 81.7,
-  },
-  {
-    id: 8,
-    name: "CODEO",
-    code: "C3O1D2",
-    points: 80.6,
-  },
-  {
-    id: 9,
-    name: "ALPHA ONE",
-    code: "A4L1P2O3",
-    points: 79.9,
-  },
-  {
-    id: 10,
-    name: "TEAM AMA",
-    code: "T4E1A3",
-    points: 79.5,
-  },
-  {
-    id: 11,
-    name: "BEESQUIT",
-    code: "B4E2S1Q5",
-    points: 77.4,
-  },
-  {
-    id: 12,
-    name: "CODE LANCERS",
-    code: "C4O1D2L7",
-    points: 68.1,
-  },
-];
 
 const modalStyle = {
   position: "absolute" as const,
@@ -128,40 +48,56 @@ const modalStyle = {
 // Medal colors for top 3
 const medalColors = ["#FFD700", "#C0C0C0", "#CD7F32"];
 const medalIcons = [
-  <MilitaryTechIcon sx={{color: medalColors[0]}} />,
-  <MilitaryTechIcon sx={{color: medalColors[1]}} />,
-  <MilitaryTechIcon sx={{color: medalColors[2]}} />,
+  <MilitaryTechIcon sx={{color: medalColors[0]}} key={0} />,
+  <MilitaryTechIcon sx={{color: medalColors[1]}} key={1} />,
+  <MilitaryTechIcon sx={{color: medalColors[2]}} key={2} />,
 ];
 
 export default function HackathonTeamSelection() {
-  const [selectedTeamName, setSelectedTeamName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [teamCode, setTeamCode] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState<TeamData | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [showError, setShowError] = useState(false);
 
-  // Handle team selection
-  const handleTeamSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleTeamSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validation
-    if (!selectedTeamName || !teamCode.trim()) {
-      setErrorMessage("Please select a team and enter the team code");
+    if (!teamCode.trim()) {
+      setErrorMessage("Please enter the team code");
+      setShowError(true);
+      return;
+    }
+    if (teamCode.trim().length < 5) {
+      setErrorMessage("Team code must be at least 5 characters long");
       setShowError(true);
       return;
     }
 
-    const foundTeam = teamData.find(
-      (team) => team.name === selectedTeamName && team.code === teamCode
-    );
+    setIsLoading(true);
+    setErrorMessage("");
+    try {
+      const response = await axios.get<TeamData>(
+        `https://socket.leuteriorealty.com/proptech-hackathon-2025-team-data?code=${encodeURIComponent(
+          teamCode.trim()
+        )}`
+      );
+      const teamData = response.data;
 
-    if (foundTeam) {
-      setSelectedTeam(foundTeam);
+      setSelectedTeam(teamData);
       setModalOpen(true);
-    } else {
-      setErrorMessage("Incorrect team code for the selected team");
+    } catch (err) {
+      console.error(err);
+      setErrorMessage(
+        axios.isAxiosError(err) && err.response
+          ? err.response.data.message
+          : "An error occurred"
+      );
       setShowError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -180,17 +116,6 @@ export default function HackathonTeamSelection() {
     setShowError(false);
   };
 
-  // Get sorted teams by points (for ranking table)
-  const sortedTeams = [...teamData].sort((a, b) => b.points - a.points);
-
-  // Get top 3 teams
-  const topTeams = sortedTeams.slice(0, 3);
-
-  // Get selected team rank
-  const selectedTeamRank = selectedTeam
-    ? sortedTeams.findIndex((team) => team.id === selectedTeam.id) + 1
-    : 0;
-
   return (
     <Container maxWidth="md" sx={{my: 4}}>
       {/* Team Selection Form */}
@@ -204,39 +129,18 @@ export default function HackathonTeamSelection() {
             <EmojiEventsIcon sx={{mr: 1, color: "gold"}} />
             Visayas League Team Selection
           </Typography>
-
           <Typography variant="body1" color="text.secondary">
-            Select your team and enter team code to view current rankings.
+            Enter team code to view current rankings.
           </Typography>
 
           <Box component="form" onSubmit={handleTeamSubmit} sx={{mt: 3}}>
-            <FormControl fullWidth margin="normal">
-              <InputLabel id="team-name-label">Team Name</InputLabel>
-              <Select
-                labelId="team-name-label"
-                id="team-name-select"
-                value={selectedTeamName}
-                label="Team Name"
-                onChange={(e) => setSelectedTeamName(e.target.value)}>
-                {[...teamData]
-                  .sort((a, b) => a.name.localeCompare(b.name))
-                  .map((team) => (
-                    <MenuItem key={team.id} value={team.name}>
-                      {team.name}
-                    </MenuItem>
-                  ))}
-              </Select>
-            </FormControl>
-
             <TextField
               label="Team Code"
               fullWidth
               margin="normal"
               variant="outlined"
               value={teamCode}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setTeamCode(e.target.value)
-              }
+              onChange={(e) => setTeamCode(e.target.value)}
               placeholder="Enter your team code"
               slotProps={{
                 input: {
@@ -246,14 +150,15 @@ export default function HackathonTeamSelection() {
                 },
               }}
             />
-
             <Button
               type="submit"
               variant="contained"
               size="large"
+              disabled={isLoading}
+              startIcon={isLoading ? <LockIcon /> : <EmojiEventsIcon />}
               fullWidth
               sx={{mt: 3, mb: 2, py: 1.5}}>
-              View Team Rankings
+              {isLoading ? "Loading..." : "View Team Rankings"}
             </Button>
           </Box>
         </CardContent>
@@ -285,8 +190,6 @@ export default function HackathonTeamSelection() {
             sx={{mb: 2, display: "flex", alignItems: "center"}}>
             Top 3 Teams
           </Typography>
-
-          {/* Top 3 Teams Table */}
           <TableContainer component={Paper} sx={{mb: 4}}>
             <Table aria-label="top teams table">
               <TableHead>
@@ -299,28 +202,37 @@ export default function HackathonTeamSelection() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {topTeams.map((team, index) => (
-                  <TableRow
-                    key={team.id}
-                    sx={{
-                      backgroundColor:
-                        index === 0
-                          ? "rgba(255, 215, 0, 0.1)"
-                          : index === 1
-                          ? "rgba(192, 192, 192, 0.1)"
-                          : "rgba(205, 127, 50, 0.1)",
-                    }}>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={{display: "flex", alignItems: "center"}}>
-                      {medalIcons[index]}
-                      {index + 1}
-                    </TableCell>
-                    <TableCell>{team.name}</TableCell>
-                    <TableCell align="right">{team.points}%</TableCell>
-                  </TableRow>
-                ))}
+                {/* Top 3 Teams with Medal Colors and Icons */}
+                <TableRow sx={{backgroundColor: `${medalColors[0]}33`}}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    sx={{display: "flex", alignItems: "center"}}>
+                    {medalIcons[0]}1
+                  </TableCell>
+                  <TableCell>DEBMAC</TableCell>
+                  <TableCell align="right">91.2%</TableCell>
+                </TableRow>
+                <TableRow sx={{backgroundColor: `${medalColors[1]}33`}}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    sx={{display: "flex", alignItems: "center"}}>
+                    {medalIcons[1]}3
+                  </TableCell>
+                  <TableCell>CTRL+ALT+ELITE</TableCell>
+                  <TableCell align="right">86.7%</TableCell>
+                </TableRow>
+                <TableRow sx={{backgroundColor: `${medalColors[2]}33`}}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    sx={{display: "flex", alignItems: "center"}}>
+                    {medalIcons[2]}3
+                  </TableCell>
+                  <TableCell>PANTHER CODERS</TableCell>
+                  <TableCell align="right">83.7%</TableCell>
+                </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
@@ -331,7 +243,6 @@ export default function HackathonTeamSelection() {
               <Typography variant="h6" sx={{mb: 2}}>
                 Your Team Stats
               </Typography>
-
               <TableContainer component={Paper} sx={{mb: 4}}>
                 <Table aria-label="your team table">
                   <TableHead>
@@ -344,10 +255,9 @@ export default function HackathonTeamSelection() {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {/* <TableRow sx={{backgroundColor: "primary.light"}}> */}
                     <TableRow>
                       <TableCell component="th" scope="row">
-                        {selectedTeamRank}
+                        {selectedTeam.id}
                       </TableCell>
                       <TableCell>{selectedTeam.name}</TableCell>
                       <TableCell align="right">
@@ -357,18 +267,6 @@ export default function HackathonTeamSelection() {
                   </TableBody>
                 </Table>
               </TableContainer>
-
-              {/* Points away from next rank */}
-              {selectedTeamRank > 1 && (
-                <Typography variant="body2" color="text.secondary" sx={{mb: 2}}>
-                  Your team is{" "}
-                  {(
-                    sortedTeams[selectedTeamRank - 2].points -
-                    selectedTeam.points
-                  ).toFixed(1)}
-                  % points away from the next rank.
-                </Typography>
-              )}
             </>
           )}
 
