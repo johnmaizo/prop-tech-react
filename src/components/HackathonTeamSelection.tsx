@@ -63,6 +63,7 @@ export default function HackathonTeamSelection() {
 
   const handleTeamSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage("");
 
     // Validation
     if (!teamCode.trim()) {
@@ -77,7 +78,6 @@ export default function HackathonTeamSelection() {
     }
 
     setIsLoading(true);
-    setErrorMessage("");
     try {
       const response = await axios.get<TeamData>(
         `https://socket.leuteriorealty.com/proptech-hackathon-2025-team-data?code=${encodeURIComponent(
