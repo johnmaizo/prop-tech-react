@@ -219,7 +219,7 @@ export default function HackathonTeamSelection() {
                     component="th"
                     scope="row"
                     sx={{display: "flex", alignItems: "center"}}>
-                    {medalIcons[1]}3
+                    {medalIcons[1]}2
                   </TableCell>
                   <TableCell>CTRL+ALT+ELITE</TableCell>
                   <TableCell align="right">86.7%</TableCell>
