@@ -39,7 +39,8 @@ export default function WhatWeDo() {
               flexDirection: "column",
               alignItems: {xs: "center", md: "flex-start"},
             }}>
-            <Box sx={{textAlign: {xs: "center", md: "left"}, width: "100%"}}>
+            {/* <Box sx={{textAlign: {xs: "center", md: "left"}, width: "100%"}}> */}
+            <Box sx={{width: "100%"}}>
               <OutlinedTitle
                 variant="h2"
                 strokeColor="#FFFFFF"
@@ -54,12 +55,8 @@ export default function WhatWeDo() {
                   },
                   "&::after": {
                     left: {xs: isMobile ? -40 : -60, md: -80},
-                    // width: {sm: "1em", md: "6em"},
+                    display: {xs: "none", md: "block"},
                   },
-
-                  // "&::after": {
-                  //   left: {sm: -400, md: 0},
-                  // },
                 }}>
                 What We Do
               </OutlinedTitle>

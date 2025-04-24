@@ -96,7 +96,12 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
           p: 2,
         }}>
         <Typography variant="h6" sx={{my: 2}}>
-          {title}
+          <Typography
+            component={"img"}
+            src={logoUrl}
+            alt={title}
+            sx={{width: "100%", maxWidth: "7em"}}
+          />
         </Typography>
         <IconButton aria-label="close drawer" onClick={handleDrawerClose}>
           <CloseIcon />
@@ -145,7 +150,12 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                 color: "inherit",
                 textDecoration: "none",
               }}>
-              <Typography component={"img"} src={logoUrl} alt={title} sx={{width: "100%", maxWidth: "11em"}} />
+              <Typography
+                component={"img"}
+                src={logoUrl}
+                alt={title}
+                sx={{width: "100%", maxWidth: "11em"}}
+              />
             </Typography>
 
             {/* Mobile Menu Icon */}
@@ -167,7 +177,7 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
               variant="h5"
               noWrap
               component="a"
-              href={logoUrl}
+              href={"/"}
               sx={{
                 mr: 2,
                 display: {xs: "flex", md: "none"},
@@ -178,7 +188,12 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                 color: "inherit",
                 textDecoration: "none",
               }}>
-              <Typography component={"img"} src={logoUrl} alt={title} />
+              <Typography
+                component={"img"}
+                src={logoUrl}
+                alt={title}
+                sx={{width: "100%", maxWidth: "7em"}}
+              />
             </Typography>
 
             {/* Desktop Navigation Buttons */}

@@ -264,10 +264,10 @@ export default function Footer() {
                   }}
                 />
                 <Button
-                  aria-label="Submit"
+                  aria-label="Submit Email Address"
                   sx={{
                     width: "67px",
-                    height: {xs: "56px", sm: "65px"},
+                    height: "65px",
                     backgroundColor: "#5174FF",
                     borderRadius: 0,
                     padding: 0,

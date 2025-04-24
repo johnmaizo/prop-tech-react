@@ -54,6 +54,8 @@ export default function ContactUs() {
               minHeight: {xs: "600px", md: "750px"},
               borderRadius: "20px",
               order: {xs: 2, lg: 1},
+              display: {xs: "flex", lg: "block"},
+              alignItems: "center",
             }}>
             <Box
               sx={{
@@ -164,8 +166,8 @@ export default function ContactUs() {
           <Box
             sx={{
               width: {xs: "100%", sm: "90%", md: "80%", lg: "100%"},
-              px: {xs: 2, sm: 3, md: 4, lg: 6},
-              order: {xs: 1, lg: 2},
+              // px: {xs: 2, sm: 3, md: 4, lg: 6},
+              // order: {xs: 1, lg: 2},
             }}>
             <OutlinedTitle
               variant="h2"
@@ -181,6 +183,7 @@ export default function ContactUs() {
                 },
                 "&::after": {
                   left: {xs: 10, md: 20},
+                  display: {xs: "none", md: "block"},
                 },
               }}>
               Contact Us
@@ -245,6 +248,7 @@ export default function ContactUs() {
                       py: 1.4,
                       pl: 2,
                       width: "100%",
+                      maxWidth: {xs: "20em", sm: "100%", md: "100%"},
                       "& .MuiInputBase-input": {
                         color: "black",
                       },
@@ -270,6 +274,7 @@ export default function ContactUs() {
                     fullWidth
                     slotProps={{input: {disableUnderline: true}}}
                     sx={{
+                      maxWidth: {xs: "20em", sm: "100%", md: "100%"},
                       backgroundColor: "#E3E3E3",
                       color: "black",
                       border: "2px solid #868686",
@@ -318,6 +323,7 @@ export default function ContactUs() {
                     fullWidth
                     slotProps={{input: {disableUnderline: true}}}
                     sx={{
+                      maxWidth: {xs: "20em", sm: "100%", md: "100%"},
                       backgroundColor: "#E3E3E3",
                       color: "black",
                       border: "2px solid #868686",
@@ -354,6 +360,7 @@ export default function ContactUs() {
                     fullWidth
                     slotProps={{input: {disableUnderline: true}}}
                     sx={{
+                      maxWidth: {xs: "20em", sm: "100%", md: "100%"},
                       backgroundColor: "#E3E3E3",
                       color: "black",
                       border: "2px solid #868686",
@@ -395,6 +402,7 @@ export default function ContactUs() {
                   fullWidth
                   slotProps={{input: {disableUnderline: true}}}
                   sx={{
+                    maxWidth: {xs: "20em", sm: "100%", md: "100%"},
                     backgroundColor: "#E3E3E3",
                     color: "black",
                     border: "2px solid #868686",

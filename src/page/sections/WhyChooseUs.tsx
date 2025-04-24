@@ -55,6 +55,7 @@ export default function WhyChooseUs() {
             fillColor="transparent"
             strokeWidth={1}
             sx={{
+              textAlign: "left",
               fontSize: {xs: "28px", sm: "32px", md: "35px"},
               lineHeight: {xs: "22px", sm: "24px", md: "25px"},
               color: "black",
@@ -63,6 +64,7 @@ export default function WhyChooseUs() {
               },
               "&::after": {
                 left: {xs: isMobile ? 0 : 10, md: 20},
+                display: {xs: "none", md: "block"},
               },
             }}>
             Why Choose Us?

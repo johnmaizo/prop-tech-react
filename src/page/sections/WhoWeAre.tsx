@@ -165,6 +165,7 @@ export default function WhoWeAre() {
               sx={{
                 display: "flex",
                 justifyContent: {xs: "center", md: "flex-start"},
+                
               }}>
               <OutlinedTitle
                 variant="h2"
@@ -177,8 +178,8 @@ export default function WhoWeAre() {
                   color: "black",
                   "&::after": {
                     // lineHeight: {xs: "72px", sm: "24px", md: "25px"},
-                    width: {sm: "10em", md: "6em"},
-                    left: {sm: -400, md: 0},
+                    width: {xs: "10em", sm: "10em", md: "6em"},
+                    display: {xs: "none", md: "block"},
                   },
                 }}>
                 Who We Are
