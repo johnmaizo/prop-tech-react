@@ -80,7 +80,7 @@ export default function SmallHeaderNav() {
             position: "relative",
             display: "flex",
             alignItems: "center",
-            gap: 0,
+            gap: 1.5,
             backgroundColor: "#0533B7",
             py: 1.5,
             pr: 10,

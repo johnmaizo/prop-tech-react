@@ -4,7 +4,7 @@ import {useInView} from "framer-motion";
 import {useRef} from "react";
 
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import HeroBG from "../../assets/images/HeroBG.png";
+import HeroBG from "../../assets/images/HeroBG.jpg";
 
 // Create motion variants for MUI components
 const MotionBox = motion(Box);
@@ -48,11 +48,22 @@ export default function Hero() {
       variants={backgroundReveal}
       ref={heroRef}
       sx={{
-        width: "100%",
+        // width: "100%",
+        maxWidth: "100%",
+        height: "auto",
         background: `url(${HeroBG}) no-repeat center center`,
+        // aspectRatio: "16/9",
         backgroundSize: "cover",
         color: "white",
-        // height: {sm: "100vh", md: "auto"},
+        position: "relative",
+        "&:before": {
+          content: '""',
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(180deg, #000000 30%, #91133F 73%, #4B237B 100%)",
+          opacity: "61%",
+        },
       }}>
       <Container maxWidth="xl">
         <MotionBox
@@ -61,91 +72,97 @@ export default function Hero() {
             maxWidth: {xs: "100%", sm: "90%", md: "45em"},
             py: {xs: 10, sm: 16, md: 28},
             px: {xs: 0, sm: 3},
+            position: "relative",
+            zIndex: 999,
           }}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}>
-          <MotionTypography
-            variant="h1"
-            variants={fadeInUp}
-            transition={{duration: 0.7, ease: "easeOut"}}
-            sx={{
-              fontFamily: "NATS",
-              fontSize: {xs: "40px", sm: "60px", md: "80px"},
-              lineHeight: {xs: "40px", sm: "45px", md: "55px"},
-            }}>
-            Innovative IT Solutions for a Smarter Future
-          </MotionTypography>
-
-          <MotionTypography
-            variant="body1"
-            variants={fadeInUp}
-            transition={{duration: 0.7, ease: "easeOut", delay: 0.2}}
-            sx={{
-              fontFamily: "Geist",
-              fontSize: {xs: "16px", sm: "20px", md: "25px"},
-              lineHeight: {xs: "24px", sm: "32px", md: "40px"},
-              my: {xs: 3, sm: 4, md: 5},
-            }}>
-            Discover cutting-edge technology designed to elevate your experience
-            and drive the future.
-          </MotionTypography>
-
-          <MotionBox
-            sx={{
-              display: "flex",
-              flexDirection: {xs: "column", sm: "row"},
-              gap: {xs: 2, sm: 3},
-              alignItems: {xs: "flex-start", sm: "center"},
-            }}
-            variants={fadeInUp}
-            transition={{duration: 0.7, ease: "easeOut", delay: 0.4}}>
-            <MotionButton
-              endIcon={
-                <KeyboardArrowRightIcon
-                  sx={{
-                    fontSize: {xs: "24px", sm: "30px", md: "36px", lg: "50px"},
-                  }}
-                />
-              }
-              whileHover={{
-                scale: 1.05,
-                transition: {duration: 0.3},
-              }}
-              whileTap={{scale: 0.98}}
+          <Box>
+            <MotionTypography
+              variant="h1"
+              variants={fadeInUp}
+              transition={{duration: 0.7, ease: "easeOut"}}
               sx={{
-                color: "black",
-                fontFamily: "Geist",
-                fontSize: {xs: "16px", sm: "18px", md: "25px"},
-                backgroundColor: "white",
-                width: {xs: "200px", sm: "220px", md: "253px"},
-                height: {xs: "45px", sm: "50px", md: "60px"},
-                textTransform: "none",
-                borderRadius: "30px",
-                "&:hover": {
-                  backgroundColor: "#f0f0f0",
-                },
+                fontFamily: "NATS",
+                fontSize: {xs: "40px", sm: "60px", md: "80px"},
+                lineHeight: {xs: "40px", sm: "45px", md: "55px"},
               }}>
-              Explore More
-            </MotionButton>
-
-            <MotionButton
-              whileHover={{
-                scale: 1.05,
-                transition: {duration: 0.3},
-              }}
-              whileTap={{scale: 0.98}}
+              Innovative IT Solutions for a Smarter Future
+            </MotionTypography>
+            <MotionTypography
+              variant="body1"
+              variants={fadeInUp}
+              transition={{duration: 0.7, ease: "easeOut", delay: 0.2}}
               sx={{
-                color: "white",
                 fontFamily: "Geist",
-                fontSize: {xs: "16px", sm: "18px", md: "25px"},
-                textTransform: "none",
-                textDecoration: "underline",
-                mt: {xs: 1, sm: 0},
+                fontSize: {xs: "16px", sm: "20px", md: "25px"},
+                lineHeight: {xs: "24px", sm: "32px", md: "40px"},
+                my: {xs: 3, sm: 4, md: 5},
               }}>
-              View All Services
-            </MotionButton>
-          </MotionBox>
+              Discover cutting-edge technology designed to elevate your
+              experience and drive the future.
+            </MotionTypography>
+            <MotionBox
+              sx={{
+                display: "flex",
+                flexDirection: {xs: "column", sm: "row"},
+                gap: {xs: 2, sm: 3},
+                alignItems: {xs: "flex-start", sm: "center"},
+              }}
+              variants={fadeInUp}
+              transition={{duration: 0.7, ease: "easeOut", delay: 0.4}}>
+              <MotionButton
+                endIcon={
+                  <KeyboardArrowRightIcon
+                    sx={{
+                      fontSize: {
+                        xs: "24px",
+                        sm: "30px",
+                        md: "36px",
+                        lg: "50px",
+                      },
+                    }}
+                  />
+                }
+                whileHover={{
+                  scale: 1.05,
+                  transition: {duration: 0.3},
+                }}
+                whileTap={{scale: 0.98}}
+                sx={{
+                  color: "black",
+                  fontFamily: "Geist",
+                  fontSize: {xs: "16px", sm: "18px", md: "25px"},
+                  backgroundColor: "white",
+                  width: {xs: "200px", sm: "220px", md: "253px"},
+                  height: {xs: "45px", sm: "50px", md: "60px"},
+                  textTransform: "none",
+                  borderRadius: "30px",
+                  "&:hover": {
+                    backgroundColor: "#f0f0f0",
+                  },
+                }}>
+                Explore More
+              </MotionButton>
+              {/* <MotionButton
+                whileHover={{
+                  scale: 1.05,
+                  transition: {duration: 0.3},
+                }}
+                whileTap={{scale: 0.98}}
+                sx={{
+                  color: "white",
+                  fontFamily: "Geist",
+                  fontSize: {xs: "16px", sm: "18px", md: "25px"},
+                  textTransform: "none",
+                  textDecoration: "underline",
+                  mt: {xs: 1, sm: 0},
+                }}>
+                View All Services
+              </MotionButton> */}
+            </MotionBox>
+          </Box>
         </MotionBox>
       </Container>
     </Box>
