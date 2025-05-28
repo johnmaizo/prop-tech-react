@@ -69,7 +69,7 @@ export default function FeatureCarousel() {
   const [autoAdvance, setAutoAdvance] = useState<boolean>(true);
 
   // Ref to manage the timeout that will re-enable auto-advance after 10 seconds of inactivity.
-  const manualTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const manualTimeoutRef = useRef<number | null>(null);
 
   // Handler for manual page selection.
   const handlePageSelect = (pageIndex: number) => {
@@ -81,16 +81,16 @@ export default function FeatureCarousel() {
       clearTimeout(manualTimeoutRef.current);
     }
     // Restart auto-advance after 10 seconds of no manual clicks.
-    manualTimeoutRef.current = setTimeout(() => {
+    manualTimeoutRef.current = window.setTimeout(() => {
       setAutoAdvance(true);
     }, 10000);
   };
 
   // Auto-advance effect.
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
+    let intervalId: number;
     if (autoAdvance) {
-      intervalId = setInterval(() => {
+      intervalId = window.setInterval(() => {
         setCurrentPage((prevPage) => (prevPage + 1) % pages.length);
       }, 4000);
     }
