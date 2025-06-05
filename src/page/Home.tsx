@@ -1,4 +1,4 @@
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
 import ResponsiveHeader from "../components/ResponsiveHeader";
 import SmallHeaderNav from "../components/SmallHeaderNav";
 

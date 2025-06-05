@@ -4,7 +4,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import HeroBG from "../../assets/images/HeroBG.jpg";
+import AboutBG from "../../assets/images/AboutBG.jpg";
 
 // Create motion variants for MUI components
 const MotionBox = motion(Box);
@@ -50,19 +50,19 @@ export default function Hero() {
       sx={{
         // width: "100%",
         maxWidth: "100%",
-        height: "auto",
-        background: `url(${HeroBG}) no-repeat center center`,
+        height: "800px",
+        background: `url(${AboutBG})no-repeat`,
         // aspectRatio: "16/9",
-        backgroundSize: "cover",
         color: "white",
+        backgroundSize: "100%",
         position: "relative",
         "&:before": {
           content: '""',
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(0deg, rgba(0,0,0,0.8) 30%, rgba(145,19,63,0.3) 73%, rgba(75,35,123,0.4) 100%)",
-          opacity: "61%",
+            "linear-gradient(90deg, #000000 35%,rgb(165, 99, 122) 100%, #4B237B 50%)",
+          opacity: "55%",
         },
       }}
     >
@@ -70,10 +70,9 @@ export default function Hero() {
         <MotionBox
           sx={{
             width: "100%",
-            minHeight: "300px",
-            maxWidth: { xs: "100%", sm: "100%", md: "100%" },
-            py: { xs: 10, sm: 16, md: 28 },
-            px: { xs: 0, sm: 3 },
+            maxWidth: { xs: "100%", sm: "90%", md: "45em" },
+            paddingTop: 10,
+            display: "flex",
             position: "relative",
             zIndex: 999,
           }}
@@ -81,35 +80,69 @@ export default function Hero() {
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          <Box sx={{ position: "absolute", bottom: "50px" }}>
+          <Box>
             <MotionTypography
               variant="h1"
               variants={fadeInUp}
               transition={{ duration: 0.7, ease: "easeOut" }}
               sx={{
-                fontFamily: "NATS",
-                fontSize: { xs: "40px", sm: "60px", md: "80px" },
-                lineHeight: { xs: "40px", sm: "45px", md: "55px" },
+                fontFamily: "Geist",
+                fontSize: {
+                  xs: "44px",
+                  sm: "60px",
+                  md: "72px",
+                  lg: "80px",
+                  xl: "88px",
+                },
+                fontWeight: 500,
+                lineHeight: { xs: "44px", sm: "64px", md: "78px", lg: "88px" },
+                mb: { xs: 1.5, sm: 2 },
+                color: "#fff",
               }}
             >
-              Innovative IT Solutions for a Smarter Future
+              About Us
+            </MotionTypography>
+            <MotionTypography
+              variant="h5"
+              variants={fadeInUp}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              sx={{
+                mt: 2,
+                fontWeight: 400,
+                fontFamily: "Geist",
+                fontSize: { xs: "24px", sm: "28px", md: "30px" },
+                maxWidth: "800px",
+              }}
+            >
+              Empowering Businesses Through Smart Technology
             </MotionTypography>
             <MotionTypography
               variant="body1"
               variants={fadeInUp}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
               sx={{
+                mt: 8,
+                mb: 5,
                 fontFamily: "Geist",
-                fontSize: { xs: "16px", sm: "20px", md: "25px" },
-                lineHeight: { xs: "24px", sm: "32px", md: "40px" },
-                my: { xs: 2, sm: 2, md: 2 },
+                fontSize: { xs: "16px", sm: "18px", md: "25px" },
+                lineHeight: { xs: "28px", md: "38px" },
+                width: "50em",
               }}
             >
-              Discover cutting-edge technology designed to elevate your
-              experience and drive the future.
+              <strong>At Proptech Philippines</strong>, we are a modern
+              technology company dedicated to transforming businesses through
+              innovative IT solutions. We specialize in building custom digital
+              systems that are smart, scalable, and future-ready empowering
+              organizations of all sizes to grow, adapt, and succeed in today’s
+              fast-changing digital landscape. Whether you need software
+              development, mobile applications, or cloud solutions, we deliver
+              purpose-built technologies aligned with your unique needs and
+              goals.
             </MotionTypography>
+
             <MotionBox
               sx={{
+                mt: 15,
                 display: "flex",
                 flexDirection: { xs: "column", sm: "row" },
                 gap: { xs: 2, sm: 3 },
@@ -150,24 +183,8 @@ export default function Hero() {
                   },
                 }}
               >
-                Explore More
+                View Info
               </MotionButton>
-              {/* <MotionButton
-                whileHover={{
-                  scale: 1.05,
-                  transition: {duration: 0.3},
-                }}
-                whileTap={{scale: 0.98}}
-                sx={{
-                  color: "white",
-                  fontFamily: "Geist",
-                  fontSize: {xs: "16px", sm: "18px", md: "25px"},
-                  textTransform: "none",
-                  textDecoration: "underline",
-                  mt: {xs: 1, sm: 0},
-                }}>
-                View All Services
-              </MotionButton> */}
             </MotionBox>
           </Box>
         </MotionBox>

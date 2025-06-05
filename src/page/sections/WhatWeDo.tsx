@@ -21,56 +21,61 @@ export default function WhatWeDo() {
       sx={{
         background: "linear-gradient(90deg, #4B237B, #91133F)",
         color: "white",
-        py: {xs: 6, sm: 8, md: 10},
-      }}>
+        py: { xs: 6, sm: 8, md: 10 },
+      }}
+    >
       <Container maxWidth="xl">
         <Box
           sx={{
             display: "flex",
-            flexDirection: {xs: "column", md: "row"},
-            px: {xs: 2, sm: 3, md: 5},
-            gap: {xs: 5, md: 0},
-          }}>
+            flexDirection: { xs: "column", md: "row" },
+            px: { xs: 2, sm: 3, md: 5 },
+            gap: { xs: 5, md: 0 },
+          }}
+        >
           <Box
             sx={{
-              mr: {xs: 0, md: 5},
+              mr: { xs: 0, md: 5 },
               width: "100%",
               display: "flex",
               flexDirection: "column",
-              alignItems: {xs: "center", md: "flex-start"},
-            }}>
+              alignItems: { xs: "center", md: "flex-start" },
+            }}
+          >
             {/* <Box sx={{textAlign: {xs: "center", md: "left"}, width: "100%"}}> */}
-            <Box sx={{width: "100%"}}>
+            <Box sx={{ width: "100%" }}>
               <OutlinedTitle
                 variant="h2"
                 strokeColor="#FFFFFF"
                 fillColor="transparent"
                 strokeWidth={1}
                 sx={{
-                  fontSize: {xs: "28px", sm: "32px", md: "35px"},
-                  lineHeight: {xs: "22px", sm: "24px", md: "25px"},
+                  fontSize: { xs: "28px", sm: "32px", md: "35px" },
+                  lineHeight: { xs: "22px", sm: "24px", md: "25px" },
                   color: "white",
                   "&::before": {
                     color: "white",
                   },
                   "&::after": {
-                    left: {xs: isMobile ? -40 : -60, md: -80},
-                    display: {xs: "none", md: "block"},
+                    left: { xs: isMobile ? -40 : -60, md: -80 },
+                    display: { xs: "none", md: "block" },
                   },
-                }}>
+                }}
+              >
                 What We Do
               </OutlinedTitle>
               <Typography
                 variant="body1"
                 sx={{
-                  my: {xs: 3, sm: 4, md: 5},
+                  my: { xs: 3, sm: 4, md: 5 },
                   fontFamily: "Geist",
-                  fontSize: {xs: "32px", sm: "40px", md: "48px"},
-                  lineHeight: {xs: "36px", sm: "40px", md: "48px"},
+                  fontSize: { xs: "32px", sm: "40px", md: "48px" },
+                  lineHeight: { xs: "36px", sm: "40px", md: "48px" },
                   fontWeight: 700,
                   width: "100%",
-                  maxWidth: {xs: "100%", md: "15ch"},
-                }}>
+                  maxWidth: { xs: "100%", md: "15ch" },
+                }}
+              >
                 Why Trust Us for Your IT Needs?
               </Typography>
             </Box>
@@ -84,16 +89,17 @@ export default function WhatWeDo() {
                 borderRadius: "25px",
                 width: "100%",
                 height: "auto",
-                maxWidth: {xs: "100%", sm: "80%", md: "100%"},
+                maxWidth: { xs: "100%", sm: "80%", md: "100%" },
               }}
             />
           </Box>
           <Box
             sx={{
-              mr: {xs: 0, md: 5},
+              mr: { xs: 0, md: 5 },
               width: "100%",
-              maxWidth: {xs: "100%", md: "43em"},
-            }}>
+              maxWidth: { xs: "100%", md: "43em" },
+            }}
+          >
             <FeatureCarousel />
           </Box>
         </Box>

@@ -1,5 +1,4 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 declare module "@mui/material/styles" {
   interface Palette {
@@ -14,10 +13,10 @@ declare module "@mui/material/styles" {
   }
 }
 
-import Home from "./page/Home";
 import AboutUs from "./page/AboutUs";
+import AboutUsHero from "./page/sections/AboutUsHero";
 
-export default function App() {
+export default function About() {
   const theme = createTheme({
     typography: {
       fontFamily: "Geist",
@@ -59,13 +58,9 @@ export default function App() {
   });
 
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/About" element={<AboutUs />} />
-        </Routes>
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <AboutUsHero />
+      <AboutUs />
+    </ThemeProvider>
   );
 }
