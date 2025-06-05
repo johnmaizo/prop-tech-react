@@ -9,7 +9,7 @@ import {
 import OutlinedTitle from "../../utils/OutlinedTitle";
 import cmImg from "../../assets/images/CompanyMilestoneBackground.png";
 
-export default function WhyAboutUs() {
+export default function CompanyMilestone() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 

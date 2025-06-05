@@ -4,9 +4,30 @@ import alImg from "../../assets/images/ALimage.png";
 
 import OutlinedTitle from "../../utils/OutlinedTitle";
 
+import { motion } from "framer-motion"; // Add this
+import { useEffect, useState } from "react"; // Add this
+
+function useTypewriter(text: string, speed: number = 40) {
+  const [displayed, setDisplayed] = useState("");
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayed((prev) => prev + text.charAt(index));
+      index++;
+      if (index === text.length) clearInterval(interval);
+    }, speed);
+    return () => clearInterval(interval);
+  }, [text, speed]);
+  return displayed;
+}
+
 export default function MeetCeo() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const typedText = useTypewriter(
+    "“WWe specialize in creating custom systems that solve real-world problems through innovation, strategy, and clean code.”"
+  );
+
   return (
     <Box
       component={"section"}
@@ -32,7 +53,15 @@ export default function MeetCeo() {
         mt: 15,
       }}
     >
-      <Box sx={{ mb: { xs: 4, md: 0 }, mr: { xs: 2, md: 30 } }}>
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0, x: -20 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1 }}
+        style={{
+          marginBottom: isMobile ? 32 : 0,
+          marginRight: isMobile ? 16 : 240,
+        }}
+      >
         <img
           src={`${alImg}`}
           alt="ALimage"
@@ -43,7 +72,8 @@ export default function MeetCeo() {
             height: "auto",
           }}
         />
-      </Box>
+      </motion.div>
+
       <Box sx={{ maxWidth: 600, flexShrink: 1 }}>
         <OutlinedTitle
           variant="h2"
@@ -93,11 +123,10 @@ export default function MeetCeo() {
             fontSize: "1.8em",
             mt: { xs: 5, md: 2 },
             ml: { xs: 1, md: -18 },
+            whiteSpace: "pre-wrap",
           }}
         >
-          “We specialize in creating custom systems that solve
-          <br /> real-world problems through innovation, strategy, and clean
-          code.”
+          {typedText}
         </Typography>
 
         <Typography

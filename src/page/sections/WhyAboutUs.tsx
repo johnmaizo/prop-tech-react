@@ -7,6 +7,8 @@ import {
   Button,
 } from "@mui/material";
 
+import { motion } from "framer-motion";
+
 import innImg from "../../assets/images/Innovative.png";
 import longImg from "../../assets/images/longTerm.png";
 import agImg from "../../assets/images/Agile.png";
@@ -17,6 +19,10 @@ import bImg from "../../assets/images/bell.png";
 
 import OutlinedTitle from "../../utils/OutlinedTitle";
 
+// Create MotionBox for animation
+const MotionBox = motion(Box);
+const MotionButton = motion(Button);
+
 export default function WhyAboutUs() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -25,14 +31,14 @@ export default function WhyAboutUs() {
     <Box
       component={"section"}
       id="why-choose-us"
-      sx={{ py: { xs: 10, sm: 12, md: 10 } }} // Increased overall vertical padding even more
+      sx={{ py: { xs: 10, sm: 12, md: 10 } }}
     >
       <Container maxWidth="xl">
         <Box
           sx={{
             px: { xs: 2, sm: 3, md: 5 },
             textAlign: { xs: "center", md: "left" },
-            mb: { xs: 6, md: 8 }, // Increased margin-bottom for title/text
+            mb: { xs: 6, md: 8 },
           }}
         >
           <OutlinedTitle
@@ -61,7 +67,7 @@ export default function WhyAboutUs() {
             sx={{
               mt: { xs: 3, sm: 3.5, md: 4 },
               fontFamily: "NATS",
-              fontSize: { xs: "44px", sm: "54px", md: "64px" }, // Slightly larger main text
+              fontSize: { xs: "44px", sm: "54px", md: "64px" },
               lineHeight: { xs: "49px", sm: "64px", md: "74px" },
             }}
           >
@@ -80,7 +86,7 @@ export default function WhyAboutUs() {
           </Typography>
         </Box>
 
-        {/* Main container with more mt and gap */}
+        {/* Main container for all feature boxes */}
         <Box
           sx={{
             mt: 6,
@@ -90,34 +96,46 @@ export default function WhyAboutUs() {
             gap: 5,
           }}
         >
-          {" "}
+          {/* Grid for the first four boxes */}
           <Box
             sx={{
               display: "grid",
               gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-              gap: 10,
+              gap: { xs: 5, md: 10 },
               maxWidth: "1400px",
               mx: "auto",
+              px: { xs: 2, sm: 0 },
             }}
           >
-            {/* First Box */}
-            <Box
+            {/* First Box - Innovative */}
+            <MotionBox
               sx={{
                 display: "flex",
                 alignItems: "flex-start",
-                padding: 4,
+                padding: { xs: 3, md: 4 },
                 borderRadius: 2,
                 boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
               }}
+              whileHover={{
+                scale: 1.02,
+                y: -5,
+                boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)",
+                transition: { duration: 0.2 },
+              }}
             >
-              <Box sx={{ mr: 4, display: "flex", alignItems: "center" }}>
-                {" "}
+              <Box
+                sx={{
+                  mr: { xs: 2, md: 4 },
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
                 <img
                   src={`${innImg}`}
                   alt="Innovative"
                   width={70}
                   height={80}
-                  style={{ borderRadius: 8 }}
+                  style={{ borderRadius: 8, maxWidth: "100%", height: "auto" }}
                 />
               </Box>
               <Box>
@@ -125,39 +143,50 @@ export default function WhyAboutUs() {
                   variant="h6"
                   fontWeight="bold"
                   gutterBottom
-                  sx={{ fontSize: "1.8em" }}
+                  sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
                 >
-                  {" "}
                   Innovative and scalable solutions
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ fontSize: "1.2em" }}
+                  sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
                 >
                   Future-ready systems built to grow and adapt with your
                   business.
                 </Typography>
               </Box>
-            </Box>
+            </MotionBox>
 
-            {/* Second Box */}
-            <Box
+            {/* Second Box - Long-term tech partnership */}
+            <MotionBox
               sx={{
                 display: "flex",
                 alignItems: "flex-start",
-                padding: 4,
+                padding: { xs: 3, md: 4 },
                 borderRadius: 2,
                 boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
               }}
+              whileHover={{
+                scale: 1.02,
+                y: -5,
+                boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)",
+                transition: { duration: 0.2 },
+              }}
             >
-              <Box sx={{ mr: 4, display: "flex", alignItems: "center" }}>
+              <Box
+                sx={{
+                  mr: { xs: 2, md: 4 },
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
                 <img
                   src={`${longImg}`}
                   alt="longTerm"
                   width={70}
                   height={80}
-                  style={{ borderRadius: 8 }}
+                  style={{ borderRadius: 8, maxWidth: "100%", height: "auto" }}
                 />
               </Box>
               <Box>
@@ -165,37 +194,49 @@ export default function WhyAboutUs() {
                   variant="h6"
                   fontWeight="bold"
                   gutterBottom
-                  sx={{ fontSize: "1.8em" }}
+                  sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
                 >
                   Long-term tech partnership
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ fontSize: "1.2em" }}
+                  sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
                 >
                   A dedicated partner for continuous growth and innovation.
                 </Typography>
               </Box>
-            </Box>
+            </MotionBox>
 
-            {/* Third Box */}
-            <Box
+            {/* Third Box - Agile development process */}
+            <MotionBox
               sx={{
                 display: "flex",
                 alignItems: "flex-start",
-                padding: 4,
+                padding: { xs: 3, md: 4 },
                 borderRadius: 2,
                 boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
               }}
+              whileHover={{
+                scale: 1.02,
+                y: -5,
+                boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)",
+                transition: { duration: 0.2 },
+              }}
             >
-              <Box sx={{ mr: 4, display: "flex", alignItems: "center" }}>
+              <Box
+                sx={{
+                  mr: { xs: 2, md: 4 },
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
                 <img
                   src={`${agImg}`}
                   alt="Agile"
                   width={70}
                   height={80}
-                  style={{ borderRadius: 8 }}
+                  style={{ borderRadius: 8, maxWidth: "100%", height: "auto" }}
                 />
               </Box>
               <Box>
@@ -203,37 +244,49 @@ export default function WhyAboutUs() {
                   variant="h6"
                   fontWeight="bold"
                   gutterBottom
-                  sx={{ fontSize: "1.8em" }}
+                  sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
                 >
                   Agile development process
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ fontSize: "1.2em" }}
+                  sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
                 >
                   Flexible, fast, and collaborative development at every stage.
                 </Typography>
               </Box>
-            </Box>
+            </MotionBox>
 
-            {/* Fourth Box */}
-            <Box
+            {/* Fourth Box - Transparent pricing */}
+            <MotionBox
               sx={{
                 display: "flex",
                 alignItems: "flex-start",
-                padding: 4,
+                padding: { xs: 3, md: 4 },
                 borderRadius: 2,
                 boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
               }}
+              whileHover={{
+                scale: 1.02,
+                y: -5,
+                boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)",
+                transition: { duration: 0.2 },
+              }}
             >
-              <Box sx={{ mr: 4, display: "flex", alignItems: "center" }}>
+              <Box
+                sx={{
+                  mr: { xs: 2, md: 4 },
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
                 <img
                   src={`${tpImg}`}
                   alt="Transparent"
                   width={70}
                   height={80}
-                  style={{ borderRadius: 8 }}
+                  style={{ borderRadius: 8, maxWidth: "100%", height: "auto" }}
                 />
               </Box>
               <Box>
@@ -241,40 +294,55 @@ export default function WhyAboutUs() {
                   variant="h6"
                   fontWeight="bold"
                   gutterBottom
-                  sx={{ fontSize: "1.8em" }}
+                  sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
                 >
                   Transparent pricing
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ fontSize: "1.2em" }}
+                  sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
                 >
                   Clear, upfront pricing with no surprises.
                 </Typography>
               </Box>
-            </Box>
+            </MotionBox>
           </Box>
-          {/* Fifth Box with more mt and padding */}
-          <Box
+
+          {/* Fifth Box - Fast deployment & real-time support */}
+          <MotionBox
             sx={{
-              mt: 4,
+              mt: { xs: 5, md: 4 },
               mx: "auto",
-              padding: 5,
+              padding: { xs: 3, md: 5 },
               borderRadius: 2,
               boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
-              maxWidth: "700px",
+              maxWidth: { xs: "100%", md: "700px" },
+              width: "100%",
               display: "flex",
               alignItems: "flex-start",
+              px: { xs: 2, sm: 0 },
+            }}
+            whileHover={{
+              scale: 1.02,
+              y: -5,
+              boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)",
+              transition: { duration: 0.2 },
             }}
           >
-            <Box sx={{ mr: 4, display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                mr: { xs: 2, md: 4 },
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <img
                 src={`${fImg}`}
                 alt="Fast"
                 width={70}
                 height={90}
-                style={{ borderRadius: 8 }}
+                style={{ borderRadius: 8, maxWidth: "100%", height: "auto" }}
               />
             </Box>
             <Box>
@@ -282,21 +350,30 @@ export default function WhyAboutUs() {
                 variant="h6"
                 fontWeight="bold"
                 gutterBottom
-                sx={{ fontSize: "1.8em" }}
+                sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
               >
                 Fast deployment & real-time support
               </Typography>
               <Typography
                 variant="body1"
                 color="text.secondary"
-                sx={{ fontSize: "1.2em" }}
+                sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
               >
                 Quick implementation with reliable, always-on support.
               </Typography>
             </Box>
-          </Box>
-          {/* Ads */}
-          <Box
+          </MotionBox>
+
+          {/* Ads Box */}
+          <MotionBox
+            whileHover="shakeImage"
+            variants={{
+              shakeImage: {
+                transition: {
+                  staggerChildren: 0.05,
+                },
+              },
+            }}
             sx={{
               mt: 15,
               mx: "auto",
@@ -304,14 +381,23 @@ export default function WhyAboutUs() {
               borderRadius: 2,
               backgroundColor: "#FFFFFF",
               boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
-              width: "1400px",
+              width: "100%",
+              maxWidth: "1400px",
               display: "flex",
               alignItems: "center",
               flexDirection: { xs: "column-reverse", md: "row" },
               textAlign: { xs: "center", md: "left" },
             }}
           >
-            <Box sx={{ pb: 20 }}>
+            <MotionBox
+              variants={{
+                shakeImage: {
+                  x: [0, -5, 5, -5, 5, 0],
+                  transition: { duration: 0.6 },
+                },
+              }}
+              sx={{ pb: 20 }}
+            >
               <img
                 src={`${sImg}`}
                 alt="Speak"
@@ -319,12 +405,9 @@ export default function WhyAboutUs() {
                 height={100}
                 style={{ borderRadius: 8 }}
               />
-            </Box>
-            <Box
-              sx={{
-                textAlign: { xs: "center", md: "left" },
-              }}
-            >
+            </MotionBox>
+
+            <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
               <Box
                 sx={{
                   textAlign: { xs: "center", md: "left" },
@@ -341,17 +424,19 @@ export default function WhyAboutUs() {
                   Stay Tuned!
                 </Typography>
               </Box>
+
               <Typography
                 variant="body1"
                 color="#000000"
                 sx={{ fontSize: "1.5em", mb: 1 }}
               >
                 We're just getting started! PropTech PH is gearing up to host
-                more insightful events <br /> designed to bring together
-                industry leaders, innovations, and changemakers.
-                <br /> Join us as we shape the future of property
-                technology—together.
+                more insightful events <br />
+                designed to bring together industry leaders, innovations, and
+                changemakers. <br />
+                Join us as we shape the future of property technology—together.
               </Typography>
+
               <Typography
                 variant="body1"
                 color="#17244F"
@@ -360,9 +445,11 @@ export default function WhyAboutUs() {
                 #PropTechPH #RealEstateInnovation #TechEventsPH
               </Typography>
             </Box>
-            <Button
+
+            <MotionButton
               variant="contained"
               size="large"
+              whileHover="swing"
               sx={{
                 width: "200px",
                 height: "50px",
@@ -371,18 +458,27 @@ export default function WhyAboutUs() {
                 backgroundColor: "#0533B7",
                 textTransform: "Capitalize",
                 fontSize: "1.2em",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               Get Notified!
-              <img
+              <motion.img
+                variants={{
+                  swing: {
+                    rotate: [0, 15, -15, 10, -10, 5, 0],
+                    transition: { duration: 0.8 },
+                  },
+                }}
                 src={`${bImg}`}
                 alt="bell"
                 width={30}
                 height={30}
                 style={{ borderRadius: 10, paddingLeft: 6 }}
               />
-            </Button>
-          </Box>
+            </MotionButton>
+          </MotionBox>
         </Box>
       </Container>
     </Box>
