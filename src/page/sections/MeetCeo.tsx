@@ -4,8 +4,8 @@ import alImg from "../../assets/images/ALimage.png";
 
 import OutlinedTitle from "../../utils/OutlinedTitle";
 
-import { motion } from "framer-motion"; // Add this
-import { useEffect, useState } from "react"; // Add this
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 function useTypewriter(text: string, speed: number = 40) {
   const [displayed, setDisplayed] = useState("");
@@ -39,7 +39,7 @@ export default function MeetCeo() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        minHeight: "600px",
+        minHeight: { xs: "auto", md: "500px" },
         position: "relative",
         "&:before": {
           content: '""',
@@ -47,10 +47,13 @@ export default function MeetCeo() {
           inset: 0,
         },
         display: "flex",
+
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
         justifyContent: "center",
         mb: 20,
         mt: 15,
+        px: { xs: 2, sm: 3, md: 35 },
       }}
     >
       <motion.div
@@ -59,76 +62,75 @@ export default function MeetCeo() {
         transition={{ duration: 1 }}
         style={{
           marginBottom: isMobile ? 32 : 0,
-          marginRight: isMobile ? 16 : 240,
+          marginRight: isMobile ? -40 : "auto",
         }}
       >
         <img
           src={`${alImg}`}
-          alt="ALimage"
-          width={500}
-          height="auto"
+          alt="Anthony Leuterio"
           style={{
-            maxWidth: "100%",
             height: "auto",
+            display: "block",
+            margin: "0 auto",
           }}
         />
       </motion.div>
 
-      <Box sx={{ maxWidth: 600, flexShrink: 1 }}>
+      <Box
+        sx={{
+          maxWidth: { xs: "100%", md: 810 },
+          textAlign: { xs: "center", md: "left" },
+        }}
+      >
         <OutlinedTitle
           variant="h2"
           strokeColor="black"
           fillColor="transparent"
           strokeWidth={0.8}
           sx={{
-            width: "320px",
-            mt: { xs: -1, md: 0 },
-            ml: { xs: 1, md: -20 },
-            textAlign: { xs: "center", md: "left" },
             fontSize: { xs: "32px", sm: "40px", md: "50px" },
             lineHeight: { xs: "30px", sm: "40px", md: "50px" },
             color: "black",
+
+            mx: { xs: "auto", md: 0 },
+            mb: { xs: 2, md: 10 },
             "&::before": {
               color: "black",
             },
             "&::after": {
-              left: { xs: isMobile ? 0 : 0, md: 0 },
+              left: { xs: "50%", md: 0 },
+              transform: { xs: "translateX(-50%)", md: "none" },
               display: { xs: "none", md: "block" },
             },
           }}
         >
           The CEO
         </OutlinedTitle>
-
         <Typography
           variant="h6"
           fontWeight="bold"
           gutterBottom
           sx={{
-            fontSize: "2.3em",
-            display: "flex",
-            width: "500px",
-            mt: { xs: 5, md: 15 },
-            ml: { xs: 1, md: -20 },
+            fontSize: { xs: "1.5em", sm: "1.8em", md: "2.3em" },
+
+            maxWidth: "100%",
+            mt: { xs: 3, md: 5 },
           }}
         >
           {" "}
           “At the Helm of Innovation”
         </Typography>
-
         <Typography
           variant="body1"
           color="#000000"
           sx={{
-            fontSize: "1.8em",
-            mt: { xs: 5, md: 2 },
-            ml: { xs: 1, md: -18 },
+            fontSize: { xs: "1em", sm: "1.3em", md: "1.8em" },
+            mt: { xs: 2, md: 2 },
             whiteSpace: "pre-wrap",
           }}
         >
           {typedText}
         </Typography>
-
         <Typography
           variant="h4"
           sx={{
@@ -136,8 +138,7 @@ export default function MeetCeo() {
             fontSize: { xs: "40px", sm: "50px", md: "60px" },
             lineHeight: { xs: "40px", sm: "45px", md: "50px" },
             color: "#000000",
-            mt: { xs: 5, md: 22 },
-            ml: { xs: 1, md: -16 },
+            mt: { xs: 3, md: 10 },
           }}
         >
           Anthony Gerard Leuterio
@@ -146,13 +147,12 @@ export default function MeetCeo() {
           sx={{
             display: "flex",
             flexDirection: { xs: "column", sm: "row" },
-            gap: { xs: 1, sm: 2 },
-            alignItems: "center",
+            gap: { xs: 0.5, sm: 2 },
+            justifyContent: { xs: "center", md: "flex-start" },
             fontFamily: "Geist",
             fontSize: { xs: "16px", sm: "18px", md: "20px" },
             lineHeight: { xs: "18px", sm: "20px" },
-            mt: { xs: 5, md: 2 },
-            ml: { xs: 1, md: -16 },
+            mt: { xs: 1, md: 3 },
           }}
         >
           <Typography>Anthony Gerard Leuterio</Typography>
@@ -163,8 +163,7 @@ export default function MeetCeo() {
               height: "10px",
               backgroundColor: "#000000",
               borderRadius: "50%",
-              mt: { xs: 0, md: 0 },
-              ml: { xs: 1, md: 1 },
+              mt: 1,
             }}
           ></Box>
           <Typography>CEO/ Founder of Filipino Homes</Typography>

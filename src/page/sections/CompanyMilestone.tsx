@@ -27,7 +27,7 @@ export default function CompanyMilestone() {
         <Box
           sx={{
             px: { xs: 2, sm: 3, md: 5 },
-            mt: { xs: 1, md: -10 },
+            mt: { xs: -20, md: -10 },
             mb: { xs: 6, md: 8 },
           }}
         >
@@ -59,17 +59,15 @@ export default function CompanyMilestone() {
             width: "100%",
           }}
         >
-          {/* Your existing image, now inside the positioning wrapper */}
           <img
             src={`${cmImg}`}
             alt="CompanyMilestoneBackground"
-            width={1600}
-            height={380}
             style={{
-              borderRadius: 8,
-              maxWidth: "100%",
-              height: "auto",
-              display: "block",
+              position: "relative",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              /*transform: "rotate(270deg)",*/
             }}
           />
           <Box
@@ -79,28 +77,27 @@ export default function CompanyMilestone() {
               display: "flex",
             }}
           >
-            {/* Horizontal */}
             <Box
               sx={{
                 position: "absolute",
                 top: "58%",
                 left: "55%",
                 transform: "translate(-50%, -50%)",
-                width: { xs: "80%", md: "calc(100% - 250px)" },
-                height: "2px",
+                width: { xs: "83%", md: "calc(100% - 250px)" },
+                height: { xs: "1px", md: "3px" },
                 backgroundColor: "white",
                 zIndex: 1,
               }}
             />
-            {/* Vertical */}
+
             <Box
               sx={{
                 position: "absolute",
                 top: "58%",
                 left: "13.5%",
                 transform: "translate(-50%, -50%)",
-                width: "3px",
-                height: { xs: "80%", md: "calc(100% - 180px)" },
+                width: { xs: "1px", md: "3px" },
+                height: { xs: "45%", md: "calc(100% - 180px)" },
                 backgroundColor: "white",
                 zIndex: 1,
               }}
@@ -111,10 +108,10 @@ export default function CompanyMilestone() {
               sx={{
                 position: "absolute",
                 top: "58%",
-                left: "39%",
+                left: "41%",
                 transform: "translate(-50%, -50%)",
-                width: "10px",
-                height: { xs: "80%", md: "calc(100% - 305px)" },
+                width: { xs: "6px", md: "10px" },
+                height: { xs: "10%", md: "calc(100% - 305px)" },
                 backgroundColor: "white",
                 borderRadius: "90%",
                 zIndex: 1,
@@ -126,8 +123,8 @@ export default function CompanyMilestone() {
                 top: "58%",
                 left: "68%",
                 transform: "translate(-50%, -50%)",
-                width: "10px",
-                height: { xs: "80%", md: "calc(100% - 305px)" },
+                width: { xs: "6px", md: "10px" },
+                height: { xs: "10%", md: "calc(100% - 305px)" },
                 backgroundColor: "white",
                 borderRadius: "90%",
                 zIndex: 1,
@@ -139,8 +136,8 @@ export default function CompanyMilestone() {
                 top: "58%",
                 left: "96.5%",
                 transform: "translate(-50%, -50%)",
-                width: "10px",
-                height: { xs: "80%", md: "calc(100% - 305px)" },
+                width: { xs: "6px", md: "10px" },
+                height: { xs: "10%", md: "calc(100% - 305px)" },
                 backgroundColor: "white",
                 borderRadius: "90%",
                 zIndex: 1,
@@ -151,9 +148,9 @@ export default function CompanyMilestone() {
               sx={{
                 zIndex: 1,
                 position: "absolute",
-                top: "36%",
+                top: "34%",
                 left: "14%",
-                fontSize: "1.4em",
+                fontSize: { xs: "6px", sm: "8px", md: "22px" },
                 color: "white",
               }}
             >
@@ -166,7 +163,7 @@ export default function CompanyMilestone() {
                 position: "absolute",
                 top: "48%",
                 left: "5%",
-                fontSize: "2.5em",
+                fontSize: { xs: ".5em", md: "2.5em" },
                 fontWeight: "bold",
                 color: "white",
               }}

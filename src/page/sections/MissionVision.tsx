@@ -1,16 +1,86 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import oneImg from "../../assets/images/Vision.png"; // First image
-import twoImg from "../../assets/images/Mission.png"; // Second image
+import Image2 from "../../assets/images/Mission.png"; // Mission
+import Image3 from "../../assets/images/Vision.png"; // Vision
 
 export default function WhoWeAre() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  if (isMobile) {
+    return (
+      <Box sx={{ maxWidth: 400, margin: "0 auto", padding: 4 }}>
+        <Box>
+          <img
+            src={Image3}
+            alt="Vision"
+            style={{ width: "100%", height: "auto", borderRadius: "12px" }}
+          />
+          <Typography
+            variant="h6"
+            align="right"
+            mt={-12}
+            sx={{ fontSize: "30px" }}
+          >
+            Our Vision
+          </Typography>
+          <Typography
+            align="center"
+            px={2}
+            sx={{
+              mt: 8,
+            }}
+          >
+            To bring cutting-edge digital solutions to life by combining
+            innovation, strategy, and clean code — helping businesses streamline
+            operations, protect data, and embrace long-term digital
+            transformation.
+          </Typography>
+        </Box>
+        <Box>
+          <img
+            src={Image2}
+            alt="Mission"
+            style={{
+              width: "100%",
+              height: "auto",
+              borderRadius: "12px",
+              marginTop: 15,
+            }}
+          />
+          <Typography
+            variant="h6"
+            align="center"
+            mt={2}
+            sx={{ fontSize: "30px" }}
+          >
+            Our Mission
+          </Typography>
+          <Typography align="center" px={2}>
+            To be the trusted tech partner of choice for forward-thinking
+            organizations across the Philippines and beyond — helping them
+            thrive through meaningful, sustainable technology solutions.
+          </Typography>
+        </Box>
+      </Box>
+    );
+  }
+
   return (
     <Box
       component="section"
       id="mission-vision"
       sx={{
-        mt: { xs: 5, md: 12 },
-        mb: { xs: 10, md: 25 },
+        mt: { xs: 18, md: 12 },
+        mb: { xs: 80, md: 30 },
         mr: { xs: 5, md: 10 },
       }}
     >
@@ -24,10 +94,9 @@ export default function WhoWeAre() {
             mb: { xs: 1, md: 2 },
           }}
         >
-          {/* First Image Container (Upper Left) */}
           <Box>
             <img
-              src={`${oneImg}`}
+              src={Image3}
               alt="Our Vision"
               width={570}
               style={{
@@ -39,7 +108,6 @@ export default function WhoWeAre() {
             />
           </Box>
 
-          {/* Second Image Container (Under the first, slight right) */}
           <Box
             sx={{
               ml: { xs: 0, md: 40 },
@@ -47,7 +115,7 @@ export default function WhoWeAre() {
             }}
           >
             <img
-              src={`${twoImg}`}
+              src={Image2}
               alt="Our Mission"
               width={530}
               style={{
@@ -59,22 +127,22 @@ export default function WhoWeAre() {
             />
             <Box
               sx={{
-                width: 15,
-                height: 15,
+                width: { xs: 2, md: 15 },
+                height: { xs: 2, md: 15 },
                 border: "2px solid #914EFF",
                 transform: "rotate(90deg)",
-                ml: 41,
-                mt: -95,
+                ml: { xs: 0.3, md: 41 },
+                mt: { xs: -93, md: -95 },
               }}
             />
             <Box
               sx={{
-                width: 25,
-                height: 25,
+                width: { xs: 6, md: 25 },
+                height: { xs: 6, md: 25 },
                 border: "2px solid #914EFF",
                 transform: "rotate(90deg)",
-                ml: 37,
-                mt: -6,
+                ml: { xs: -1.1, md: 37 },
+                mt: { xs: -2, md: -6 },
               }}
             />
             <Typography
@@ -96,7 +164,6 @@ export default function WhoWeAre() {
                 ml: { xs: 1, md: 45 },
                 mt: { xs: 1, md: 1 },
                 lineHeight: { xs: "24px", sm: "26px", md: "40px" },
-                textDecoration: "none",
               }}
             >
               To bring cutting-edge digital solutions to life by combining
@@ -105,33 +172,35 @@ export default function WhoWeAre() {
               transformation.
             </Typography>
           </Box>
+
           <Box
             sx={{
-              width: 15,
-              height: 15,
+              width: { xs: 6, md: 25 },
+              height: { xs: 6, md: 25 },
               border: "2px solid #914EFF",
               transform: "rotate(90deg)",
-              ml: 113,
-              mt: 4,
+              ml: { xs: -1.1, md: 109 },
+              mt: { xs: -2, md: 1 },
             }}
           />
           <Box
             sx={{
-              width: 25,
-              height: 25,
+              width: { xs: 2, md: 15 },
+              height: { xs: 2, md: 15 },
               border: "2px solid #914EFF",
               transform: "rotate(90deg)",
-              ml: 109,
-              mt: -8,
+              ml: { xs: 0.3, md: 113 },
+              mt: { xs: -93, md: -2 },
             }}
           />
+
           <Typography
             variant="h1"
             sx={{
               fontWeight: "bold",
               fontSize: { xs: 12, sm: 16, md: 60 },
               ml: { xs: 1, md: 115 },
-              mt: { xs: 1, md: -1 },
+              mt: { xs: 1, md: -3 },
             }}
           >
             Our Mission
@@ -144,7 +213,6 @@ export default function WhoWeAre() {
               ml: { xs: 1, md: 117 },
               mt: { xs: 1, md: -1 },
               lineHeight: { xs: "24px", sm: "26px", md: "40px" },
-              textDecoration: "none",
             }}
           >
             To be the trusted tech partner of choice for forward-thinking

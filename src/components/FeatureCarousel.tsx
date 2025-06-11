@@ -1,6 +1,6 @@
-import {useEffect, useRef, useState} from "react";
-import {Box, Button, Typography} from "@mui/material";
-import {motion, AnimatePresence} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
 
 const features = [
   {
@@ -38,7 +38,7 @@ const features = [
 // Split features into pages of 3 items each.
 const chunkSize = 3;
 const pages = Array.from(
-  {length: Math.ceil(features.length / chunkSize)},
+  { length: Math.ceil(features.length / chunkSize) },
   (_, pageIndex) => {
     const start = pageIndex * chunkSize;
     return features.slice(start, start + chunkSize);
@@ -49,19 +49,19 @@ const pages = Array.from(
 // Animation Variants
 // ------------------------------
 const containerVariants = {
-  initial: {opacity: 0, y: 10},
+  initial: { opacity: 0, y: 10 },
   animate: {
     opacity: 1,
     y: 0,
-    transition: {staggerChildren: 0.15, when: "beforeChildren"},
+    transition: { staggerChildren: 0.15, when: "beforeChildren" },
   },
-  exit: {opacity: 0, y: -10},
+  exit: { opacity: 0, y: -10 },
 };
 
 const itemVariants = {
-  initial: {opacity: 0, y: 10},
-  animate: {opacity: 1, y: 0},
-  exit: {opacity: 0, y: -10},
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
 };
 
 export default function FeatureCarousel() {
@@ -104,7 +104,8 @@ export default function FeatureCarousel() {
       sx={{
         color: "#fff",
         mt: 10,
-      }}>
+      }}
+    >
       <AnimatePresence mode="wait">
         <Box
           component={motion.div}
@@ -112,19 +113,22 @@ export default function FeatureCarousel() {
           variants={containerVariants}
           initial="initial"
           animate="animate"
-          exit="exit">
+          exit="exit"
+        >
           {pages[currentPage].map((feature) => (
             <Box
               component={motion.div}
               key={feature.title}
               variants={itemVariants}
-              sx={{mb: "3rem"}}>
+              sx={{ mb: "3rem" }}
+            >
               <Typography
                 variant="h4"
-                sx={{fontWeight: "bold", fontSize: "25px"}}>
+                sx={{ fontWeight: "bold", fontSize: "25px" }}
+              >
                 {feature.title}
               </Typography>
-              <Typography variant="body1" sx={{mt: 1, fontSize: "20px"}}>
+              <Typography variant="body1" sx={{ mt: 1, fontSize: "20px" }}>
                 {feature.description}
               </Typography>
             </Box>
@@ -133,7 +137,7 @@ export default function FeatureCarousel() {
       </AnimatePresence>
 
       {/* Button group to select page */}
-      <Box sx={{mt: 3, border: "none", boxShadow: "none"}}>
+      <Box sx={{ mt: 3, border: "none", boxShadow: "none" }}>
         {pages.map((_, index) => (
           <Button
             key={index}
@@ -149,7 +153,8 @@ export default function FeatureCarousel() {
               mx: 1,
               transition: "width 0.3s ease, background-color 0.3s ease",
             }}
-            aria-label={`Page ${index + 1}`}></Button>
+            aria-label={`Page ${index + 1}`}
+          ></Button>
         ))}
       </Box>
     </Box>

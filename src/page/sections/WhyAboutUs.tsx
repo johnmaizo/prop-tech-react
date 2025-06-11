@@ -25,7 +25,8 @@ const MotionButton = motion(Button);
 
 export default function WhyAboutUs() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  // isMobile condition is already used for OutlinedTitle
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Less than or equal to 600px
 
   return (
     <Box
@@ -55,7 +56,7 @@ export default function WhyAboutUs() {
                 color: "black",
               },
               "&::after": {
-                left: { xs: isMobile ? 0 : 12, md: 24 },
+                left: { xs: 0, sm: isMobile ? 12 : 24, md: 24 },
                 display: { xs: "none", md: "block" },
               },
             }}
@@ -96,18 +97,17 @@ export default function WhyAboutUs() {
             gap: 5,
           }}
         >
-          {/* Grid for the first four boxes */}
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, // Stacks on mobile, 2 columns on desktop
               gap: { xs: 5, md: 10 },
               maxWidth: "1400px",
               mx: "auto",
               px: { xs: 2, sm: 0 },
             }}
           >
-            {/* First Box - Innovative */}
+            {/* First Box  */}
             <MotionBox
               sx={{
                 display: "flex",
@@ -158,7 +158,7 @@ export default function WhyAboutUs() {
               </Box>
             </MotionBox>
 
-            {/* Second Box - Long-term tech partnership */}
+            {/* Second Box  */}
             <MotionBox
               sx={{
                 display: "flex",
@@ -208,7 +208,7 @@ export default function WhyAboutUs() {
               </Box>
             </MotionBox>
 
-            {/* Third Box - Agile development process */}
+            {/* Third Box */}
             <MotionBox
               sx={{
                 display: "flex",
@@ -258,7 +258,7 @@ export default function WhyAboutUs() {
               </Box>
             </MotionBox>
 
-            {/* Fourth Box - Transparent pricing */}
+            {/* Fourth Box */}
             <MotionBox
               sx={{
                 display: "flex",
@@ -309,19 +309,19 @@ export default function WhyAboutUs() {
             </MotionBox>
           </Box>
 
-          {/* Fifth Box - Fast deployment & real-time support */}
+          {/* Fifth Box  */}
           <MotionBox
             sx={{
-              mt: { xs: 5, md: 4 },
+              mt: { xs: 5, sm: 0.5, md: 4 },
               mx: "auto",
               padding: { xs: 3, md: 5 },
               borderRadius: 2,
               boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
-              maxWidth: { xs: "100%", md: "700px" },
-              width: "100%",
+              maxWidth: { xs: "85%", sm: "68%", md: "700px" },
+              width: "90%",
               display: "flex",
               alignItems: "flex-start",
-              px: { xs: 2, sm: 0 },
+              px: { xs: 2, sm: 2 },
             }}
             whileHover={{
               scale: 1.02,
@@ -364,7 +364,7 @@ export default function WhyAboutUs() {
             </Box>
           </MotionBox>
 
-          {/* Ads Box */}
+          {/* Ads */}
           <MotionBox
             whileHover="shakeImage"
             variants={{
@@ -375,18 +375,19 @@ export default function WhyAboutUs() {
               },
             }}
             sx={{
-              mt: 15,
+              mt: { xs: 10, md: 15 },
               mx: "auto",
-              padding: 4,
+              padding: { xs: 3, md: 4 },
               borderRadius: 2,
               backgroundColor: "#FFFFFF",
               boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
-              width: "100%",
-              maxWidth: "1400px",
+              width: { xs: "90%", md: "100%" },
+              maxWidth: { xs: "700px", md: "1400px" },
               display: "flex",
               alignItems: "center",
               flexDirection: { xs: "column-reverse", md: "row" },
               textAlign: { xs: "center", md: "left" },
+              px: { xs: 2, sm: 0 },
             }}
           >
             <MotionBox
@@ -396,51 +397,60 @@ export default function WhyAboutUs() {
                   transition: { duration: 0.6 },
                 },
               }}
-              sx={{ pb: 20 }}
+              sx={{
+                pb: { xs: -3, md: 20 },
+                pr: { xs: 0, md: 4 },
+              }}
             >
               <img
                 src={`${sImg}`}
                 alt="Speak"
                 width={100}
                 height={100}
-                style={{ borderRadius: 8 }}
+                style={{ borderRadius: 8, maxWidth: "100%", height: "auto" }}
               />
             </MotionBox>
 
-            <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
-              <Box
-                sx={{
-                  textAlign: { xs: "center", md: "left" },
-                  width: "350px",
-                  alignItems: "left",
-                }}
+            <Box
+              sx={{
+                textAlign: { xs: "center", md: "left" },
+                width: "100%",
+                maxWidth: { xs: "100%", md: "350px", lg: "950px" },
+                alignItems: "left",
+                flexGrow: 1,
+                mb: { xs: 3, md: 0 },
+              }}
+            >
+              <Typography
+                variant="h6"
+                fontWeight="bold"
+                gutterBottom
+                sx={{ fontSize: { xs: "2.5em", sm: "3em", md: "3.5em" } }}
               >
-                <Typography
-                  variant="h6"
-                  fontWeight="bold"
-                  gutterBottom
-                  sx={{ fontSize: "3.5em" }}
-                >
-                  Stay Tuned!
-                </Typography>
-              </Box>
-
+                Stay Tuned!
+              </Typography>
               <Typography
                 variant="body1"
                 color="#000000"
-                sx={{ fontSize: "1.5em", mb: 1 }}
+                sx={{
+                  fontSize: { xs: "1.2em", md: "1.5em" },
+                  mb: { xs: 0.5, md: 1 },
+                }}
               >
                 We're just getting started! PropTech PH is gearing up to host
-                more insightful events <br />
-                designed to bring together industry leaders, innovations, and
-                changemakers. <br />
-                Join us as we shape the future of property technology—together.
+                more insightful events <br /> designed to bring together
+                industry leaders, innovations, and changemakers.
+                <br /> Join us as we shape the future of property
+                technology—together.
               </Typography>
-
               <Typography
                 variant="body1"
                 color="#17244F"
-                sx={{ fontWeight: "bold", mb: 2, fontSize: "1.5em" }}
+                sx={{
+                  fontWeight: "bold",
+                  mb: { xs: 1, md: 2 },
+                  fontSize: { xs: "1.2em", md: "1.5em" },
+                }}
               >
                 #PropTechPH #RealEstateInnovation #TechEventsPH
               </Typography>
@@ -451,13 +461,14 @@ export default function WhyAboutUs() {
               size="large"
               whileHover="swing"
               sx={{
-                width: "200px",
-                height: "50px",
-                ml: 15,
+                width: { xs: "80%", sm: "200px" },
+                height: { xs: "45px", sm: "50px" },
+                mt: { xs: 3, md: 0 },
+                ml: { xs: 0, md: 10 },
                 borderRadius: 5,
                 backgroundColor: "#0533B7",
                 textTransform: "Capitalize",
-                fontSize: "1.2em",
+                fontSize: { xs: "1em", md: "1.2em" },
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -475,7 +486,12 @@ export default function WhyAboutUs() {
                 alt="bell"
                 width={30}
                 height={30}
-                style={{ borderRadius: 10, paddingLeft: 6 }}
+                style={{
+                  borderRadius: 10,
+                  paddingLeft: 6,
+                  maxWidth: "100%",
+                  height: "auto",
+                }}
               />
             </MotionButton>
           </MotionBox>

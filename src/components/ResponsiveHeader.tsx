@@ -38,11 +38,11 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
   const [isClosing, setIsClosing] = React.useState<boolean>(false);
 
   const pages: Page[] = [
-    { name: "Who We Are", path: "#who-we-are" },
-    { name: "What We Do", path: "#what-we-do" },
+    { name: "Who We Are", path: "#mission-vision" },
+    { name: "Meet Our CEO", path: "#meet-ceo" },
     { name: "Why Choose Us?", path: "#why-choose-us" },
     // {name: "Let's Build Together", path: "#lets-build-together"},
-    { name: "Company Milestone", path: "#contact-us" },
+    { name: "Company Milestone", path: "#company-milestone" },
   ];
 
   // Smooth scroll to the target element with an offset.
