@@ -281,7 +281,7 @@ export default function CompanyMilestone() {
                       sx={{
                         height: "2px",
                         backgroundColor: "white",
-                        width: "300px",
+                        width: "80px",
                         mt: 0.5,
                       }}
                     />
