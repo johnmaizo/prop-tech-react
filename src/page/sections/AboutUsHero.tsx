@@ -54,7 +54,7 @@ export default function Hero() {
           position: "absolute",
           inset: 0,
           background: "linear-gradient(90deg, #000000 35%, #a5637a 100%)",
-          opacity: "35%",
+          opacity: "40%",
         },
       }}
     >
