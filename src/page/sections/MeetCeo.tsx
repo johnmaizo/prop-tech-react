@@ -78,7 +78,7 @@ export default function MeetCeo() {
 
       <Box
         sx={{
-          maxWidth: { xs: "100%", md: 810 },
+          maxWidth: { xs: "90%", md: 810 },
           textAlign: { xs: "center", md: "left" },
         }}
       >
@@ -91,6 +91,7 @@ export default function MeetCeo() {
             fontSize: { xs: "32px", sm: "40px", md: "50px" },
             lineHeight: { xs: "30px", sm: "40px", md: "50px" },
             color: "black",
+            width: { xs: "130px", sm: "160px", md: "320px" },
 
             mx: { xs: "auto", md: 0 },
             mb: { xs: 2, md: 10 },
@@ -111,7 +112,7 @@ export default function MeetCeo() {
           fontWeight="bold"
           gutterBottom
           sx={{
-            fontSize: { xs: "1.5em", sm: "1.8em", md: "2.3em" },
+            fontSize: { xs: "1.6em", sm: "1.9em", md: "2.3em" },
 
             maxWidth: "100%",
             mt: { xs: 3, md: 5 },
@@ -124,7 +125,7 @@ export default function MeetCeo() {
           variant="body1"
           color="#000000"
           sx={{
-            fontSize: { xs: "1em", sm: "1.3em", md: "1.8em" },
+            fontSize: { xs: "1.5em", sm: "1.3em", md: "1.8em" },
             mt: { xs: 2, md: 2 },
             whiteSpace: "pre-wrap",
           }}
@@ -150,7 +151,7 @@ export default function MeetCeo() {
             gap: { xs: 0.5, sm: 2 },
             justifyContent: { xs: "center", md: "flex-start" },
             fontFamily: "Geist",
-            fontSize: { xs: "16px", sm: "18px", md: "20px" },
+            fontSize: { xs: "18px", sm: "18px", md: "20px" },
             lineHeight: { xs: "18px", sm: "20px" },
             mt: { xs: 1, md: 3 },
           }}

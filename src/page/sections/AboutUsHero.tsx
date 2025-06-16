@@ -54,7 +54,7 @@ export default function Hero() {
           position: "absolute",
           inset: 0,
           background: "linear-gradient(90deg, #000000 35%, #a5637a 100%)",
-          opacity: "35%",
+          opacity: "40%",
         },
       }}
     >
@@ -82,7 +82,7 @@ export default function Hero() {
             sx={{
               fontFamily: "Geist",
               fontSize: {
-                xs: "40px",
+                xs: "44px",
                 sm: "56px",
                 md: "64px",
                 lg: "72px",
@@ -90,7 +90,7 @@ export default function Hero() {
               },
               fontWeight: 500,
               lineHeight: {
-                xs: "48px",
+                xs: "42px",
                 sm: "64px",
                 md: "72px",
                 lg: "80px",
@@ -110,9 +110,9 @@ export default function Hero() {
               fontWeight: 400,
               fontFamily: "Geist",
               fontSize: { xs: "20px", sm: "24px", md: "28px" },
-              maxWidth: { xs: "100%", md: "90%", lg: "800px" },
+              maxWidth: { xs: "95%", md: "90%", lg: "800px" },
               color: "#fff",
-              mb: { xs: 2, sm: 6, md: 12 },
+              mb: { xs: 4, sm: 6, md: 12 },
             }}
           >
             Empowering Businesses Through Smart Technology
@@ -124,17 +124,17 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             sx={{
               fontFamily: "Geist",
-              fontSize: { xs: "14px", sm: "16px", md: "18px", lg: "22px" },
-              lineHeight: { xs: "24px", sm: "28px", md: "32px", lg: "36px" },
+              fontSize: { xs: "18px", sm: "16px", md: "18px", lg: "22px" },
+              lineHeight: { xs: "26px", sm: "28px", md: "32px", lg: "36px" },
               color: "#fff",
               mb: { xs: 4, sm: 6 },
-              maxWidth: { xs: "100%", sm: "95%", md: "85%", lg: "100%" },
+              maxWidth: { xs: "95%", sm: "98%", md: "85%", lg: "100%" },
             }}
           >
             <strong>At Proptech Philippines</strong>, we are a modern technology
             company dedicated to transforming businesses through innovative IT
             solutions. We specialize in building custom digital systems that are
-            smart, scalable, and future-ready—empowering organizations of all
+            smart, scalable, and future ready empowering organizations of all
             sizes to grow, adapt, and succeed in today’s fast-changing digital
             landscape. Whether you need software development, mobile
             applications, or cloud solutions, we deliver purpose-built
@@ -143,7 +143,7 @@ export default function Hero() {
 
           <MotionBox
             sx={{
-              mt: { xs: 6, sm: 8 },
+              mt: { xs: 1, sm: 8 },
               display: "flex",
               flexDirection: { xs: "column", sm: "row" },
               gap: 2,

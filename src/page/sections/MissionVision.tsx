@@ -26,19 +26,13 @@ export default function WhoWeAre() {
           />
           <Typography
             variant="h6"
-            align="right"
-            mt={-12}
+            align="center"
+            mt={2}
             sx={{ fontSize: "30px" }}
           >
             Our Vision
           </Typography>
-          <Typography
-            align="center"
-            px={2}
-            sx={{
-              mt: 8,
-            }}
-          >
+          <Typography align="center" px={2} sx={{ fontSize: "18px" }}>
             To bring cutting-edge digital solutions to life by combining
             innovation, strategy, and clean code — helping businesses streamline
             operations, protect data, and embrace long-term digital
@@ -64,7 +58,7 @@ export default function WhoWeAre() {
           >
             Our Mission
           </Typography>
-          <Typography align="center" px={2}>
+          <Typography align="center" px={2} sx={{ fontSize: "18px" }}>
             To be the trusted tech partner of choice for forward-thinking
             organizations across the Philippines and beyond — helping them
             thrive through meaningful, sustainable technology solutions.
