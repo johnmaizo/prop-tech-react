@@ -143,14 +143,14 @@ export default function WhyAboutUs() {
                   variant="h6"
                   fontWeight="bold"
                   gutterBottom
-                  sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
+                  sx={{ fontSize: { xs: "1.6em", md: "1.8em" } }}
                 >
                   Innovative and scalable solutions
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
+                  sx={{ fontSize: { xs: "1.3em", md: "1.2em" } }}
                 >
                   Future-ready systems built to grow and adapt with your
                   business.
@@ -194,14 +194,14 @@ export default function WhyAboutUs() {
                   variant="h6"
                   fontWeight="bold"
                   gutterBottom
-                  sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
+                  sx={{ fontSize: { xs: "1.6em", md: "1.8em" } }}
                 >
                   Long-term tech partnership
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
+                  sx={{ fontSize: { xs: "1.3em", md: "1.2em" } }}
                 >
                   A dedicated partner for continuous growth and innovation.
                 </Typography>
@@ -244,14 +244,14 @@ export default function WhyAboutUs() {
                   variant="h6"
                   fontWeight="bold"
                   gutterBottom
-                  sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
+                  sx={{ fontSize: { xs: "1.6em", md: "1.8em" } }}
                 >
                   Agile development process
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
+                  sx={{ fontSize: { xs: "1.3em", md: "1.2em" } }}
                 >
                   Flexible, fast, and collaborative development at every stage.
                 </Typography>
@@ -294,14 +294,14 @@ export default function WhyAboutUs() {
                   variant="h6"
                   fontWeight="bold"
                   gutterBottom
-                  sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
+                  sx={{ fontSize: { xs: "1.6em", md: "1.8em" } }}
                 >
                   Transparent pricing
                 </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
-                  sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
+                  sx={{ fontSize: { xs: "1.3em", md: "1.2em" } }}
                 >
                   Clear, upfront pricing with no surprises.
                 </Typography>
@@ -312,12 +312,12 @@ export default function WhyAboutUs() {
           {/* Fifth Box  */}
           <MotionBox
             sx={{
-              mt: { xs: 5, sm: 0.5, md: 4 },
+              mt: { xs: 0.5, sm: 0.5, md: 4 },
               mx: "auto",
               padding: { xs: 3, md: 5 },
               borderRadius: 2,
               boxShadow: "1px 1px 3px 1px rgba(0, 0, 0, 0.3)",
-              maxWidth: { xs: "85%", sm: "68%", md: "700px" },
+              maxWidth: { xs: "85%", sm: "85%", md: "700px" },
               width: "90%",
               display: "flex",
               alignItems: "flex-start",
@@ -350,14 +350,14 @@ export default function WhyAboutUs() {
                 variant="h6"
                 fontWeight="bold"
                 gutterBottom
-                sx={{ fontSize: { xs: "1.5em", md: "1.8em" } }}
+                sx={{ fontSize: { xs: "1.6em", md: "1.8em" } }}
               >
                 Fast deployment & real-time support
               </Typography>
               <Typography
                 variant="body1"
                 color="text.secondary"
-                sx={{ fontSize: { xs: "1em", md: "1.2em" } }}
+                sx={{ fontSize: { xs: "1.3em", md: "1.2em" } }}
               >
                 Quick implementation with reliable, always-on support.
               </Typography>
@@ -461,7 +461,7 @@ export default function WhyAboutUs() {
               size="large"
               whileHover="swing"
               sx={{
-                width: { xs: "80%", sm: "200px" },
+                width: { xs: "70%", sm: "200px" },
                 height: { xs: "45px", sm: "50px" },
                 mt: { xs: 3, md: 0 },
                 ml: { xs: 0, md: 10 },
