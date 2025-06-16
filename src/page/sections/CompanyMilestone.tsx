@@ -84,6 +84,73 @@ export default function CompanyMilestone() {
             }}
           />
 
+          {/* Box Stroked Purple bottom  */}
+          <Box
+            sx={{
+              position: "absolute",
+              zIndex: 0,
+              borderRadius: 2,
+              width: { xs: "25px", sm: "50px", md: "70px" },
+              height: { xs: "25px", sm: "50px", md: "70px" },
+              border: "2px solid",
+              borderColor: "#6E387C",
+              bottom: { xs: 10, sm: 20, md: 150 },
+              left: { xs: 10, sm: 20, md: -20 },
+              backgroundColor: "transparent",
+              display: { xs: "none", sm: "block" },
+            }}
+          />
+
+          <Box
+            sx={{
+              position: "absolute",
+              zIndex: 0,
+              borderRadius: 2,
+              width: { xs: "25px", sm: "50px", md: "70px" },
+              height: { xs: "25px", sm: "50px", md: "70px" },
+              border: "2px solid",
+              borderColor: "#6E387C",
+              bottom: { xs: 20, sm: 30, md: 160 },
+              left: { xs: 20, sm: 30, md: -10 },
+              backgroundColor: "transparent",
+              display: { xs: "none", sm: "block" },
+            }}
+          />
+
+          {/* Top-right Box */}
+
+          <Box
+            sx={{
+              position: "absolute",
+              zIndex: 0,
+              borderRadius: 2,
+              width: { xs: "25px", sm: "50px", md: "70px" },
+              height: { xs: "25px", sm: "50px", md: "70px" },
+              border: "2px solid",
+              borderColor: "#6E387C",
+              top: { xs: 10, sm: 20, md: 140 },
+              right: { xs: 10, sm: 20, md: -25 },
+              backgroundColor: "transparent",
+              display: { xs: "none", sm: "block" },
+            }}
+          />
+
+          <Box
+            sx={{
+              position: "absolute",
+              zIndex: 0,
+              borderRadius: 2,
+              width: { xs: "25px", sm: "50px", md: "70px" },
+              height: { xs: "25px", sm: "50px", md: "70px" },
+              border: "2px solid",
+              borderColor: "#6E387C",
+              top: { xs: 20, sm: 30, md: 150 },
+              right: { xs: 20, sm: 30, md: -15 },
+              backgroundColor: "transparent",
+              display: { xs: "none", sm: "block" },
+            }}
+          />
+
           {/* Background Image */}
           <Box
             sx={{

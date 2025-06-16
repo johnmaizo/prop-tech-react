@@ -76,37 +76,37 @@ export default function MeetCeo() {
         />
       </motion.div>
 
-      <OutlinedTitle
-        variant="h2"
-        strokeColor="black"
-        fillColor="transparent"
-        strokeWidth={0.8}
-        sx={{
-          fontSize: { xs: "32px", sm: "40px", md: "50px" },
-          lineHeight: { xs: "30px", sm: "40px", md: "50px" },
-          color: "black",
-
-          mx: { xs: "auto", md: 0 },
-          mb: { xs: 2, md: 10 },
-          "&::before": {
-            color: "black",
-          },
-          "&::after": {
-            left: { xs: "50%", md: 0 },
-            transform: { xs: "translateX(-50%)", md: "none" },
-            display: { xs: "none", md: "block" },
-          },
-        }}
-      >
-        The CEO
-      </OutlinedTitle>
-
       <Box
         sx={{
           maxWidth: { xs: "90%", md: 810 },
           textAlign: { xs: "center", md: "left" },
         }}
       >
+        <OutlinedTitle
+          variant="h2"
+          strokeColor="black"
+          fillColor="transparent"
+          strokeWidth={0.8}
+          sx={{
+            fontSize: { xs: "32px", sm: "40px", md: "50px" },
+            lineHeight: { xs: "30px", sm: "40px", md: "50px" },
+            color: "black",
+            width: { xs: "130px", sm: "160px", md: "320px" },
+
+            mx: { xs: "auto", md: 0 },
+            mb: { xs: 2, md: 10 },
+            "&::before": {
+              color: "black",
+            },
+            "&::after": {
+              left: { xs: "50%", md: 0 },
+              transform: { xs: "translateX(-50%)", md: "none" },
+              display: { xs: "none", md: "block" },
+            },
+          }}
+        >
+          The CEO
+        </OutlinedTitle>
         <Typography
           variant="h6"
           fontWeight="bold"
