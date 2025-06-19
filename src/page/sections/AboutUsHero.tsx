@@ -9,7 +9,7 @@ const MotionBox = motion(Box);
 const MotionTypography = motion(Typography);
 const MotionButton = motion(Button);
 
-export default function Hero() {
+export default function AboutUs() {
   const heroRef = useRef(null);
   const isInView = useInView(heroRef, { once: true, amount: 0.3 });
 
@@ -36,6 +36,7 @@ export default function Hero() {
 
   return (
     <Box
+    id="about-"
       component={motion.section}
       initial="hidden"
       animate="visible"

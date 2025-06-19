@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import HeroBG from "../../assets/images/HeroBG.jpg";
 
@@ -11,9 +13,12 @@ const MotionBox = motion(Box);
 const MotionTypography = motion(Typography);
 const MotionButton = motion(Button);
 
+
+
 export default function Hero() {
   const heroRef = useRef(null);
   const isInView = useInView(heroRef, { once: true, amount: 0.3 });
+  const navigate = useNavigate();
 
   // Animation variants
   const fadeInUp = {
@@ -119,6 +124,7 @@ export default function Hero() {
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.4 }}
             >
               <MotionButton
+              onClick={() => navigate("/About")}
                 endIcon={
                   <KeyboardArrowRightIcon
                     sx={{

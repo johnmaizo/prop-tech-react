@@ -8,6 +8,7 @@ import WhatWeDo from "./sections/WhatWeDo";
 import WhyChooseUs from "./sections/WhyChooseUs";
 import ContactUs from "./sections/ContactUs";
 
+
 import Footer from "../components/Footer";
 import HackathonTeamSelection from "../components/HackathonTeamSelection";
 import HappeningNow from "./sections/HappeningNow";

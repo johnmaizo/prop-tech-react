@@ -8,8 +8,11 @@ import {
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import Image2 from "../../assets/images/Mission.png"; // Mission
-import Image3 from "../../assets/images/Vision.png"; // Vision
+import Image1 from "../../assets/images/Vision.png";
+import Image2 from "../../assets/images/Mission.png"; 
+import Image3 from "../../assets/images/missionmobile.png";// Mobile Image
+import Image4 from "../../assets/images/visionmobile.png" ;// Mobile Image
+
 
 export default function WhoWeAre() {
   const theme = useTheme();
@@ -21,7 +24,7 @@ export default function WhoWeAre() {
         <Box>
           <img
             src={Image3}
-            alt="Vision"
+            alt="Visionmobile"
             style={{ width: "100%", height: "auto", borderRadius: "12px" }}
           />
           <Typography
@@ -41,8 +44,8 @@ export default function WhoWeAre() {
         </Box>
         <Box>
           <img
-            src={Image2}
-            alt="Mission"
+            src={Image4}
+            alt="Missionmobile"
             style={{
               width: "100%",
               height: "auto",
@@ -90,7 +93,7 @@ export default function WhoWeAre() {
         >
           <Box>
             <img
-              src={Image3}
+              src={Image1}
               alt="Our Vision"
               width={570}
               style={{

@@ -13,6 +13,10 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 import PropTechLogo from "../assets/images/proptech-logo.png";
 
@@ -37,7 +41,12 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
   const [mobileOpen, setMobileOpen] = React.useState<boolean>(false);
   const [isClosing, setIsClosing] = React.useState<boolean>(false);
 
+  const navigate = useNavigate();
+
+
   const pages: Page[] = [
+
+    { name: "About Us", path:"/About"}, 
     { name: "Who We Are", path: "#who-we-are" },
     { name: "What We Do", path: "#what-we-do" },
     { name: "Why Choose Us?", path: "#why-choose-us" },
@@ -47,29 +56,32 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
 
   // Smooth scroll to the target element with an offset.
   const handleNavClick = (
-    path: string,
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-    // Remove the '#' to get the target element's id.
+  path: string,
+  event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>
+) => {
+  event.preventDefault();
+
+  if (path.startsWith("#")) {
     const targetId = path.replace("#", "");
     const element = document.getElementById(targetId);
     if (element) {
-      // Get the element's top relative to the viewport and add the current scroll position.
       const elementTop =
         element.getBoundingClientRect().top + window.pageYOffset;
-      // Apply the offset.
       const finalPosition = elementTop + SCROLL_OFFSET;
       window.scrollTo({
         top: finalPosition,
         behavior: "smooth",
       });
     }
-    // Close the mobile drawer if it's open.
-    if (mobileOpen) {
-      handleDrawerClose();
-    }
-  };
+  } else {
+    navigate(path); 
+  }
+
+  if (mobileOpen) {
+    handleDrawerClose();
+  }
+};
+
 
   const handleDrawerToggle = () => {
     if (!isClosing) {
