@@ -7,11 +7,10 @@ import WhoWeAre from "./sections/WhoWeAre";
 import WhatWeDo from "./sections/WhatWeDo";
 import WhyChooseUs from "./sections/WhyChooseUs";
 import ContactUs from "./sections/ContactUs";
-
-
 import Footer from "../components/Footer";
 import HackathonTeamSelection from "../components/HackathonTeamSelection";
 import HappeningNow from "./sections/HappeningNow";
+import Highlight from "./sections/Highlight";
 export default function Home() {
   return (
     <>
@@ -25,6 +24,7 @@ export default function Home() {
         <WhoWeAre />
         <WhatWeDo />
         <WhyChooseUs />
+        <Highlight/>
         <HappeningNow />
         <HackathonTeamSelection />
         <ContactUs />
