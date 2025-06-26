@@ -13,7 +13,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -152,8 +152,8 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
             <Typography
               variant="h6"
               noWrap
-              component="a"
-              href="/"
+              component={Link}
+              to="/"
               sx={{
                 mr: 2,
                 py: 1,
@@ -238,6 +238,9 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                   {page.name}
                 </Button>
               ))}
+               <Button component={Link} to="/registration" variant="contained" color="primary" sx={{ borderRadius: 5, p:0, px: 2 }} >
+                  Register Here
+               </Button>
             </Box>
           </Toolbar>
         </Container>

@@ -1,5 +1,5 @@
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {ThemeProvider, createTheme} from "@mui/material/styles";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 declare module "@mui/material/styles" {
   interface Palette {
@@ -16,6 +16,9 @@ declare module "@mui/material/styles" {
 
 import Home from "./page/Home";
 import AboutUs from "./page/AboutUs";
+import Registration from "./page/Registration";
+import StatisticsDashboard from "./page/RegistrationStatistics";
+import {RegistrationProvider} from "./context/RegistrationContext";
 
 export default function App() {
   const theme = createTheme({
@@ -52,20 +55,27 @@ export default function App() {
     components: {
       MuiButton: {
         styleOverrides: {
-          root: { minWidth: 0 },
+          root: {minWidth: 0},
         },
       },
     },
   });
 
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/About" element={<AboutUs />} />
-        </Routes>
-      </ThemeProvider>
-    </BrowserRouter>
+    <RegistrationProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/About" element={<AboutUs />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route
+              path="/registration-statistics"
+              element={<StatisticsDashboard />}
+            />
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
+    </RegistrationProvider>
   );
 }
