@@ -14,10 +14,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
-
-
-
-
 import PropTechLogo from "../assets/images/proptech-logo.png";
 
 interface Page {
@@ -30,8 +26,6 @@ interface ResponsiveHeaderProps {
   logoUrl?: string;
 }
 
-// Adjust the offset if you have a fixed header or need a specific alignment.
-// A negative offset moves the scroll position upward (revealing more of the section).
 const SCROLL_OFFSET = -80;
 
 const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
@@ -43,45 +37,40 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
 
   const navigate = useNavigate();
 
-
   const pages: Page[] = [
-
-    { name: "About Us", path:"/About"}, 
+    { name: "About Us", path: "/About" },
     { name: "Who We Are", path: "#who-we-are" },
     { name: "What We Do", path: "#what-we-do" },
     { name: "Why Choose Us?", path: "#why-choose-us" },
-    // {name: "Let's Build Together", path: "#lets-build-together"},
     { name: "Contact Us", path: "#contact-us" },
   ];
 
-  // Smooth scroll to the target element with an offset.
   const handleNavClick = (
-  path: string,
-  event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>
-) => {
-  event.preventDefault();
+    path: string,
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>
+  ) => {
+    event.preventDefault();
 
-  if (path.startsWith("#")) {
-    const targetId = path.replace("#", "");
-    const element = document.getElementById(targetId);
-    if (element) {
-      const elementTop =
-        element.getBoundingClientRect().top + window.pageYOffset;
-      const finalPosition = elementTop + SCROLL_OFFSET;
-      window.scrollTo({
-        top: finalPosition,
-        behavior: "smooth",
-      });
+    if (path.startsWith("#")) {
+      const targetId = path.replace("#", "");
+      const element = document.getElementById(targetId);
+      if (element) {
+        const elementTop =
+          element.getBoundingClientRect().top + window.pageYOffset;
+        const finalPosition = elementTop + SCROLL_OFFSET;
+        window.scrollTo({
+          top: finalPosition,
+          behavior: "smooth",
+        });
+      }
+    } else {
+      navigate(path);
     }
-  } else {
-    navigate(path); 
-  }
 
-  if (mobileOpen) {
-    handleDrawerClose();
-  }
-};
-
+    if (mobileOpen) {
+      handleDrawerClose();
+    }
+  };
 
   const handleDrawerToggle = () => {
     if (!isClosing) {
@@ -148,7 +137,6 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* Desktop Logo */}
             <Typography
               variant="h6"
               noWrap
@@ -174,7 +162,6 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
               />
             </Typography>
 
-            {/* Mobile Menu Icon */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -189,7 +176,6 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
               </IconButton>
             </Box>
 
-            {/* Mobile Logo */}
             <Typography
               variant="h5"
               noWrap
@@ -214,7 +200,6 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
               />
             </Typography>
 
-            {/* Desktop Navigation Buttons */}
             <Box
               sx={{
                 flexGrow: 1,
@@ -243,14 +228,13 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
         </Container>
       </AppBar>
 
-      {/* Mobile Drawer */}
       <Drawer
         variant="temporary"
         open={mobileOpen}
         onTransitionEnd={handleDrawerTransitionEnd}
         onClose={handleDrawerClose}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
         }}
         sx={{
           display: { xs: "block", md: "none" },
