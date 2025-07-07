@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 import {
   Box,
   Card,
@@ -14,54 +14,68 @@ import {
   TableRow,
   Chip,
   LinearProgress,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
 import {
   School as SchoolIcon,
   Group as GroupIcon,
   Code as CodeIcon,
   LocationOn as LocationIcon,
-  Person as PersonIcon,
   ArrowBack,
   Check,
   Cancel,
 } from "@mui/icons-material";
-import {useRegistration} from "../context/RegistrationContext";
 import {Link} from "react-router-dom";
 
-// Interface alignment
-export interface TeamMember {
-  name: string;
-  role: string;
-}
-
+// Updated interface to match API response
 export interface Registration {
-  id: string;
+  id: number;
   school: string;
-  schoolLocation: string;
-  teamName: string;
-  teamMembers: TeamMember[];
-  teamEmail: string;
-  programmingLanguages: string[];
-  mediaConsent: {
+  school_address: string;
+  team_name: string;
+  team_email: string;
+  prog_languages: string[];
+  other_prog_languages: string | null;
+  media_consent: {
     photo: boolean;
     video: boolean;
   };
-  termsAccepted: boolean;
-  submittedAt: Date;
+  terms_accepted: number;
+  created_at: string;
+  updated_at: string;
 }
 
-export default function MinimalStatisticsDashboard() {
-  const {registrations}: {registrations: Registration[]} = useRegistration();
+export default function StatisticsDashboard() {
+  const [registrations, setRegistrations] = useState<Registration[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Calculate statistics (removed duplicate code)
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.leuteriorealty.com/core-system/v1/public/api/hackathon/participants"
+        );
+        setRegistrations(response.data.data || []);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to fetch registration data");
+        setLoading(false);
+        console.error("API Error:", err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Calculate statistics
   const totalRegistrations = registrations.length;
-  const totalParticipants = registrations.reduce(
-    (sum, reg) => sum + reg.teamMembers.length,
-    0
-  );
+  // const totalParticipants = registrations.length;
 
   const languageStats = registrations.reduce((acc, reg) => {
-    reg.programmingLanguages.forEach((lang) => {
+    reg.prog_languages.forEach((lang) => {
       acc[lang] = (acc[lang] || 0) + 1;
     });
     return acc;
@@ -73,22 +87,51 @@ export default function MinimalStatisticsDashboard() {
   }, {} as Record<string, number>);
 
   const mediaConsentStats = {
-    photo: registrations.filter((reg) => reg.mediaConsent.photo).length,
-    video: registrations.filter((reg) => reg.mediaConsent.video).length,
+    photo: registrations.filter((reg) => reg.media_consent.photo).length,
+    video: registrations.filter((reg) => reg.media_consent.video).length,
   };
 
-  const roleStats = registrations.reduce((acc, reg) => {
-    reg.teamMembers.forEach((member) => {
-      acc[member.role] = (acc[member.role] || 0) + 1;
-    });
-    return acc;
-  }, {} as Record<string, number>);
-
   const locationStats = registrations.reduce((acc, reg) => {
-    acc[reg.schoolLocation] = (acc[reg.schoolLocation] || 0) + 1;
+    acc[reg.school_address] = (acc[reg.school_address] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
+  // Loading state
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+          background: "#fafafa",
+        }}>
+        <CircularProgress size={60} />
+      </Box>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+          background: "#fafafa",
+          p: 3,
+        }}>
+        <Alert severity="error" sx={{width: "100%", maxWidth: 500}}>
+          {error}
+        </Alert>
+      </Box>
+    );
+  }
+
+  // Empty state
   if (registrations.length === 0) {
     return (
       <Box
@@ -96,16 +139,17 @@ export default function MinimalStatisticsDashboard() {
           minHeight: "100vh",
           background: "#fafafa",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           p: 3,
         }}>
         <Link
-          to={"/registration"}
+          to={"/admin/dashboard"}
           style={{textDecoration: "none", color: "#6b7280"}}>
           <Typography variant="body2" sx={{mb: 4}}>
             <ArrowBack sx={{mr: 1}} />
-            Back to Registration
+            Back to Dashboard
           </Typography>
         </Link>
         <Card
@@ -118,11 +162,10 @@ export default function MinimalStatisticsDashboard() {
           }}>
           <CardContent sx={{textAlign: "center", p: 4}}>
             <Typography variant="h6" sx={{color: "#374151", mb: 2}}>
-              No Data Yet
+              No Registrations Found
             </Typography>
             <Typography variant="body2" sx={{color: "#6b7280"}}>
-              Registration statistics will appear here once teams start signing
-              up.
+              There are no registered participants yet.
             </Typography>
           </CardContent>
         </Card>
@@ -165,7 +208,7 @@ export default function MinimalStatisticsDashboard() {
             mx: "auto",
             mb: 2,
           }}>
-          {React.cloneElement(icon, {sx: {color: "#6b7280", fontSize: 24}})}
+          {React.cloneElement(icon)}
         </Box>
         <Typography
           variant="h4"
@@ -229,27 +272,16 @@ export default function MinimalStatisticsDashboard() {
         px: 3,
       }}>
       <Link
-        to={"/registration"}
+        to={"/admin/dashboard"}
         style={{textDecoration: "none", color: "#6b7280"}}>
         <Typography variant="body2" sx={{mb: 4}}>
           <ArrowBack sx={{mr: 1}} />
-          Back to Registration
+          Back to Dashboard
         </Typography>
       </Link>
       <Box sx={{maxWidth: 1200, mx: "auto"}}>
         {/* Header */}
         <Box sx={{textAlign: "center", mb: 8}}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 700,
-              color: "#111827",
-              mb: 2,
-              fontSize: {xs: "2rem", sm: "2.5rem", md: "3rem"},
-              letterSpacing: "-0.025em",
-            }}>
-            HackEstate 2025
-          </Typography>
           <Typography
             variant="subtitle1"
             sx={{
@@ -263,35 +295,28 @@ export default function MinimalStatisticsDashboard() {
 
         {/* Overview Cards */}
         <Grid container spacing={3} sx={{mb: 8}}>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+          <Grid size={{xs: 12, md: 6, lg: 3}}>
             <StatCard
               icon={<GroupIcon />}
               value={totalRegistrations}
               label="Teams"
             />
           </Grid>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
-            <StatCard
-              icon={<PersonIcon />}
-              value={totalParticipants}
-              label="Participants"
-            />
-          </Grid>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+          <Grid size={{xs: 12, md: 6, lg: 3}}>
             <StatCard
               icon={<CodeIcon />}
               value={Object.keys(languageStats).length}
-              label="Languages"
+              label="Programming Languages"
             />
           </Grid>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+          <Grid size={{xs: 12, md: 6, lg: 3}}>
             <StatCard
               icon={<SchoolIcon />}
               value={Object.keys(schoolStats).length}
               label="Schools"
             />
           </Grid>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+          <Grid size={{xs: 12, md: 6, lg: 3}}>
             <StatCard
               icon={<LocationIcon />}
               value={Object.keys(locationStats).length}
@@ -325,11 +350,11 @@ export default function MinimalStatisticsDashboard() {
                           py: 2,
                         },
                       }}>
+                      <TableCell>ID</TableCell>
                       <TableCell>Team</TableCell>
                       <TableCell>School</TableCell>
                       <TableCell>Location</TableCell>
                       <TableCell>Email</TableCell>
-                      <TableCell>Members</TableCell>
                       <TableCell>Languages</TableCell>
                       <TableCell>Media Consent</TableCell>
                       <TableCell>Date</TableCell>
@@ -342,7 +367,14 @@ export default function MinimalStatisticsDashboard() {
                           <Typography
                             variant="subtitle2"
                             sx={{fontWeight: 600, color: "#111827"}}>
-                            {registration.teamName}
+                            {registration.id}
+                          </Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography
+                            variant="subtitle2"
+                            sx={{fontWeight: 600, color: "#111827"}}>
+                            {registration.team_name}
                           </Typography>
                         </TableCell>
                         <TableCell>
@@ -352,52 +384,18 @@ export default function MinimalStatisticsDashboard() {
                         </TableCell>
                         <TableCell>
                           <Typography variant="body2" sx={{color: "#6b7280"}}>
-                            {registration.schoolLocation}
+                            {registration.school_address}
                           </Typography>
                         </TableCell>
                         <TableCell>
                           <Typography variant="body2" sx={{color: "#6b7280"}}>
-                            {registration.teamEmail}
+                            {registration.team_email}
                           </Typography>
                         </TableCell>
                         <TableCell>
                           <Box
-                            sx={{
-                              display: "flex",
-
-                              gap: 1,
-                            }}>
-                            {registration.teamMembers.map((member, idx) => (
-                              <Box
-                                key={idx}
-                                sx={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  bgcolor: "#f9fafb",
-                                  p: 1,
-                                  borderRadius: 1,
-                                  width: 100,
-
-                                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
-                                }}>
-                                <Typography
-                                  variant="body2"
-                                  sx={{fontWeight: 500, color: "#111827"}}>
-                                  {member.name}
-                                </Typography>
-                                <Typography
-                                  variant="caption"
-                                  sx={{color: "#6b7280"}}>
-                                  {member.role}
-                                </Typography>
-                              </Box>
-                            ))}
-                          </Box>
-                        </TableCell>
-                        <TableCell>
-                          <Box
                             sx={{display: "flex", flexWrap: "wrap", gap: 0.5}}>
-                            {registration.programmingLanguages.map((lang) => (
+                            {registration.prog_languages.map((lang) => (
                               <Chip
                                 key={lang}
                                 label={lang}
@@ -414,11 +412,27 @@ export default function MinimalStatisticsDashboard() {
                                 }}
                               />
                             ))}
+                            {registration.other_prog_languages && (
+                              <Chip
+                                label={registration.other_prog_languages}
+                                size="small"
+                                sx={{
+                                  background: "#e0f2fe",
+                                  color: "#0369a1",
+                                  fontWeight: 500,
+                                  fontSize: "0.75rem",
+                                  height: 24,
+                                  "& .MuiChip-label": {
+                                    px: 1,
+                                  },
+                                }}
+                              />
+                            )}
                           </Box>
                         </TableCell>
                         <TableCell>
                           <Box sx={{display: "flex", gap: 1}}>
-                            {registration.mediaConsent.photo ? (
+                            {registration.media_consent.photo ? (
                               <Chip
                                 icon={<Check />}
                                 label="Photo"
@@ -433,7 +447,7 @@ export default function MinimalStatisticsDashboard() {
                                 color="default"
                               />
                             )}
-                            {registration.mediaConsent.video ? (
+                            {registration.media_consent.video ? (
                               <Chip
                                 icon={<Check />}
                                 label="Video"
@@ -452,7 +466,9 @@ export default function MinimalStatisticsDashboard() {
                         </TableCell>
                         <TableCell>
                           <Typography variant="body2" sx={{color: "#6b7280"}}>
-                            {registration.submittedAt.toLocaleDateString()}
+                            {new Date(
+                              registration.created_at
+                            ).toLocaleDateString()}
                           </Typography>
                         </TableCell>
                       </TableRow>
@@ -534,34 +550,6 @@ export default function MinimalStatisticsDashboard() {
                       </Box>
                     </Box>
                   ))}
-              </Box>
-            </StatsCard>
-          </Grid>
-
-          {/* Role Distribution */}
-          <Grid size={{xs: 12, md: 6}}>
-            <StatsCard title="Role Distribution">
-              <Box sx={{display: "flex", flexDirection: "column", gap: 2}}>
-                {Object.entries(roleStats).map(([role, count]) => (
-                  <Box key={role}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}>
-                      <Typography
-                        variant="body2"
-                        sx={{fontWeight: 500, color: "#111827"}}>
-                        {role}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{color: "#6b7280", fontSize: "0.875rem"}}>
-                        {count}
-                      </Typography>
-                    </Box>
-                  </Box>
-                ))}
               </Box>
             </StatsCard>
           </Grid>

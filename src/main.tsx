@@ -1,7 +1,7 @@
 import {StrictMode} from "react";
 import {createRoot} from "react-dom/client";
 
-
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import "./index.css";
 
 import App from "./App.tsx";
@@ -16,6 +16,10 @@ import "@fontsource/comfortaa/400.css"; // Specify weight
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<App />} />
+      </Routes>
+    </BrowserRouter>
   </StrictMode>
 );
