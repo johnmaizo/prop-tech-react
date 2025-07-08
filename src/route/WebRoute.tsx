@@ -1,14 +1,14 @@
-import {Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../page/Home";
 import AboutUs from "../page/AboutUs";
 import Registration from "../page/Registration";
 import AdminLayout from "../components/layout/AdminLayout";
 import StatisticsDashboard from "../page/RegistrationStatistics";
-import {useAuthProvider} from "../config/providers/AuthProvider";
+import { useAuthProvider } from "../config/providers/AuthProvider";
 import NotFoundPage from "../config/providers/NotFoundPage";
 
 export default function WebRoute() {
-  const {authenticated} = useAuthProvider();
+  const { authenticated } = useAuthProvider();
 
   return (
     <>
