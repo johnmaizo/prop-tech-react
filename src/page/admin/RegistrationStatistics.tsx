@@ -30,7 +30,7 @@ import {Link} from "react-router-dom";
 
 // Updated interface to match API response
 export interface Registration {
-  id: number;
+  id: number; 
   school: string;
   school_address: string;
   team_name: string;
@@ -145,7 +145,7 @@ export default function StatisticsDashboard() {
           p: 3,
         }}>
         <Link
-          to={"/admin/dashboard"}
+          to={"/admin/home"}
           style={{textDecoration: "none", color: "#6b7280"}}>
           <Typography variant="body2" sx={{mb: 4}}>
             <ArrowBack sx={{mr: 1}} />
