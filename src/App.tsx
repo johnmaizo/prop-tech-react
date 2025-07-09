@@ -1,5 +1,9 @@
 import {ThemeProvider, createTheme} from "@mui/material/styles";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+
+import {SnackbarProvider} from "notistack";
+
+import AuthProvider from "./config/providers/AuthProvider";
+import WebRoute from "./route/WebRoute";
 
 declare module "@mui/material/styles" {
   interface Palette {
@@ -13,12 +17,6 @@ declare module "@mui/material/styles" {
     light?: PaletteOptions["primary"];
   }
 }
-
-import Home from "./page/Home";
-import AboutUs from "./page/AboutUs";
-import Registration from "./page/Registration";
-import StatisticsDashboard from "./page/RegistrationStatistics";
-import {RegistrationProvider} from "./context/RegistrationContext";
 
 export default function App() {
   const theme = createTheme({
@@ -62,20 +60,12 @@ export default function App() {
   });
 
   return (
-    <RegistrationProvider>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/About" element={<AboutUs />} />
-            <Route path="/registration" element={<Registration />} />
-            <Route
-              path="/registration-statistics"
-              element={<StatisticsDashboard />}
-            />
-          </Routes>
-        </ThemeProvider>
-      </BrowserRouter>
-    </RegistrationProvider>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider maxSnack={3}>
+        <AuthProvider>
+          <WebRoute />
+        </AuthProvider>
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 }

@@ -89,7 +89,7 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
   };
 
   const drawer = (
-    <Box onClick={handleDrawerClose} sx={{ textAlign: "left" }}>
+    <Box onClick={handleDrawerClose} sx={{ textAlign: "center" }}>
       <Box
         sx={{
           display: "flex",
@@ -103,7 +103,7 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
             component={"img"}
             src={logoUrl}
             alt={title}
-            sx={{ width: "100%", maxWidth: "9em" }}
+            sx={{ width: "100%", maxWidth: "7em" }}
           />
         </Typography>
         <IconButton
@@ -118,7 +118,7 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
         {pages.map((page) => (
           <ListItem key={page.name} disablePadding>
             <ListItemButton
-              sx={{ textAlign: "left" }}
+              sx={{ textAlign: "center" }}
               onClick={(e) =>
                 handleNavClick(
                   page.path,
@@ -223,7 +223,6 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                     color: "black",
                     display: "block",
                     textTransform: "none",
-                    mx: 1,
                   }}
                 >
                   {page.name}
