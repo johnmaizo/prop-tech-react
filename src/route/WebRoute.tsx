@@ -3,15 +3,18 @@ import Home from "../page/Home";
 import AboutUs from "../page/AboutUs";
 import Registration from "../page/Registration";
 import AdminLayout from "../components/layout/AdminLayout";
-import StatisticsDashboard from "../page/RegistrationStatistics";
+import StatisticsDashboard from "../page/admin/RegistrationStatistics";
 import { useAuthProvider } from "../config/providers/AuthProvider";
 import NotFoundPage from "../config/providers/NotFoundPage";
+import AdminHome from "../page/admin/AdminHome";
+import InvitationPage from "../page/admin/Invitation";
+import { AppContextProvider } from "../providers/AppContextProvider";
 
 export default function WebRoute() {
   const { authenticated } = useAuthProvider();
 
   return (
-    <>
+    <AppContextProvider>
       <Routes>
         {authenticated ? (
           <>
@@ -25,8 +28,11 @@ export default function WebRoute() {
             <Route path="/About" element={<AboutUs />} />
             <Route path="/registration" element={<Registration />} />
 
+            {/* Admin */}
             <Route path="/admin" element={<AdminLayout />}>
+              <Route path="home" element={<AdminHome />} />
               <Route path="events" element={<StatisticsDashboard />} />
+              <Route path="invitation" element={<InvitationPage />} />
             </Route>
           </>
         )}
@@ -34,6 +40,6 @@ export default function WebRoute() {
         {/* 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+    </AppContextProvider>
   );
 }
