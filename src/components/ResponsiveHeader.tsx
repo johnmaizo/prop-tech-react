@@ -13,15 +13,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
-=======
 import { Link, useNavigate } from "react-router-dom";
 
-
-
-
->>>>>>> 990fac394d03450eadf6d1470c92d8571a8c9f20
 import PropTechLogo from "../assets/images/proptech-logo.png";
 
 interface Page {
@@ -96,12 +89,12 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
   };
 
   const drawer = (
-    <Box onClick={handleDrawerClose} sx={{ textAlign: "center" }}>
+    <Box onClick={handleDrawerClose} sx={{ textAlign: "left" }}>
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: "left",
           p: 2,
         }}
       >
@@ -110,10 +103,14 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
             component={"img"}
             src={logoUrl}
             alt={title}
-            sx={{ width: "100%", maxWidth: "7em" }}
+            sx={{ width: "100%", maxWidth: "9em" }}
           />
         </Typography>
-        <IconButton aria-label="close drawer" onClick={handleDrawerClose}>
+        <IconButton
+          sx={{ position: "absolute", left: "0", top: "0" }}
+          aria-label="close drawer"
+          onClick={handleDrawerClose}
+        >
           <CloseIcon />
         </IconButton>
       </Box>
@@ -121,7 +118,7 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
         {pages.map((page) => (
           <ListItem key={page.name} disablePadding>
             <ListItemButton
-              sx={{ textAlign: "center" }}
+              sx={{ textAlign: "left" }}
               onClick={(e) =>
                 handleNavClick(
                   page.path,
@@ -226,14 +223,12 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                     color: "black",
                     display: "block",
                     textTransform: "none",
+                    mx: 1,
                   }}
                 >
                   {page.name}
                 </Button>
               ))}
-               <Button component={Link} to="/registration" variant="contained" color="primary" sx={{ borderRadius: 5, p:0, px: 2 }} >
-                  Register Here
-               </Button>
             </Box>
           </Toolbar>
         </Container>

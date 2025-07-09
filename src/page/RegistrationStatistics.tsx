@@ -25,8 +25,8 @@ import {
   Check,
   Cancel,
 } from "@mui/icons-material";
-import {useRegistration} from "../context/RegistrationContext";
-import {Link} from "react-router-dom";
+import { useRegistration } from "../context/RegistrationContext";
+import { Link } from "react-router-dom";
 
 // Interface alignment
 export interface TeamMember {
@@ -51,7 +51,8 @@ export interface Registration {
 }
 
 export default function MinimalStatisticsDashboard() {
-  const {registrations}: {registrations: Registration[]} = useRegistration();
+  const { registrations }: { registrations: Registration[] } =
+    useRegistration();
 
   // Calculate statistics (removed duplicate code)
   const totalRegistrations = registrations.length;
@@ -99,12 +100,14 @@ export default function MinimalStatisticsDashboard() {
           alignItems: "center",
           justifyContent: "center",
           p: 3,
-        }}>
+        }}
+      >
         <Link
           to={"/registration"}
-          style={{textDecoration: "none", color: "#6b7280"}}>
-          <Typography variant="body2" sx={{mb: 4}}>
-            <ArrowBack sx={{mr: 1}} />
+          style={{ textDecoration: "none", color: "#6b7280" }}
+        >
+          <Typography variant="body2" sx={{ mb: 4 }}>
+            <ArrowBack sx={{ mr: 1 }} />
             Back to Registration
           </Typography>
         </Link>
@@ -115,12 +118,13 @@ export default function MinimalStatisticsDashboard() {
             border: "1px solid #e5e7eb",
             borderRadius: 2,
             boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)",
-          }}>
-          <CardContent sx={{textAlign: "center", p: 4}}>
-            <Typography variant="h6" sx={{color: "#374151", mb: 2}}>
+          }}
+        >
+          <CardContent sx={{ textAlign: "center", p: 4 }}>
+            <Typography variant="h6" sx={{ color: "#374151", mb: 2 }}>
               No Data Yet
             </Typography>
-            <Typography variant="body2" sx={{color: "#6b7280"}}>
+            <Typography variant="body2" sx={{ color: "#6b7280" }}>
               Registration statistics will appear here once teams start signing
               up.
             </Typography>
@@ -151,8 +155,9 @@ export default function MinimalStatisticsDashboard() {
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
           transform: "translateY(-1px)",
         },
-      }}>
-      <CardContent sx={{textAlign: "center", p: 3}}>
+      }}
+    >
+      <CardContent sx={{ textAlign: "center", p: 3 }}>
         <Box
           sx={{
             width: 48,
@@ -164,8 +169,9 @@ export default function MinimalStatisticsDashboard() {
             justifyContent: "center",
             mx: "auto",
             mb: 2,
-          }}>
-          {React.cloneElement(icon, {sx: {color: "#6b7280", fontSize: 24}})}
+          }}
+        >
+          {React.cloneElement(icon)}
         </Box>
         <Typography
           variant="h4"
@@ -174,7 +180,8 @@ export default function MinimalStatisticsDashboard() {
             color: "#111827",
             mb: 1,
             fontSize: "2rem",
-          }}>
+          }}
+        >
           {value}
         </Typography>
         <Typography
@@ -183,7 +190,8 @@ export default function MinimalStatisticsDashboard() {
             color: "#6b7280",
             fontWeight: 500,
             fontSize: "0.875rem",
-          }}>
+          }}
+        >
           {label}
         </Typography>
       </CardContent>
@@ -203,8 +211,9 @@ export default function MinimalStatisticsDashboard() {
         border: "1px solid #e5e7eb",
         borderRadius: 2,
         boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)",
-      }}>
-      <CardContent sx={{p: 4}}>
+      }}
+    >
+      <CardContent sx={{ p: 4 }}>
         <Typography
           variant="h6"
           sx={{
@@ -212,7 +221,8 @@ export default function MinimalStatisticsDashboard() {
             fontWeight: 600,
             color: "#111827",
             fontSize: "1.125rem",
-          }}>
+          }}
+        >
           {title}
         </Typography>
         {children}
@@ -227,27 +237,30 @@ export default function MinimalStatisticsDashboard() {
         background: "#fafafa",
         py: 6,
         px: 3,
-      }}>
+      }}
+    >
       <Link
         to={"/registration"}
-        style={{textDecoration: "none", color: "#6b7280"}}>
-        <Typography variant="body2" sx={{mb: 4}}>
-          <ArrowBack sx={{mr: 1}} />
+        style={{ textDecoration: "none", color: "#6b7280" }}
+      >
+        <Typography variant="body2" sx={{ mb: 4 }}>
+          <ArrowBack sx={{ mr: 1 }} />
           Back to Registration
         </Typography>
       </Link>
-      <Box sx={{maxWidth: 1200, mx: "auto"}}>
+      <Box sx={{ maxWidth: 1200, mx: "auto" }}>
         {/* Header */}
-        <Box sx={{textAlign: "center", mb: 8}}>
+        <Box sx={{ textAlign: "center", mb: 8 }}>
           <Typography
             variant="h3"
             sx={{
               fontWeight: 700,
               color: "#111827",
               mb: 2,
-              fontSize: {xs: "2rem", sm: "2.5rem", md: "3rem"},
+              fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
               letterSpacing: "-0.025em",
-            }}>
+            }}
+          >
             HackEstate 2025
           </Typography>
           <Typography
@@ -256,42 +269,43 @@ export default function MinimalStatisticsDashboard() {
               color: "#6b7280",
               fontWeight: 400,
               fontSize: "1.125rem",
-            }}>
+            }}
+          >
             Registration Analytics
           </Typography>
         </Box>
 
         {/* Overview Cards */}
-        <Grid container spacing={3} sx={{mb: 8}}>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+        <Grid container spacing={3} sx={{ mb: 8 }}>
+          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
             <StatCard
               icon={<GroupIcon />}
               value={totalRegistrations}
               label="Teams"
             />
           </Grid>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
             <StatCard
               icon={<PersonIcon />}
               value={totalParticipants}
               label="Participants"
             />
           </Grid>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
             <StatCard
               icon={<CodeIcon />}
               value={Object.keys(languageStats).length}
               label="Languages"
             />
           </Grid>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
             <StatCard
               icon={<SchoolIcon />}
               value={Object.keys(schoolStats).length}
               label="Schools"
             />
           </Grid>
-          <Grid size={{xs: 12, sm: 6, lg: 2.4}}>
+          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
             <StatCard
               icon={<LocationIcon />}
               value={Object.keys(locationStats).length}
@@ -302,7 +316,7 @@ export default function MinimalStatisticsDashboard() {
 
         <Grid container spacing={4}>
           {/* Team Registrations Table */}
-          <Grid size={{xs: 12}}>
+          <Grid size={{ xs: 12 }}>
             <StatsCard title="Team Registrations">
               <TableContainer
                 sx={{
@@ -312,7 +326,8 @@ export default function MinimalStatisticsDashboard() {
                     borderColor: "#f3f4f6",
                     py: 2,
                   },
-                }}>
+                }}
+              >
                 <Table>
                   <TableHead>
                     <TableRow
@@ -324,7 +339,8 @@ export default function MinimalStatisticsDashboard() {
                           fontSize: "0.875rem",
                           py: 2,
                         },
-                      }}>
+                      }}
+                    >
                       <TableCell>Team</TableCell>
                       <TableCell>School</TableCell>
                       <TableCell>Location</TableCell>
@@ -341,22 +357,23 @@ export default function MinimalStatisticsDashboard() {
                         <TableCell>
                           <Typography
                             variant="subtitle2"
-                            sx={{fontWeight: 600, color: "#111827"}}>
+                            sx={{ fontWeight: 600, color: "#111827" }}
+                          >
                             {registration.teamName}
                           </Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#374151"}}>
+                          <Typography variant="body2" sx={{ color: "#374151" }}>
                             {registration.school}
                           </Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
+                          <Typography variant="body2" sx={{ color: "#6b7280" }}>
                             {registration.schoolLocation}
                           </Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
+                          <Typography variant="body2" sx={{ color: "#6b7280" }}>
                             {registration.teamEmail}
                           </Typography>
                         </TableCell>
@@ -366,7 +383,8 @@ export default function MinimalStatisticsDashboard() {
                               display: "flex",
 
                               gap: 1,
-                            }}>
+                            }}
+                          >
                             {registration.teamMembers.map((member, idx) => (
                               <Box
                                 key={idx}
@@ -379,15 +397,18 @@ export default function MinimalStatisticsDashboard() {
                                   width: 100,
 
                                   boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
-                                }}>
+                                }}
+                              >
                                 <Typography
                                   variant="body2"
-                                  sx={{fontWeight: 500, color: "#111827"}}>
+                                  sx={{ fontWeight: 500, color: "#111827" }}
+                                >
                                   {member.name}
                                 </Typography>
                                 <Typography
                                   variant="caption"
-                                  sx={{color: "#6b7280"}}>
+                                  sx={{ color: "#6b7280" }}
+                                >
                                   {member.role}
                                 </Typography>
                               </Box>
@@ -396,7 +417,8 @@ export default function MinimalStatisticsDashboard() {
                         </TableCell>
                         <TableCell>
                           <Box
-                            sx={{display: "flex", flexWrap: "wrap", gap: 0.5}}>
+                            sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
+                          >
                             {registration.programmingLanguages.map((lang) => (
                               <Chip
                                 key={lang}
@@ -417,7 +439,7 @@ export default function MinimalStatisticsDashboard() {
                           </Box>
                         </TableCell>
                         <TableCell>
-                          <Box sx={{display: "flex", gap: 1}}>
+                          <Box sx={{ display: "flex", gap: 1 }}>
                             {registration.mediaConsent.photo ? (
                               <Chip
                                 icon={<Check />}
@@ -451,7 +473,7 @@ export default function MinimalStatisticsDashboard() {
                           </Box>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
+                          <Typography variant="body2" sx={{ color: "#6b7280" }}>
                             {registration.submittedAt.toLocaleDateString()}
                           </Typography>
                         </TableCell>
@@ -464,9 +486,9 @@ export default function MinimalStatisticsDashboard() {
           </Grid>
 
           {/* Programming Languages */}
-          <Grid size={{xs: 12, md: 6}}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <StatsCard title="Programming Languages">
-              <Box sx={{display: "flex", flexDirection: "column", gap: 3}}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {Object.entries(languageStats)
                   .sort(([, a], [, b]) => b - a)
                   .map(([language, count]) => (
@@ -476,15 +498,18 @@ export default function MinimalStatisticsDashboard() {
                           display: "flex",
                           justifyContent: "space-between",
                           mb: 1,
-                        }}>
+                        }}
+                      >
                         <Typography
                           variant="body2"
-                          sx={{fontWeight: 500, color: "#111827"}}>
+                          sx={{ fontWeight: 500, color: "#111827" }}
+                        >
                           {language}
                         </Typography>
                         <Typography
                           variant="body2"
-                          sx={{color: "#6b7280", fontSize: "0.875rem"}}>
+                          sx={{ color: "#6b7280", fontSize: "0.875rem" }}
+                        >
                           {count}
                         </Typography>
                       </Box>
@@ -508,9 +533,9 @@ export default function MinimalStatisticsDashboard() {
           </Grid>
 
           {/* Schools */}
-          <Grid size={{xs: 12, md: 6}}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <StatsCard title="Schools & Universities">
-              <Box sx={{display: "flex", flexDirection: "column", gap: 3}}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {Object.entries(schoolStats)
                   .sort(([, a], [, b]) => b - a)
                   .map(([school, count]) => (
@@ -520,15 +545,18 @@ export default function MinimalStatisticsDashboard() {
                           display: "flex",
                           justifyContent: "space-between",
                           mb: 1,
-                        }}>
+                        }}
+                      >
                         <Typography
                           variant="body2"
-                          sx={{fontWeight: 500, color: "#111827"}}>
+                          sx={{ fontWeight: 500, color: "#111827" }}
+                        >
                           {school}
                         </Typography>
                         <Typography
                           variant="body2"
-                          sx={{color: "#6b7280", fontSize: "0.875rem"}}>
+                          sx={{ color: "#6b7280", fontSize: "0.875rem" }}
+                        >
                           {count}
                         </Typography>
                       </Box>
@@ -539,24 +567,27 @@ export default function MinimalStatisticsDashboard() {
           </Grid>
 
           {/* Role Distribution */}
-          <Grid size={{xs: 12, md: 6}}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <StatsCard title="Role Distribution">
-              <Box sx={{display: "flex", flexDirection: "column", gap: 2}}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                 {Object.entries(roleStats).map(([role, count]) => (
                   <Box key={role}>
                     <Box
                       sx={{
                         display: "flex",
                         justifyContent: "space-between",
-                      }}>
+                      }}
+                    >
                       <Typography
                         variant="body2"
-                        sx={{fontWeight: 500, color: "#111827"}}>
+                        sx={{ fontWeight: 500, color: "#111827" }}
+                      >
                         {role}
                       </Typography>
                       <Typography
                         variant="body2"
-                        sx={{color: "#6b7280", fontSize: "0.875rem"}}>
+                        sx={{ color: "#6b7280", fontSize: "0.875rem" }}
+                      >
                         {count}
                       </Typography>
                     </Box>
@@ -567,9 +598,9 @@ export default function MinimalStatisticsDashboard() {
           </Grid>
 
           {/* Media Consent */}
-          <Grid size={{xs: 12, md: 6}}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <StatsCard title="Media Consent">
-              <Box sx={{display: "flex", flexDirection: "column", gap: 4}}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 <Box>
                   <Box
                     sx={{
@@ -577,13 +608,15 @@ export default function MinimalStatisticsDashboard() {
                       justifyContent: "space-between",
                       gap: 1,
                       mb: 1,
-                    }}>
+                    }}
+                  >
                     <Typography
                       variant="body2"
-                      sx={{fontWeight: 500, color: "#111827"}}>
+                      sx={{ fontWeight: 500, color: "#111827" }}
+                    >
                       Photo Consent
                     </Typography>
-                    <Typography variant="body2" sx={{color: "#6b7280"}}>
+                    <Typography variant="body2" sx={{ color: "#6b7280" }}>
                       {Math.round(
                         (mediaConsentStats.photo / totalRegistrations) * 100
                       )}
@@ -610,13 +643,15 @@ export default function MinimalStatisticsDashboard() {
                       display: "flex",
                       justifyContent: "space-between",
                       mb: 1,
-                    }}>
+                    }}
+                  >
                     <Typography
                       variant="body2"
-                      sx={{fontWeight: 500, color: "#111827"}}>
+                      sx={{ fontWeight: 500, color: "#111827" }}
+                    >
                       Video Consent
                     </Typography>
-                    <Typography variant="body2" sx={{color: "#6b7280"}}>
+                    <Typography variant="body2" sx={{ color: "#6b7280" }}>
                       {Math.round(
                         (mediaConsentStats.video / totalRegistrations) * 100
                       )}
