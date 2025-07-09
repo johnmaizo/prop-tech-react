@@ -13,7 +13,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import PropTechLogo from "../assets/images/proptech-logo.png";
 
@@ -39,11 +39,11 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
   const navigate = useNavigate();
 
   const pages: Page[] = [
-    {name: "About Us", path: "/About"},
-    {name: "Who We Are", path: "#who-we-are"},
-    {name: "What We Do", path: "#what-we-do"},
-    {name: "Why Choose Us?", path: "#why-choose-us"},
-    {name: "Contact Us", path: "#contact-us"},
+    { name: "About Us", path: "/About" },
+    { name: "Who We Are", path: "#who-we-are" },
+    { name: "What We Do", path: "#what-we-do" },
+    { name: "Why Choose Us?", path: "#why-choose-us" },
+    { name: "Contact Us", path: "#contact-us" },
   ];
 
   const handleNavClick = (
@@ -89,23 +89,28 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
   };
 
   const drawer = (
-    <Box onClick={handleDrawerClose} sx={{textAlign: "center"}}>
+    <Box onClick={handleDrawerClose} sx={{ textAlign: "center" }}>
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: "left",
           p: 2,
-        }}>
-        <Typography variant="h6" sx={{my: 2}}>
+        }}
+      >
+        <Typography variant="h6" sx={{ my: 2 }}>
           <Typography
             component={"img"}
             src={logoUrl}
             alt={title}
-            sx={{width: "100%", maxWidth: "7em"}}
+            sx={{ width: "100%", maxWidth: "7em" }}
           />
         </Typography>
-        <IconButton aria-label="close drawer" onClick={handleDrawerClose}>
+        <IconButton
+          sx={{ position: "absolute", left: "0", top: "0" }}
+          aria-label="close drawer"
+          onClick={handleDrawerClose}
+        >
           <CloseIcon />
         </IconButton>
       </Box>
@@ -113,13 +118,14 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
         {pages.map((page) => (
           <ListItem key={page.name} disablePadding>
             <ListItemButton
-              sx={{textAlign: "center"}}
+              sx={{ textAlign: "center" }}
               onClick={(e) =>
                 handleNavClick(
                   page.path,
                   e as unknown as React.MouseEvent<HTMLButtonElement>
                 )
-              }>
+              }
+            >
               <ListItemText primary={page.name} />
             </ListItemButton>
           </ListItem>
@@ -129,10 +135,11 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
   );
 
   return (
-    <Box sx={{flexGrow: 1}}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        sx={{backgroundColor: "transparent", color: "white", px: 1}}>
+        sx={{ backgroundColor: "transparent", color: "white", px: 1 }}
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -144,22 +151,23 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                 mr: 2,
                 py: 1,
                 my: 2,
-                display: {xs: "none", md: "flex"},
+                display: { xs: "none", md: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
-              }}>
+              }}
+            >
               <Typography
                 component={"img"}
                 src={logoUrl}
                 alt={title}
-                sx={{width: "100%", maxWidth: "11em"}}
+                sx={{ width: "100%", maxWidth: "11em" }}
               />
             </Typography>
 
-            <Box sx={{flexGrow: 1, display: {xs: "flex", md: "none"}}}>
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
                 aria-label="open drawer"
@@ -167,8 +175,9 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                 color="inherit"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleDrawerToggle}>
-                <MenuIcon sx={{color: "black"}} />
+                onClick={handleDrawerToggle}
+              >
+                <MenuIcon sx={{ color: "black" }} />
               </IconButton>
             </Box>
 
@@ -179,28 +188,30 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
               href={"/"}
               sx={{
                 mr: 2,
-                display: {xs: "flex", md: "none"},
+                display: { xs: "flex", md: "none" },
                 flexGrow: 1,
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
-              }}>
+              }}
+            >
               <Typography
                 component={"img"}
                 src={logoUrl}
                 alt={title}
-                sx={{width: "100%", maxWidth: "7em"}}
+                sx={{ width: "100%", maxWidth: "7em" }}
               />
             </Typography>
 
             <Box
               sx={{
                 flexGrow: 1,
-                display: {xs: "none", md: "flex"},
+                display: { xs: "none", md: "flex" },
                 justifyContent: "flex-end",
-              }}>
+              }}
+            >
               {pages.map((page) => (
                 <Button
                   key={page.name}
@@ -212,7 +223,8 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
                     color: "black",
                     display: "block",
                     textTransform: "none",
-                  }}>
+                  }}
+                >
                   {page.name}
                 </Button>
               ))}
@@ -230,9 +242,10 @@ const ResponsiveHeader: React.FC<ResponsiveHeaderProps> = ({
           keepMounted: true,
         }}
         sx={{
-          display: {xs: "block", md: "none"},
-          "& .MuiDrawer-paper": {boxSizing: "border-box", width: 240},
-        }}>
+          display: { xs: "block", md: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
+        }}
+      >
         {drawer}
       </Drawer>
     </Box>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -26,11 +26,11 @@ import {
   Check,
   Cancel,
 } from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Updated interface to match API response
 export interface Registration {
-  id: number; 
+  id: number;
   school: string;
   school_address: string;
   team_name: string;
@@ -106,7 +106,8 @@ export default function StatisticsDashboard() {
           alignItems: "center",
           minHeight: "100vh",
           background: "#fafafa",
-        }}>
+        }}
+      >
         <CircularProgress size={60} />
       </Box>
     );
@@ -123,8 +124,9 @@ export default function StatisticsDashboard() {
           minHeight: "100vh",
           background: "#fafafa",
           p: 3,
-        }}>
-        <Alert severity="error" sx={{width: "100%", maxWidth: 500}}>
+        }}
+      >
+        <Alert severity="error" sx={{ width: "100%", maxWidth: 500 }}>
           {error}
         </Alert>
       </Box>
@@ -143,12 +145,14 @@ export default function StatisticsDashboard() {
           alignItems: "center",
           justifyContent: "center",
           p: 3,
-        }}>
+        }}
+      >
         <Link
           to={"/admin/home"}
-          style={{textDecoration: "none", color: "#6b7280"}}>
-          <Typography variant="body2" sx={{mb: 4}}>
-            <ArrowBack sx={{mr: 1}} />
+          style={{ textDecoration: "none", color: "#6b7280" }}
+        >
+          <Typography variant="body2" sx={{ mb: 4 }}>
+            <ArrowBack sx={{ mr: 1 }} />
             Back to Dashboard
           </Typography>
         </Link>
@@ -159,12 +163,13 @@ export default function StatisticsDashboard() {
             border: "1px solid #e5e7eb",
             borderRadius: 2,
             boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)",
-          }}>
-          <CardContent sx={{textAlign: "center", p: 4}}>
-            <Typography variant="h6" sx={{color: "#374151", mb: 2}}>
+          }}
+        >
+          <CardContent sx={{ textAlign: "center", p: 4 }}>
+            <Typography variant="h6" sx={{ color: "#374151", mb: 2 }}>
               No Registrations Found
             </Typography>
-            <Typography variant="body2" sx={{color: "#6b7280"}}>
+            <Typography variant="body2" sx={{ color: "#6b7280" }}>
               There are no registered participants yet.
             </Typography>
           </CardContent>
@@ -194,8 +199,9 @@ export default function StatisticsDashboard() {
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
           transform: "translateY(-1px)",
         },
-      }}>
-      <CardContent sx={{textAlign: "center", p: 3}}>
+      }}
+    >
+      <CardContent sx={{ textAlign: "center", p: 3 }}>
         <Box
           sx={{
             width: 48,
@@ -207,7 +213,8 @@ export default function StatisticsDashboard() {
             justifyContent: "center",
             mx: "auto",
             mb: 2,
-          }}>
+          }}
+        >
           {React.cloneElement(icon)}
         </Box>
         <Typography
@@ -217,7 +224,8 @@ export default function StatisticsDashboard() {
             color: "#111827",
             mb: 1,
             fontSize: "2rem",
-          }}>
+          }}
+        >
           {value}
         </Typography>
         <Typography
@@ -226,7 +234,8 @@ export default function StatisticsDashboard() {
             color: "#6b7280",
             fontWeight: 500,
             fontSize: "0.875rem",
-          }}>
+          }}
+        >
           {label}
         </Typography>
       </CardContent>
@@ -246,8 +255,9 @@ export default function StatisticsDashboard() {
         border: "1px solid #e5e7eb",
         borderRadius: 2,
         boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)",
-      }}>
-      <CardContent sx={{p: 4}}>
+      }}
+    >
+      <CardContent sx={{ p: 4 }}>
         <Typography
           variant="h6"
           sx={{
@@ -255,7 +265,8 @@ export default function StatisticsDashboard() {
             fontWeight: 600,
             color: "#111827",
             fontSize: "1.125rem",
-          }}>
+          }}
+        >
           {title}
         </Typography>
         {children}
@@ -270,53 +281,56 @@ export default function StatisticsDashboard() {
         background: "#fafafa",
         py: 6,
         px: 3,
-      }}>
+      }}
+    >
       <Link
         to={"/admin/dashboard"}
-        style={{textDecoration: "none", color: "#6b7280"}}>
-        <Typography variant="body2" sx={{mb: 4}}>
-          <ArrowBack sx={{mr: 1}} />
+        style={{ textDecoration: "none", color: "#6b7280" }}
+      >
+        <Typography variant="body2" sx={{ mb: 4 }}>
+          <ArrowBack sx={{ mr: 1 }} />
           Back to Dashboard
         </Typography>
       </Link>
-      <Box sx={{maxWidth: 1200, mx: "auto"}}>
+      <Box sx={{ maxWidth: 1200, mx: "auto" }}>
         {/* Header */}
-        <Box sx={{textAlign: "center", mb: 8}}>
+        <Box sx={{ textAlign: "center", mb: 8 }}>
           <Typography
             variant="subtitle1"
             sx={{
               color: "#6b7280",
               fontWeight: 400,
               fontSize: "1.125rem",
-            }}>
+            }}
+          >
             Registration Analytics
           </Typography>
         </Box>
 
         {/* Overview Cards */}
-        <Grid container spacing={3} sx={{mb: 8}}>
-          <Grid size={{xs: 12, md: 6, lg: 3}}>
+        <Grid container spacing={3} sx={{ mb: 8 }}>
+          <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <StatCard
               icon={<GroupIcon />}
               value={totalRegistrations}
               label="Teams"
             />
           </Grid>
-          <Grid size={{xs: 12, md: 6, lg: 3}}>
+          <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <StatCard
               icon={<CodeIcon />}
               value={Object.keys(languageStats).length}
               label="Programming Languages"
             />
           </Grid>
-          <Grid size={{xs: 12, md: 6, lg: 3}}>
+          <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <StatCard
               icon={<SchoolIcon />}
               value={Object.keys(schoolStats).length}
               label="Schools"
             />
           </Grid>
-          <Grid size={{xs: 12, md: 6, lg: 3}}>
+          <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <StatCard
               icon={<LocationIcon />}
               value={Object.keys(locationStats).length}
@@ -327,7 +341,7 @@ export default function StatisticsDashboard() {
 
         <Grid container spacing={4}>
           {/* Team Registrations Table */}
-          <Grid size={{xs: 12}}>
+          <Grid size={{ xs: 12 }}>
             <StatsCard title="Team Registrations">
               <TableContainer
                 sx={{
@@ -337,7 +351,8 @@ export default function StatisticsDashboard() {
                     borderColor: "#f3f4f6",
                     py: 2,
                   },
-                }}>
+                }}
+              >
                 <Table>
                   <TableHead>
                     <TableRow
@@ -349,7 +364,8 @@ export default function StatisticsDashboard() {
                           fontSize: "0.875rem",
                           py: 2,
                         },
-                      }}>
+                      }}
+                    >
                       <TableCell>ID</TableCell>
                       <TableCell>Team</TableCell>
                       <TableCell>School</TableCell>
@@ -366,35 +382,38 @@ export default function StatisticsDashboard() {
                         <TableCell>
                           <Typography
                             variant="subtitle2"
-                            sx={{fontWeight: 600, color: "#111827"}}>
+                            sx={{ fontWeight: 600, color: "#111827" }}
+                          >
                             {registration.id}
                           </Typography>
                         </TableCell>
                         <TableCell>
                           <Typography
                             variant="subtitle2"
-                            sx={{fontWeight: 600, color: "#111827"}}>
+                            sx={{ fontWeight: 600, color: "#111827" }}
+                          >
                             {registration.team_name}
                           </Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#374151"}}>
+                          <Typography variant="body2" sx={{ color: "#374151" }}>
                             {registration.school}
                           </Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
+                          <Typography variant="body2" sx={{ color: "#6b7280" }}>
                             {registration.school_address}
                           </Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
+                          <Typography variant="body2" sx={{ color: "#6b7280" }}>
                             {registration.team_email}
                           </Typography>
                         </TableCell>
                         <TableCell>
                           <Box
-                            sx={{display: "flex", flexWrap: "wrap", gap: 0.5}}>
+                            sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
+                          >
                             {registration.prog_languages.map((lang) => (
                               <Chip
                                 key={lang}
@@ -431,7 +450,7 @@ export default function StatisticsDashboard() {
                           </Box>
                         </TableCell>
                         <TableCell>
-                          <Box sx={{display: "flex", gap: 1}}>
+                          <Box sx={{ display: "flex", gap: 1 }}>
                             {registration.media_consent.photo ? (
                               <Chip
                                 icon={<Check />}
@@ -465,7 +484,7 @@ export default function StatisticsDashboard() {
                           </Box>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
+                          <Typography variant="body2" sx={{ color: "#6b7280" }}>
                             {new Date(
                               registration.created_at
                             ).toLocaleDateString()}
@@ -480,9 +499,9 @@ export default function StatisticsDashboard() {
           </Grid>
 
           {/* Programming Languages */}
-          <Grid size={{xs: 12, md: 6}}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <StatsCard title="Programming Languages">
-              <Box sx={{display: "flex", flexDirection: "column", gap: 3}}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {Object.entries(languageStats)
                   .sort(([, a], [, b]) => b - a)
                   .map(([language, count]) => (
@@ -492,15 +511,18 @@ export default function StatisticsDashboard() {
                           display: "flex",
                           justifyContent: "space-between",
                           mb: 1,
-                        }}>
+                        }}
+                      >
                         <Typography
                           variant="body2"
-                          sx={{fontWeight: 500, color: "#111827"}}>
+                          sx={{ fontWeight: 500, color: "#111827" }}
+                        >
                           {language}
                         </Typography>
                         <Typography
                           variant="body2"
-                          sx={{color: "#6b7280", fontSize: "0.875rem"}}>
+                          sx={{ color: "#6b7280", fontSize: "0.875rem" }}
+                        >
                           {count}
                         </Typography>
                       </Box>
@@ -524,9 +546,9 @@ export default function StatisticsDashboard() {
           </Grid>
 
           {/* Schools */}
-          <Grid size={{xs: 12, md: 6}}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <StatsCard title="Schools & Universities">
-              <Box sx={{display: "flex", flexDirection: "column", gap: 3}}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {Object.entries(schoolStats)
                   .sort(([, a], [, b]) => b - a)
                   .map(([school, count]) => (
@@ -536,15 +558,18 @@ export default function StatisticsDashboard() {
                           display: "flex",
                           justifyContent: "space-between",
                           mb: 1,
-                        }}>
+                        }}
+                      >
                         <Typography
                           variant="body2"
-                          sx={{fontWeight: 500, color: "#111827"}}>
+                          sx={{ fontWeight: 500, color: "#111827" }}
+                        >
                           {school}
                         </Typography>
                         <Typography
                           variant="body2"
-                          sx={{color: "#6b7280", fontSize: "0.875rem"}}>
+                          sx={{ color: "#6b7280", fontSize: "0.875rem" }}
+                        >
                           {count}
                         </Typography>
                       </Box>
@@ -555,9 +580,9 @@ export default function StatisticsDashboard() {
           </Grid>
 
           {/* Media Consent */}
-          <Grid size={{xs: 12, md: 6}}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <StatsCard title="Media Consent">
-              <Box sx={{display: "flex", flexDirection: "column", gap: 4}}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 <Box>
                   <Box
                     sx={{
@@ -565,13 +590,15 @@ export default function StatisticsDashboard() {
                       justifyContent: "space-between",
                       gap: 1,
                       mb: 1,
-                    }}>
+                    }}
+                  >
                     <Typography
                       variant="body2"
-                      sx={{fontWeight: 500, color: "#111827"}}>
+                      sx={{ fontWeight: 500, color: "#111827" }}
+                    >
                       Photo Consent
                     </Typography>
-                    <Typography variant="body2" sx={{color: "#6b7280"}}>
+                    <Typography variant="body2" sx={{ color: "#6b7280" }}>
                       {Math.round(
                         (mediaConsentStats.photo / totalRegistrations) * 100
                       )}
@@ -598,13 +625,15 @@ export default function StatisticsDashboard() {
                       display: "flex",
                       justifyContent: "space-between",
                       mb: 1,
-                    }}>
+                    }}
+                  >
                     <Typography
                       variant="body2"
-                      sx={{fontWeight: 500, color: "#111827"}}>
+                      sx={{ fontWeight: 500, color: "#111827" }}
+                    >
                       Video Consent
                     </Typography>
-                    <Typography variant="body2" sx={{color: "#6b7280"}}>
+                    <Typography variant="body2" sx={{ color: "#6b7280" }}>
                       {Math.round(
                         (mediaConsentStats.video / totalRegistrations) * 100
                       )}

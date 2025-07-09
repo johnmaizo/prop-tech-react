@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Box,
@@ -78,10 +78,28 @@ export default function InvitationPage() {
 
   const handleSendEmail = async (id: number) => {
     setSendingEmail(id);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setSendingEmail(null);
-    // Here you would typically update the invitation status or show a success message
+
+    try {
+      const response = await axios.post(
+        `https://api.leuteriorealty.com/core-system/v1/public/api/hackathon/send-invitation/${id}`
+      );
+
+      if (response.status === 200) {
+        const invitedData = response.data[0];
+        let _invitations = [...invitations];
+        const idxToUpdate = _invitations.findIndex(
+          (inv) => inv.id === invitedData.id
+        );
+
+        _invitations[idxToUpdate].status = "sent";
+
+        setInvitations(_invitations);
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setSendingEmail(null);
+    }
   };
 
   const getStatusColor = (status: string) => {
@@ -161,11 +179,11 @@ export default function InvitationPage() {
 
   if (loading) {
     return (
-      <Box sx={{minHeight: "100vh", bgcolor: "#f8fafc"}}>
-        <Container maxWidth="xl" sx={{py: 4, mt: 10}}>
-          <Grid container spacing={3} sx={{mb: 4}}>
+      <Box sx={{ minHeight: "100vh", bgcolor: "#f8fafc" }}>
+        <Container maxWidth="xl" sx={{ py: 4, mt: 10 }}>
+          <Grid container spacing={3} sx={{ mb: 4 }}>
             {[1, 2, 3, 4].map((i) => (
-              <Grid size={{xs: 12, sm: 6, md: 3}} key={i}>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={i}>
                 <Skeleton variant="rectangular" height={120} />
               </Grid>
             ))}
@@ -177,14 +195,14 @@ export default function InvitationPage() {
   }
 
   return (
-    <Box sx={{minHeight: "100vh", bgcolor: "#f8fafc"}}>
-      <Container maxWidth="xl" sx={{py: 4, mt: 10}}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#f8fafc" }}>
+      <Container maxWidth="xl" sx={{ py: 4, mt: 10 }}>
         <Fade in={true} timeout={800}>
           <Box>
             {/* Stats Cards */}
-            <Grid container spacing={3} sx={{mb: 4}}>
+            <Grid container spacing={3} sx={{ mb: 4 }}>
               {statsData.map((stat, index) => (
-                <Grid size={{xs: 12, sm: 6, md: 3}} key={index}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                   <Fade in={true} timeout={1000 + index * 200}>
                     <Card
                       sx={{
@@ -192,18 +210,22 @@ export default function InvitationPage() {
                         background:
                           "linear-gradient(135deg, #fff 0%, #f8f9ff 100%)",
                         border: "1px solid #e3f2fd",
-                      }}>
+                      }}
+                    >
                       <CardContent>
                         <Box
-                          sx={{display: "flex", alignItems: "center", gap: 2}}>
+                          sx={{ display: "flex", alignItems: "center", gap: 2 }}
+                        >
                           <Avatar
-                            sx={{bgcolor: stat.color, width: 56, height: 56}}>
+                            sx={{ bgcolor: stat.color, width: 56, height: 56 }}
+                          >
                             {stat.icon}
                           </Avatar>
                           <Box>
                             <Typography
                               variant="h4"
-                              sx={{fontWeight: 700, color: stat.color}}>
+                              sx={{ fontWeight: 700, color: stat.color }}
+                            >
                               {stat.value}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
@@ -220,7 +242,7 @@ export default function InvitationPage() {
 
             {/* Error Alert */}
             {error && (
-              <Alert severity="error" sx={{mb: 3}}>
+              <Alert severity="error" sx={{ mb: 3 }}>
                 {error}
               </Alert>
             )}
@@ -232,10 +254,11 @@ export default function InvitationPage() {
                 border: "1px solid #e3f2fd",
                 borderRadius: 3,
                 overflow: "hidden",
-              }}>
-              <CardContent sx={{p: 0}}>
+              }}
+            >
+              <CardContent sx={{ p: 0 }}>
                 {/* Table Header */}
-                <Box sx={{p: 3, borderBottom: "1px solid #e0e0e0"}}>
+                <Box sx={{ p: 3, borderBottom: "1px solid #e0e0e0" }}>
                   <Box
                     sx={{
                       display: "flex",
@@ -243,11 +266,12 @@ export default function InvitationPage() {
                       alignItems: "center",
                       flexWrap: "wrap",
                       gap: 2,
-                    }}>
-                    <Typography variant="h5" sx={{fontWeight: 600}}>
+                    }}
+                  >
+                    <Typography variant="h5" sx={{ fontWeight: 600 }}>
                       University Invitations
                     </Typography>
-                    <Box sx={{display: "flex", gap: 2, alignItems: "center"}}>
+                    <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                       <TextField
                         size="small"
                         placeholder="Search invitations..."
@@ -262,7 +286,7 @@ export default function InvitationPage() {
                             ),
                           },
                         }}
-                        sx={{minWidth: 250}}
+                        sx={{ minWidth: 250 }}
                       />
                       <Tooltip title="Refresh Data">
                         <IconButton onClick={fetchInvitations} color="primary">
@@ -277,15 +301,15 @@ export default function InvitationPage() {
                 <TableContainer>
                   <Table>
                     <TableHead>
-                      <TableRow sx={{bgcolor: "#f5f5f5"}}>
-                        <TableCell sx={{fontWeight: 600}}>#</TableCell>
-                        <TableCell sx={{fontWeight: 600}}>
+                      <TableRow sx={{ bgcolor: "#f5f5f5" }}>
+                        <TableCell sx={{ fontWeight: 600 }}>#</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }}>
                           Institution
                         </TableCell>
-                        <TableCell sx={{fontWeight: 600}}>Email</TableCell>
-                        <TableCell sx={{fontWeight: 600}}>Status</TableCell>
-                        <TableCell sx={{fontWeight: 600}}>Created</TableCell>
-                        <TableCell sx={{fontWeight: 600}}>Actions</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }}>Email</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }}>Status</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }}>Created</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }}>Actions</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -293,9 +317,10 @@ export default function InvitationPage() {
                         <TableRow
                           key={invitation.id}
                           sx={{
-                            "&:hover": {bgcolor: "#f8f9ff"},
+                            "&:hover": { bgcolor: "#f8f9ff" },
                             transition: "background-color 0.2s ease",
-                          }}>
+                          }}
+                        >
                           <TableCell>
                             <Box
                               sx={{
@@ -308,7 +333,8 @@ export default function InvitationPage() {
                                 display: "inline-block",
                                 fontSize: "0.875rem",
                                 fontWeight: 600,
-                              }}>
+                              }}
+                            >
                               {/* {invitation.code} */}
                               {index + 1}
                             </Box>
@@ -319,19 +345,22 @@ export default function InvitationPage() {
                                 display: "flex",
                                 alignItems: "center",
                                 gap: 1,
-                              }}>
+                              }}
+                            >
                               <Avatar
                                 sx={{
                                   bgcolor: "#1976d2",
                                   width: 32,
                                   height: 32,
-                                }}>
-                                <SchoolIcon sx={{fontSize: 16}} />
+                                }}
+                              >
+                                <SchoolIcon sx={{ fontSize: 16 }} />
                               </Avatar>
                               <Box>
                                 <Typography
                                   variant="body2"
-                                  sx={{fontWeight: 500}}>
+                                  sx={{ fontWeight: 500 }}
+                                >
                                   {invitation.name}
                                 </Typography>
                               </Box>
@@ -343,11 +372,13 @@ export default function InvitationPage() {
                                 display: "flex",
                                 alignItems: "center",
                                 gap: 1,
-                              }}>
-                              <EmailIcon sx={{fontSize: 16, color: "#666"}} />
+                              }}
+                            >
+                              <EmailIcon sx={{ fontSize: 16, color: "#666" }} />
                               <Typography
                                 variant="body2"
-                                color="text.secondary">
+                                color="text.secondary"
+                              >
                                 {invitation.email}
                               </Typography>
                             </Box>
@@ -389,7 +420,8 @@ export default function InvitationPage() {
                                   bgcolor: "#1976d2",
                                   color: "white",
                                 },
-                              }}>
+                              }}
+                            >
                               {sendingEmail === invitation.id
                                 ? "Sending..."
                                 : "Send Email"}

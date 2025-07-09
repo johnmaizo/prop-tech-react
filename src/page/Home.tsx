@@ -14,23 +14,20 @@ import Highlight from "./sections/Highlight";
 export default function Home() {
   return (
     <>
-      {/* Header */}
       <SmallHeaderNav />
       <ResponsiveHeader />
 
-      {/* Content */}
       <Box component={"main"}>
         <Hero />
         <WhoWeAre />
         <WhatWeDo />
         <WhyChooseUs />
-        <Highlight/>
+        <Highlight />
         <HappeningNow />
         <HackathonTeamSelection />
         <ContactUs />
       </Box>
 
-      {/* Footer */}
       <Footer />
     </>
   );
