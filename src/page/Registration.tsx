@@ -6,6 +6,7 @@ import RegistrationAccessCodeBox from "../components/RegistrationAccessCodeBox";
 import { useRegistrationContextProvider } from "../providers/RegistrationContextProvider";
 import { AnimatePresence } from "framer-motion";
 import LoadingPage from "../config/providers/LoadingPage";
+import UnauthorizedPageAccess from "../components/errors/UnauthorizedPageAccess";
 
 export default function Registration() {
   const { userData, loading } = useRegistrationContextProvider();
@@ -28,7 +29,17 @@ export default function Registration() {
               minHeight: "100vh",
             }}
           >
-            {userData ? <RegistrationForm /> : <RegistrationAccessCodeBox />}
+            {userData ? (
+              <>
+                {userData?.participants.length < 2 ? (
+                  <RegistrationForm />
+                ) : (
+                  <UnauthorizedPageAccess />
+                )}
+              </>
+            ) : (
+              <RegistrationAccessCodeBox />
+            )}
           </Box>
         )}
       </Box>
