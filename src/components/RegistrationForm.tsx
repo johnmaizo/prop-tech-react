@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -27,43 +27,7 @@ import {
   Radio,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-// --- Types ---
-
-enum Gender {
-  Male = 1,
-  Female = 0,
-}
-
-type Role = "coach" | "hacker" | "hipster" | "hustler";
-
-interface Member {
-  first_name: string;
-  middle_name: string;
-  last_name: string;
-  gender: Gender;
-  email: string;
-  phone_number: string;
-  fb_link: string;
-  role: Role;
-}
-
-type MediaConsent = {
-  photo: boolean;
-  video: boolean;
-};
-
-export interface Participant {
-  school: string;
-  school_address: string;
-  team_name: string;
-  team_email: string;
-  prog_languages: string[];
-  other_prog_languages: string;
-  media_consent: MediaConsent;
-  terms_accepted: boolean;
-  members: Member[];
-}
+import { Member, Participant, Gender, Role } from "../types";
 
 const programmingLanguageOptions = [
   "React JS",
@@ -99,9 +63,9 @@ export default function RegistrationForm() {
     team_email: "",
     prog_languages: [],
     other_prog_languages: "",
-    media_consent: {photo: false, video: false},
+    media_consent: { photo: false, video: false },
     terms_accepted: false,
-    members: Array.from({length: 4}, () => createEmptyMember()),
+    members: Array.from({ length: 4 }, () => createEmptyMember()),
   });
 
   const [expanded, setExpanded] = useState<number | false>(false);
@@ -113,8 +77,8 @@ export default function RegistrationForm() {
     field: K,
     value: Participant[K]
   ) => {
-    setFormData((prev) => ({...prev, [field]: value}));
-    if (errors[field]) setErrors((prev) => ({...prev, [field]: ""}));
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
   const handleMemberChange = (
@@ -127,12 +91,12 @@ export default function RegistrationForm() {
       ...updatedMembers[memberIndex],
       [field]: value,
     };
-    setFormData((prev) => ({...prev, members: updatedMembers}));
+    setFormData((prev) => ({ ...prev, members: updatedMembers }));
 
     // Clear member-specific errors
     const errorKey = `member_${memberIndex}_${field}`;
     if (errors[errorKey]) {
-      setErrors((prev) => ({...prev, [errorKey]: ""}));
+      setErrors((prev) => ({ ...prev, [errorKey]: "" }));
     }
   };
 
@@ -201,7 +165,7 @@ export default function RegistrationForm() {
       await axios.post(
         "https://api.leuteriorealty.com/core-system/v1/public/api/hackathon/participants",
         finalPayload,
-        {headers: {"Content-Type": "application/json"}}
+        { headers: { "Content-Type": "application/json" } }
       );
       setSubmitted(true);
     } catch (error) {
@@ -213,13 +177,13 @@ export default function RegistrationForm() {
 
   if (submitted) {
     return (
-      <Box sx={{p: 3}}>
+      <Box sx={{ p: 3 }}>
         <Card>
-          <CardContent sx={{textAlign: "center", py: 6}}>
+          <CardContent sx={{ textAlign: "center", py: 6 }}>
             <Typography variant="h4" color="primary" gutterBottom>
               Registration Successful! 🎉
             </Typography>
-            <Typography variant="body1" sx={{mb: 3}}>
+            <Typography variant="body1" sx={{ mb: 3 }}>
               Thank you for registering for HackEstate 2025. We'll be in touch
               with more details soon!
             </Typography>
@@ -234,11 +198,12 @@ export default function RegistrationForm() {
                   team_email: "",
                   prog_languages: [],
                   other_prog_languages: "",
-                  media_consent: {photo: false, video: false},
+                  media_consent: { photo: false, video: false },
                   terms_accepted: false,
-                  members: Array.from({length: 4}, () => createEmptyMember()),
+                  members: Array.from({ length: 4 }, () => createEmptyMember()),
                 });
-              }}>
+              }}
+            >
               Register Another Team
             </Button>
           </CardContent>
@@ -248,7 +213,7 @@ export default function RegistrationForm() {
   }
 
   return (
-    <Box sx={{maxWidth: 700, mx: "auto", p: 3}}>
+    <Box sx={{ maxWidth: 700, mx: "auto", p: 3 }}>
       <Card>
         <CardContent>
           <Typography variant="h4" align="center" gutterBottom color="primary">
@@ -256,12 +221,13 @@ export default function RegistrationForm() {
           </Typography>
           <Typography
             variant="body1"
-            sx={{mb: 4, textAlign: "center", color: "text.secondary"}}>
+            sx={{ mb: 4, textAlign: "center", color: "text.secondary" }}
+          >
             Please complete the form below to register your team.
           </Typography>
           <form onSubmit={handleSubmit} noValidate>
             <Grid container spacing={2}>
-              <Grid size={{xs: 12}}>
+              <Grid size={{ xs: 12 }}>
                 <TextField
                   fullWidth
                   label="School / University"
@@ -273,7 +239,7 @@ export default function RegistrationForm() {
                 />
               </Grid>
 
-              <Grid size={{xs: 12}}>
+              <Grid size={{ xs: 12 }}>
                 <TextField
                   fullWidth
                   label="School Address"
@@ -287,7 +253,7 @@ export default function RegistrationForm() {
                 />
               </Grid>
 
-              <Grid size={{xs: 12}}>
+              <Grid size={{ xs: 12 }}>
                 <TextField
                   fullWidth
                   label="Team Name"
@@ -301,7 +267,7 @@ export default function RegistrationForm() {
                 />
               </Grid>
 
-              <Grid size={{xs: 12}}>
+              <Grid size={{ xs: 12 }}>
                 <TextField
                   fullWidth
                   label="Team Email"
@@ -316,7 +282,7 @@ export default function RegistrationForm() {
                 />
               </Grid>
 
-              <Grid size={{xs: 12}}>
+              <Grid size={{ xs: 12 }}>
                 <FormControl fullWidth error={!!errors.prog_languages}>
                   <InputLabel>Programming Languages</InputLabel>
                   <Select
@@ -330,12 +296,13 @@ export default function RegistrationForm() {
                     }
                     input={<OutlinedInput label="Programming Languages" />}
                     renderValue={(selected) => (
-                      <Box sx={{display: "flex", flexWrap: "wrap", gap: 0.5}}>
+                      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                         {(selected as string[]).map((value) => (
                           <Chip key={value} label={value} size="small" />
                         ))}
                       </Box>
-                    )}>
+                    )}
+                  >
                     {programmingLanguageOptions.map((lang) => (
                       <MenuItem key={lang} value={lang}>
                         {lang}
@@ -351,7 +318,7 @@ export default function RegistrationForm() {
               </Grid>
 
               {formData.prog_languages.includes("Other") && (
-                <Grid size={{xs: 12}}>
+                <Grid size={{ xs: 12 }}>
                   <TextField
                     fullWidth
                     label="Other Language"
@@ -364,8 +331,8 @@ export default function RegistrationForm() {
               )}
 
               {/* Team Members Section */}
-              <Grid size={{xs: 12}}>
-                <Divider sx={{my: 2}} />
+              <Grid size={{ xs: 12 }}>
+                <Divider sx={{ my: 2 }} />
                 <Typography variant="h6" gutterBottom>
                   Team Members (4 required)
                 </Typography>
@@ -374,7 +341,8 @@ export default function RegistrationForm() {
                     color="error"
                     variant="caption"
                     display="block"
-                    sx={{mb: 2}}>
+                    sx={{ mb: 2 }}
+                  >
                     {errors.roles}
                   </Typography>
                 )}
@@ -385,7 +353,8 @@ export default function RegistrationForm() {
                     onChange={(_, isExpanded) =>
                       setExpanded(isExpanded ? index : false)
                     }
-                    sx={{p: 0, margin: 0}}>
+                    sx={{ p: 0, margin: 0 }}
+                  >
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <Typography variant="subtitle1">
                         Member {index + 1} -{" "}
@@ -395,7 +364,8 @@ export default function RegistrationForm() {
                           <Typography
                             component="span"
                             variant="body2"
-                            color="text.secondary">
+                            color="text.secondary"
+                          >
                             {` (${member.first_name} ${member.last_name})`}
                           </Typography>
                         )}
@@ -403,7 +373,7 @@ export default function RegistrationForm() {
                     </AccordionSummary>
                     <AccordionDetails>
                       <Grid container spacing={2}>
-                        <Grid size={{xs: 12, sm: 6}}>
+                        <Grid size={{ xs: 12, sm: 6 }}>
                           <TextField
                             fullWidth
                             label="First Name"
@@ -420,7 +390,7 @@ export default function RegistrationForm() {
                             required
                           />
                         </Grid>
-                        <Grid size={{xs: 12, sm: 6}}>
+                        <Grid size={{ xs: 12, sm: 6 }}>
                           <TextField
                             fullWidth
                             label="Middle Name"
@@ -434,7 +404,7 @@ export default function RegistrationForm() {
                             }
                           />
                         </Grid>
-                        <Grid size={{xs: 12, sm: 6}}>
+                        <Grid size={{ xs: 12, sm: 6 }}>
                           <TextField
                             fullWidth
                             label="Last Name"
@@ -451,7 +421,7 @@ export default function RegistrationForm() {
                             required
                           />
                         </Grid>
-                        <Grid size={{xs: 12, sm: 6}}>
+                        <Grid size={{ xs: 12, sm: 6 }}>
                           <FormControl fullWidth>
                             <InputLabel>Gender</InputLabel>
                             <Select
@@ -463,13 +433,14 @@ export default function RegistrationForm() {
                                   e.target.value as Gender
                                 )
                               }
-                              label="Gender">
+                              label="Gender"
+                            >
                               <MenuItem value={Gender.Male}>Male</MenuItem>
                               <MenuItem value={Gender.Female}>Female</MenuItem>
                             </Select>
                           </FormControl>
                         </Grid>
-                        <Grid size={{xs: 12, sm: 6}}>
+                        <Grid size={{ xs: 12, sm: 6 }}>
                           <TextField
                             fullWidth
                             label="Email"
@@ -483,7 +454,7 @@ export default function RegistrationForm() {
                             required
                           />
                         </Grid>
-                        <Grid size={{xs: 12, sm: 6}}>
+                        <Grid size={{ xs: 12, sm: 6 }}>
                           <TextField
                             fullWidth
                             label="Phone Number"
@@ -500,7 +471,7 @@ export default function RegistrationForm() {
                             required
                           />
                         </Grid>
-                        <Grid size={{xs: 12}}>
+                        <Grid size={{ xs: 12 }}>
                           <TextField
                             fullWidth
                             label="Facebook Link"
@@ -514,7 +485,7 @@ export default function RegistrationForm() {
                             }
                           />
                         </Grid>
-                        <Grid size={{xs: 12}}>
+                        <Grid size={{ xs: 12 }}>
                           <FormControl component="fieldset">
                             <Typography variant="subtitle2" gutterBottom>
                               Role
@@ -528,7 +499,8 @@ export default function RegistrationForm() {
                                   "role",
                                   e.target.value as Role
                                 )
-                              }>
+                              }
+                            >
                               {roleOptions.map((role) => (
                                 <FormControlLabel
                                   key={role}
@@ -548,8 +520,8 @@ export default function RegistrationForm() {
                 ))}
               </Grid>
 
-              <Grid size={{xs: 12}}>
-                <Divider sx={{my: 2}} />
+              <Grid size={{ xs: 12 }}>
+                <Divider sx={{ my: 2 }} />
                 <FormControl component="fieldset">
                   <Typography variant="subtitle1">Media Consent</Typography>
                   <FormGroup>
@@ -585,7 +557,7 @@ export default function RegistrationForm() {
                 </FormControl>
               </Grid>
 
-              <Grid size={{xs: 12}}>
+              <Grid size={{ xs: 12 }}>
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -611,7 +583,7 @@ export default function RegistrationForm() {
                 )}
               </Grid>
 
-              <Grid size={{xs: 12}}>
+              <Grid size={{ xs: 12 }}>
                 <Button
                   type="submit"
                   variant="contained"
@@ -622,7 +594,8 @@ export default function RegistrationForm() {
                     loading ? (
                       <CircularProgress size={20} color="inherit" />
                     ) : null
-                  }>
+                  }
+                >
                   {loading ? "Submitting..." : "Register for HackEstate 2025"}
                 </Button>
               </Grid>
