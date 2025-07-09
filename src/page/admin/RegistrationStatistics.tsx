@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -26,16 +26,11 @@ import {
   Check,
   Cancel,
 } from "@mui/icons-material";
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-import { useRegistration } from "../context/RegistrationContext";
 import { Link } from "react-router-dom";
-=======
-import {Link} from "react-router-dom";
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
 
 // Updated interface to match API response
 export interface Registration {
-  id: number; 
+  id: number;
   school: string;
   school_address: string;
   team_name: string;
@@ -51,16 +46,10 @@ export interface Registration {
   updated_at: string;
 }
 
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-export default function MinimalStatisticsDashboard() {
-  const { registrations }: { registrations: Registration[] } =
-    useRegistration();
-=======
 export default function StatisticsDashboard() {
   const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
 
   // Fetch data from API
   useEffect(() => {
@@ -117,7 +106,8 @@ export default function StatisticsDashboard() {
           alignItems: "center",
           minHeight: "100vh",
           background: "#fafafa",
-        }}>
+        }}
+      >
         <CircularProgress size={60} />
       </Box>
     );
@@ -134,8 +124,9 @@ export default function StatisticsDashboard() {
           minHeight: "100vh",
           background: "#fafafa",
           p: 3,
-        }}>
-        <Alert severity="error" sx={{width: "100%", maxWidth: 500}}>
+        }}
+      >
+        <Alert severity="error" sx={{ width: "100%", maxWidth: 500 }}>
           {error}
         </Alert>
       </Box>
@@ -157,20 +148,12 @@ export default function StatisticsDashboard() {
         }}
       >
         <Link
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-          to={"/registration"}
+          to={"/admin/home"}
           style={{ textDecoration: "none", color: "#6b7280" }}
         >
           <Typography variant="body2" sx={{ mb: 4 }}>
             <ArrowBack sx={{ mr: 1 }} />
-            Back to Registration
-=======
-          to={"/admin/home"}
-          style={{textDecoration: "none", color: "#6b7280"}}>
-          <Typography variant="body2" sx={{mb: 4}}>
-            <ArrowBack sx={{mr: 1}} />
             Back to Dashboard
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
           </Typography>
         </Link>
         <Card
@@ -180,25 +163,14 @@ export default function StatisticsDashboard() {
             border: "1px solid #e5e7eb",
             borderRadius: 2,
             boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)",
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
           }}
         >
           <CardContent sx={{ textAlign: "center", p: 4 }}>
             <Typography variant="h6" sx={{ color: "#374151", mb: 2 }}>
-              No Data Yet
-            </Typography>
-            <Typography variant="body2" sx={{ color: "#6b7280" }}>
-              Registration statistics will appear here once teams start signing
-              up.
-=======
-          }}>
-          <CardContent sx={{textAlign: "center", p: 4}}>
-            <Typography variant="h6" sx={{color: "#374151", mb: 2}}>
               No Registrations Found
             </Typography>
-            <Typography variant="body2" sx={{color: "#6b7280"}}>
+            <Typography variant="body2" sx={{ color: "#6b7280" }}>
               There are no registered participants yet.
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
             </Typography>
           </CardContent>
         </Card>
@@ -241,12 +213,8 @@ export default function StatisticsDashboard() {
             justifyContent: "center",
             mx: "auto",
             mb: 2,
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
           }}
         >
-=======
-          }}>
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
           {React.cloneElement(icon)}
         </Box>
         <Typography
@@ -316,41 +284,18 @@ export default function StatisticsDashboard() {
       }}
     >
       <Link
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-        to={"/registration"}
+        to={"/admin/dashboard"}
         style={{ textDecoration: "none", color: "#6b7280" }}
       >
         <Typography variant="body2" sx={{ mb: 4 }}>
           <ArrowBack sx={{ mr: 1 }} />
-          Back to Registration
-=======
-        to={"/admin/dashboard"}
-        style={{textDecoration: "none", color: "#6b7280"}}>
-        <Typography variant="body2" sx={{mb: 4}}>
-          <ArrowBack sx={{mr: 1}} />
           Back to Dashboard
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
         </Typography>
       </Link>
       <Box sx={{ maxWidth: 1200, mx: "auto" }}>
         {/* Header */}
         <Box sx={{ textAlign: "center", mb: 8 }}>
           <Typography
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-            variant="h3"
-            sx={{
-              fontWeight: 700,
-              color: "#111827",
-              mb: 2,
-              fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
-              letterSpacing: "-0.025em",
-            }}
-          >
-            HackEstate 2025
-          </Typography>
-          <Typography
-=======
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
             variant="subtitle1"
             sx={{
               color: "#6b7280",
@@ -363,53 +308,29 @@ export default function StatisticsDashboard() {
         </Box>
 
         {/* Overview Cards */}
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
         <Grid container spacing={3} sx={{ mb: 8 }}>
-          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
-=======
-        <Grid container spacing={3} sx={{mb: 8}}>
-          <Grid size={{xs: 12, md: 6, lg: 3}}>
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
+          <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <StatCard
               icon={<GroupIcon />}
               value={totalRegistrations}
               label="Teams"
             />
           </Grid>
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
-            <StatCard
-              icon={<PersonIcon />}
-              value={totalParticipants}
-              label="Participants"
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
-=======
-          <Grid size={{xs: 12, md: 6, lg: 3}}>
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
+          <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <StatCard
               icon={<CodeIcon />}
               value={Object.keys(languageStats).length}
               label="Programming Languages"
             />
           </Grid>
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
-=======
-          <Grid size={{xs: 12, md: 6, lg: 3}}>
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
+          <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <StatCard
               icon={<SchoolIcon />}
               value={Object.keys(schoolStats).length}
               label="Schools"
             />
           </Grid>
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-          <Grid size={{ xs: 12, sm: 6, lg: 2.4 }}>
-=======
-          <Grid size={{xs: 12, md: 6, lg: 3}}>
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
+          <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <StatCard
               icon={<LocationIcon />}
               value={Object.keys(locationStats).length}
@@ -443,13 +364,9 @@ export default function StatisticsDashboard() {
                           fontSize: "0.875rem",
                           py: 2,
                         },
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
                       }}
                     >
-=======
-                      }}>
                       <TableCell>ID</TableCell>
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
                       <TableCell>Team</TableCell>
                       <TableCell>School</TableCell>
                       <TableCell>Location</TableCell>
@@ -465,21 +382,17 @@ export default function StatisticsDashboard() {
                         <TableCell>
                           <Typography
                             variant="subtitle2"
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
                             sx={{ fontWeight: 600, color: "#111827" }}
                           >
-                            {registration.teamName}
-=======
-                            sx={{fontWeight: 600, color: "#111827"}}>
                             {registration.id}
                           </Typography>
                         </TableCell>
                         <TableCell>
                           <Typography
                             variant="subtitle2"
-                            sx={{fontWeight: 600, color: "#111827"}}>
+                            sx={{ fontWeight: 600, color: "#111827" }}
+                          >
                             {registration.team_name}
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
                           </Typography>
                         </TableCell>
                         <TableCell>
@@ -488,73 +401,20 @@ export default function StatisticsDashboard() {
                           </Typography>
                         </TableCell>
                         <TableCell>
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
                           <Typography variant="body2" sx={{ color: "#6b7280" }}>
-                            {registration.schoolLocation}
-                          </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="body2" sx={{ color: "#6b7280" }}>
-                            {registration.teamEmail}
-=======
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
                             {registration.school_address}
                           </Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
+                          <Typography variant="body2" sx={{ color: "#6b7280" }}>
                             {registration.team_email}
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
                           </Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Box
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-                            sx={{
-                              display: "flex",
-
-                              gap: 1,
-                            }}
-                          >
-                            {registration.teamMembers.map((member, idx) => (
-                              <Box
-                                key={idx}
-                                sx={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  bgcolor: "#f9fafb",
-                                  p: 1,
-                                  borderRadius: 1,
-                                  width: 100,
-
-                                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
-                                }}
-                              >
-                                <Typography
-                                  variant="body2"
-                                  sx={{ fontWeight: 500, color: "#111827" }}
-                                >
-                                  {member.name}
-                                </Typography>
-                                <Typography
-                                  variant="caption"
-                                  sx={{ color: "#6b7280" }}
-                                >
-                                  {member.role}
-                                </Typography>
-                              </Box>
-                            ))}
-                          </Box>
                         </TableCell>
                         <TableCell>
                           <Box
                             sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}
                           >
-                            {registration.programmingLanguages.map((lang) => (
-=======
-                            sx={{display: "flex", flexWrap: "wrap", gap: 0.5}}>
                             {registration.prog_languages.map((lang) => (
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
                               <Chip
                                 key={lang}
                                 label={lang}
@@ -590,13 +450,8 @@ export default function StatisticsDashboard() {
                           </Box>
                         </TableCell>
                         <TableCell>
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
                           <Box sx={{ display: "flex", gap: 1 }}>
-                            {registration.mediaConsent.photo ? (
-=======
-                          <Box sx={{display: "flex", gap: 1}}>
                             {registration.media_consent.photo ? (
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
                               <Chip
                                 icon={<Check />}
                                 label="Photo"
@@ -629,15 +484,10 @@ export default function StatisticsDashboard() {
                           </Box>
                         </TableCell>
                         <TableCell>
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
                           <Typography variant="body2" sx={{ color: "#6b7280" }}>
-                            {registration.submittedAt.toLocaleDateString()}
-=======
-                          <Typography variant="body2" sx={{color: "#6b7280"}}>
                             {new Date(
                               registration.created_at
                             ).toLocaleDateString()}
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
                           </Typography>
                         </TableCell>
                       </TableRow>
@@ -729,40 +579,6 @@ export default function StatisticsDashboard() {
             </StatsCard>
           </Grid>
 
-<<<<<<< HEAD:src/page/RegistrationStatistics.tsx
-          {/* Role Distribution */}
-          <Grid size={{ xs: 12, md: 6 }}>
-            <StatsCard title="Role Distribution">
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                {Object.entries(roleStats).map(([role, count]) => (
-                  <Box key={role}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{ fontWeight: 500, color: "#111827" }}
-                      >
-                        {role}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        sx={{ color: "#6b7280", fontSize: "0.875rem" }}
-                      >
-                        {count}
-                      </Typography>
-                    </Box>
-                  </Box>
-                ))}
-              </Box>
-            </StatsCard>
-          </Grid>
-
-=======
->>>>>>> 4ff65c9a8302e02c09523b7420f4e67e8cc21fce:src/page/admin/RegistrationStatistics.tsx
           {/* Media Consent */}
           <Grid size={{ xs: 12, md: 6 }}>
             <StatsCard title="Media Consent">
