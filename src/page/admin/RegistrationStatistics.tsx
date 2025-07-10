@@ -148,7 +148,7 @@ export default function StatisticsDashboard() {
         }}
       >
         <Link
-          to={"/admin/home"}
+          to={"/auth/guard/admin/home"}
           style={{ textDecoration: "none", color: "#6b7280" }}
         >
           <Typography variant="body2" sx={{ mb: 4 }}>
