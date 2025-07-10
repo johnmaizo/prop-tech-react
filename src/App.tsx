@@ -1,8 +1,5 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
 import { SnackbarProvider } from "notistack";
-
-import AuthProvider from "./config/providers/AuthProvider";
 import WebRoute from "./route/WebRoute";
 
 declare module "@mui/material/styles" {
