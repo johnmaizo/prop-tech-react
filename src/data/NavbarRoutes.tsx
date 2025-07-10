@@ -13,7 +13,7 @@ import GroupIcon from "@mui/icons-material/Group";
 // import CakeIcon from "@mui/icons-material/Cake";
 import LinkIcon from "@mui/icons-material/Link";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import {Home} from "@mui/icons-material";
+import { Home } from "@mui/icons-material";
 
 import InboxIcon from "@mui/icons-material/Inbox";
 import EditIcon from "@mui/icons-material/Edit";
@@ -30,17 +30,17 @@ import MailIcon from "@mui/icons-material/Mail";
 export const Routes = [
   {
     title: "Home",
-    path: "/admin/home",
+    path: "/auth/guard/admin/home",
     icon: Home,
   },
   {
     title: "Statistics",
-    path: "/admin/events",
+    path: "/auth/guard/admin/events",
     icon: BarChartIcon,
   },
   {
     title: "Invitation",
-    path: "/admin/invitation",
+    path: "/auth/guard/admin/invitation",
     icon: MailIcon,
   },
   // {
@@ -112,13 +112,13 @@ export const Routes = [
 
 // ! Profile menu items for the user profile dropdown menu in the app layout
 export const profileMenuItems = [
-  {title: "Profile", icon: PersonIcon},
-  {title: "Inbox", icon: InboxIcon},
-  {title: "Compose Message", icon: EditIcon},
-  {title: "Share Contact Link", icon: ShareIcon},
-  {title: "Share Referral Link", icon: LinkIcon},
-  {title: "Share Business Profile", icon: BusinessIcon},
-  {title: "Online Users", icon: GroupIcon},
-  {title: "Download LR App", icon: GetAppIcon},
-  {title: "We are on the News", icon: NewspaperIcon},
+  { title: "Profile", icon: PersonIcon },
+  { title: "Inbox", icon: InboxIcon },
+  { title: "Compose Message", icon: EditIcon },
+  { title: "Share Contact Link", icon: ShareIcon },
+  { title: "Share Referral Link", icon: LinkIcon },
+  { title: "Share Business Profile", icon: BusinessIcon },
+  { title: "Online Users", icon: GroupIcon },
+  { title: "Download LR App", icon: GetAppIcon },
+  { title: "We are on the News", icon: NewspaperIcon },
 ];
