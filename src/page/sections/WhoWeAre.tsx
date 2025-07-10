@@ -1,7 +1,14 @@
-import { Box, Container, Typography } from "@mui/material";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import React, { useRef, useState } from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  Link,
+  Modal,
+  IconButton,
+} from "@mui/material";
+import { motion, useInView } from "framer-motion";
+import CloseIcon from "@mui/icons-material/Close";
 
 import OutlinedTitle from "../../utils/OutlinedTitle";
 
@@ -9,14 +16,18 @@ import Image1 from "../../assets/images/WhoWeAre1.png";
 import Image2 from "../../assets/images/WhoWeAre2.png";
 import Image3 from "../../assets/images/WhoWeAre3.png";
 import Image4 from "../../assets/images/WhoWeAre4.png";
+import CertificateImage from "../../assets/images/certificate.png"; // <- Replace with your actual certificate image
 
-// Create motion variants for MUI components
 const MotionBox = motion(Box);
 const MotionTypography = motion(Typography);
 
 export default function WhoWeAre() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
 
   return (
     <Box
@@ -38,6 +49,7 @@ export default function WhoWeAre() {
             gap: { xs: 8, md: 4 },
           }}
         >
+          {/* Left Image Section */}
           <MotionBox
             sx={{
               ml: { xs: 0, md: 5, lg: 10 },
@@ -59,33 +71,28 @@ export default function WhoWeAre() {
                 justifyContent: { xs: "center", md: "flex-start" },
               }}
             >
-              <MotionBox
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                sx={{ width: { xs: "45%", md: "auto" } }}
-              >
-                <Typography
-                  component={"img"}
-                  src={Image1}
-                  alt=""
-                  aria-hidden
-                  draggable={false}
-                  sx={{ width: "100%", height: "auto" }}
-                />
-              </MotionBox>
-              <MotionBox
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                sx={{ width: { xs: "45%", md: "auto" } }}
-              >
-                <Typography
-                  component={"img"}
-                  src={Image2}
-                  alt=""
-                  aria-hidden
-                  draggable={false}
-                  sx={{ width: "100%", height: "auto" }}
-                />
-              </MotionBox>
+              {[Image1, Image2].map((img, index) => (
+                <MotionBox
+                  key={index}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.1 * index,
+                  }}
+                  sx={{ width: { xs: "45%", md: "auto" } }}
+                >
+                  <Typography
+                    component={"img"}
+                    src={img}
+                    alt=""
+                    aria-hidden
+                    draggable={false}
+                    sx={{ width: "100%", height: "auto" }}
+                  />
+                </MotionBox>
+              ))}
             </Box>
+
             <Box
               sx={{
                 mt: { xs: "10px", sm: "17px" },
@@ -96,35 +103,30 @@ export default function WhoWeAre() {
                 justifyContent: { xs: "center", md: "flex-start" },
               }}
             >
-              <MotionBox
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                sx={{ width: { xs: "45%", md: "auto" } }}
-              >
-                <Typography
-                  component={"img"}
-                  src={Image3}
-                  alt=""
-                  aria-hidden
-                  draggable={false}
-                  sx={{ width: "100%", height: "auto" }}
-                />
-              </MotionBox>
-              <MotionBox
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-                sx={{ width: { xs: "45%", md: "auto" } }}
-              >
-                <Typography
-                  component={"img"}
-                  src={Image4}
-                  alt=""
-                  aria-hidden
-                  draggable={false}
-                  sx={{ width: "100%", height: "auto" }}
-                />
-              </MotionBox>
+              {[Image3, Image4].map((img, index) => (
+                <MotionBox
+                  key={index}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.2 + 0.1 * index,
+                  }}
+                  sx={{ width: { xs: "45%", md: "auto" } }}
+                >
+                  <Typography
+                    component={"img"}
+                    src={img}
+                    alt=""
+                    aria-hidden
+                    draggable={false}
+                    sx={{ width: "100%", height: "auto" }}
+                  />
+                </MotionBox>
+              ))}
             </Box>
           </MotionBox>
 
+          {/* Right Content Section */}
           <MotionBox
             sx={{
               mr: { xs: 0, md: 2, lg: 5 },
@@ -154,7 +156,6 @@ export default function WhoWeAre() {
                   lineHeight: { xs: "22px", sm: "24px", md: "25px" },
                   color: "black",
                   "&::after": {
-                    // lineHeight: {xs: "72px", sm: "24px", md: "25px"},
                     width: { xs: "10em", sm: "10em", md: "6em" },
                     display: { xs: "none", md: "block" },
                   },
@@ -205,6 +206,21 @@ export default function WhoWeAre() {
               <br />
               We specialize in creating custom systems that solve real-world
               problems through innovation, strategy, and clean code.
+              <Link
+                sx={{ textDecoration: "none", cursor: "pointer" }}
+                onClick={handleOpen}
+              >
+                <Typography
+                  sx={{
+                    fontSize: "20px",
+                    color: "#901340",
+                    textDecoration: "none",
+                    mt: 3,
+                  }}
+                >
+                  View Certificate
+                </Typography>
+              </Link>
             </MotionTypography>
 
             <MotionBox
@@ -220,12 +236,12 @@ export default function WhoWeAre() {
                 variant="h4"
                 sx={{
                   fontFamily: "Hurricane",
-                  fontSize: { xs: "40px", sm: "50px", md: "60px" },
-                  lineHeight: { xs: "40px", sm: "45px", md: "50px" },
+                  fontSize: { xs: "40px", sm: "50px", md: "70px" },
+                  lineHeight: { xs: "40px", sm: "45px", md: "60px" },
                   color: "#400025",
                 }}
               >
-                Anthony Gerard Leuterio
+                Anthony Leuterio
               </Typography>
               <Box
                 sx={{
@@ -234,12 +250,12 @@ export default function WhoWeAre() {
                   gap: { xs: 1, sm: 2 },
                   alignItems: "center",
                   fontFamily: "Geist",
-                  fontSize: { xs: "16px", sm: "18px", md: "20px" },
+                  fontSize: { xs: "19px", sm: "23px", md: "25px" },
                   lineHeight: { xs: "18px", sm: "20px" },
                   mt: 2,
                 }}
               >
-                <Typography>Anthony Gerard Leuterio</Typography>
+                <Typography>Founder of PropTech PH</Typography>
                 <Box
                   sx={{
                     display: { xs: "none", sm: "block" },
@@ -255,6 +271,49 @@ export default function WhoWeAre() {
           </MotionBox>
         </Box>
       </Container>
+
+      {/* Modal Popup for Certificate */}
+      <Modal open={openModal} onClose={handleClose}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 2,
+            borderRadius: 2,
+            maxWidth: "90%",
+            maxHeight: "90%",
+            outline: "none",
+          }}
+        >
+          <IconButton
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              top: 8,
+              right: 8,
+              color: "#000",
+              zIndex: 10,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <Box
+            component="img"
+            src={CertificateImage}
+            alt="Certificate"
+            sx={{
+              width: "100%",
+              height: "auto",
+              maxHeight: "80vh",
+              borderRadius: 1,
+            }}
+          />
+        </Box>
+      </Modal>
     </Box>
   );
 }
