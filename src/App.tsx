@@ -1,6 +1,6 @@
-import {ThemeProvider, createTheme} from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import {SnackbarProvider} from "notistack";
+import { SnackbarProvider } from "notistack";
 
 import AuthProvider from "./config/providers/AuthProvider";
 import WebRoute from "./route/WebRoute";
@@ -53,7 +53,7 @@ export default function App() {
     components: {
       MuiButton: {
         styleOverrides: {
-          root: {minWidth: 0},
+          root: { minWidth: 0 },
         },
       },
     },
@@ -62,9 +62,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider maxSnack={3}>
-        <AuthProvider>
-          <WebRoute />
-        </AuthProvider>
+        <WebRoute />
       </SnackbarProvider>
     </ThemeProvider>
   );
