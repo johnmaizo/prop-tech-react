@@ -13,7 +13,7 @@ import GroupIcon from "@mui/icons-material/Group";
 // import CakeIcon from "@mui/icons-material/Cake";
 import LinkIcon from "@mui/icons-material/Link";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import { Home } from "@mui/icons-material";
+import {Home} from "@mui/icons-material";
 
 import InboxIcon from "@mui/icons-material/Inbox";
 import EditIcon from "@mui/icons-material/Edit";
@@ -25,6 +25,7 @@ import GetAppIcon from "@mui/icons-material/GetApp";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import PersonIcon from "@mui/icons-material/Person";
 import MailIcon from "@mui/icons-material/Mail";
+import SchoolIcon from "@mui/icons-material/School";
 
 // ! Routes for the Navbar and Sidebar components in the app layout
 export const Routes = [
@@ -42,6 +43,11 @@ export const Routes = [
     title: "Invitation",
     path: "/auth/guard/admin/invitation",
     icon: MailIcon,
+  },
+  {
+    title: "Add New School",
+    path: "/auth/guard/admin/add-new-school",
+    icon: SchoolIcon,
   },
   // {
   //   title: "Filter Sales",
@@ -112,13 +118,13 @@ export const Routes = [
 
 // ! Profile menu items for the user profile dropdown menu in the app layout
 export const profileMenuItems = [
-  { title: "Profile", icon: PersonIcon },
-  { title: "Inbox", icon: InboxIcon },
-  { title: "Compose Message", icon: EditIcon },
-  { title: "Share Contact Link", icon: ShareIcon },
-  { title: "Share Referral Link", icon: LinkIcon },
-  { title: "Share Business Profile", icon: BusinessIcon },
-  { title: "Online Users", icon: GroupIcon },
-  { title: "Download LR App", icon: GetAppIcon },
-  { title: "We are on the News", icon: NewspaperIcon },
+  {title: "Profile", icon: PersonIcon},
+  {title: "Inbox", icon: InboxIcon},
+  {title: "Compose Message", icon: EditIcon},
+  {title: "Share Contact Link", icon: ShareIcon},
+  {title: "Share Referral Link", icon: LinkIcon},
+  {title: "Share Business Profile", icon: BusinessIcon},
+  {title: "Online Users", icon: GroupIcon},
+  {title: "Download LR App", icon: GetAppIcon},
+  {title: "We are on the News", icon: NewspaperIcon},
 ];

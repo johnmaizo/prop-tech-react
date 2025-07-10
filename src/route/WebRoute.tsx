@@ -1,17 +1,19 @@
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import Home from "../page/Home";
 import AboutUs from "../page/AboutUs";
 import Registration from "../page/Registration";
 import AdminLayout from "../components/layout/AdminLayout";
 import StatisticsDashboard from "../page/admin/RegistrationStatistics";
-import { useAuthProvider } from "../config/providers/AuthProvider";
+import {useAuthProvider} from "../config/providers/AuthProvider";
 import NotFoundPage from "../config/providers/NotFoundPage";
 import AdminHome from "../page/admin/AdminHome";
 import InvitationPage from "../page/admin/Invitation";
-import { RegistrationContextProvider } from "../providers/RegistrationContextProvider";
+import {RegistrationContextProvider} from "../providers/RegistrationContextProvider";
+import Login from "../page/Login";
+import AddNewSchool from "../page/admin/AddNewSchool";
 
 export default function WebRoute() {
-  const { authenticated } = useAuthProvider();
+  const {authenticated} = useAuthProvider();
 
   return (
     <>
@@ -27,6 +29,7 @@ export default function WebRoute() {
             <Route path="/" element={<Home />} />
             <Route path="/About" element={<AboutUs />} />
 
+            <Route path="/login" element={<Login />} />
             <Route
               path="/registration/:_code"
               element={
@@ -41,6 +44,7 @@ export default function WebRoute() {
               <Route path="home" element={<AdminHome />} />
               <Route path="events" element={<StatisticsDashboard />} />
               <Route path="invitation" element={<InvitationPage />} />
+              <Route path="add-new-school" element={<AddNewSchool />} />
             </Route>
           </>
         )}
