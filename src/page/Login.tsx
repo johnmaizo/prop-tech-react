@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import {
   Box,
   TextField,
@@ -16,7 +16,7 @@ export default function Login() {
     password: "",
   });
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -42,21 +42,23 @@ export default function Login() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-      }}>
+      }}
+    >
       <Container maxWidth="lg">
-        <Box sx={{display: "flex", justifyContent: "center"}}>
-          <Box sx={{width: "100%", maxWidth: "40em"}}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Box sx={{ width: "100%", maxWidth: "40em" }}>
             <Paper
               elevation={0}
               sx={{
-                p: {xs: 3, sm: 4},
+                p: { xs: 3, sm: 4 },
                 borderRadius: 2,
                 backgroundColor: "transparent",
                 border: "1px solid",
                 borderColor: "grey.100",
                 boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-              }}>
-              <Box sx={{textAlign: "center"}}>
+              }}
+            >
+              <Box sx={{ textAlign: "center" }}>
                 <Box
                   component="img"
                   src={PropTechLogo}
@@ -78,7 +80,8 @@ export default function Login() {
                   my: 4,
                   textAlign: "center",
                   color: "black",
-                }}>
+                }}
+              >
                 Sign in to your account
               </Typography>
               <Box onSubmit={handleSubmit} component="form">
@@ -125,7 +128,8 @@ export default function Login() {
                     fontSize: "1rem",
                     fontWeight: 500,
                     mb: 2,
-                  }}>
+                  }}
+                >
                   {isSignedIn ? "Signed In Successfully" : "Sign In"}
                 </Button>
               </Box>

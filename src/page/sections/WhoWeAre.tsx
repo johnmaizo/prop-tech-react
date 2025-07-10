@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Box,
   Container,
@@ -16,7 +16,7 @@ import Image1 from "../../assets/images/WhoWeAre1.png";
 import Image2 from "../../assets/images/WhoWeAre2.png";
 import Image3 from "../../assets/images/WhoWeAre3.png";
 import Image4 from "../../assets/images/WhoWeAre4.png";
-import CertificateImage from "../../assets/images/certificate.png"; // <- Replace with your actual certificate image
+import CertificateImage from "../../assets/images/certificate.png";
 
 const MotionBox = motion(Box);
 const MotionTypography = motion(Typography);
@@ -49,7 +49,6 @@ export default function WhoWeAre() {
             gap: { xs: 8, md: 4 },
           }}
         >
-          {/* Left Image Section */}
           <MotionBox
             sx={{
               ml: { xs: 0, md: 5, lg: 10 },
@@ -126,7 +125,6 @@ export default function WhoWeAre() {
             </Box>
           </MotionBox>
 
-          {/* Right Content Section */}
           <MotionBox
             sx={{
               mr: { xs: 0, md: 2, lg: 5 },
@@ -272,7 +270,6 @@ export default function WhoWeAre() {
         </Box>
       </Container>
 
-      {/* Modal Popup for Certificate */}
       <Modal open={openModal} onClose={handleClose}>
         <Box
           sx={{
