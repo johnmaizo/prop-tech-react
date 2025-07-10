@@ -37,7 +37,7 @@ export default function WebRoute() {
             />
 
             {/* Admin */}
-            <Route path="/admin" element={<AdminLayout />}>
+            <Route path="/auth/guard/admin" element={<AdminLayout />}>
               <Route path="home" element={<AdminHome />} />
               <Route path="events" element={<StatisticsDashboard />} />
               <Route path="invitation" element={<InvitationPage />} />
