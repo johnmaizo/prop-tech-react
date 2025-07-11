@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   Box,
   Card,
@@ -11,24 +11,25 @@ import {
   Alert,
   Snackbar,
 } from "@mui/material";
-import {School, Email, Business} from "@mui/icons-material";
-import {validateEmail} from "../../utils/FormUtil";
+import { School, Email, Business } from "@mui/icons-material";
+import { validateEmail } from "../../utils/FormUtil";
+import axios from "axios";
 
 interface FormData {
-  schoolName: string;
+  name: string;
   college: string;
   email: string;
 }
 
 interface FormErrors {
-  schoolName?: string;
+  name?: string;
   college?: string;
   email?: string;
 }
 
 export default function AddNewSchool() {
   const [formData, setFormData] = useState<FormData>({
-    schoolName: "",
+    name: "",
     college: "",
     email: "",
   });
@@ -40,10 +41,10 @@ export default function AddNewSchool() {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    if (!formData.schoolName.trim()) {
-      newErrors.schoolName = "School name is required";
-    } else if (formData.schoolName.trim().length < 2) {
-      newErrors.schoolName = "School name must be at least 2 characters";
+    if (!formData.name.trim()) {
+      newErrors.name = "School name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "School name must be at least 2 characters";
     }
 
     if (!formData.college.trim()) {
@@ -85,15 +86,29 @@ export default function AddNewSchool() {
 
     setIsSubmitting(true);
 
-    console.log("Form data:", formData);
+    try {
+      const response = await axios.post(
+        `https://api.leuteriorealty.com/core-system/v1/public/api/hackathon/invitations`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    // Simulate API call
-    setTimeout(() => {
-      setShowSuccess(true);
+      if (response.status === 200) {
+        const data = response.data;
+
+        setShowSuccess(true);
+        setFormData({ name: "", college: "", email: "" });
+        setErrors({});
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
       setIsSubmitting(false);
-      setFormData({schoolName: "", college: "", email: ""});
-      setErrors({});
-    }, 1000);
+    }
   };
 
   const handleCloseSuccess = () => {
@@ -106,12 +121,13 @@ export default function AddNewSchool() {
         my: 10,
         minHeight: "100vh",
         py: 4,
-      }}>
+      }}
+    >
       <Container maxWidth="sm">
         <Fade in timeout={800}>
-          <Card sx={{mt: 4}}>
-            <CardContent sx={{p: 4}}>
-              <Box sx={{textAlign: "center", mb: 4}}>
+          <Card sx={{ mt: 4 }}>
+            <CardContent sx={{ p: 4 }}>
+              <Box sx={{ textAlign: "center", mb: 4 }}>
                 <Box
                   sx={{
                     display: "inline-flex",
@@ -123,8 +139,9 @@ export default function AddNewSchool() {
                     bgcolor: "primary.main",
                     color: "white",
                     mb: 2,
-                  }}>
-                  <School sx={{fontSize: 32}} />
+                  }}
+                >
+                  <School sx={{ fontSize: 32 }} />
                 </Box>
                 <Typography variant="h4" component="h1" gutterBottom>
                   Add New School
@@ -134,20 +151,20 @@ export default function AddNewSchool() {
                 </Typography>
               </Box>
 
-              <Box component="form" onSubmit={handleSubmit} sx={{mt: 3}}>
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <TextField
                   fullWidth
                   label="School Name"
                   variant="outlined"
-                  value={formData.schoolName}
-                  onChange={handleInputChange("schoolName")}
-                  error={!!errors.schoolName}
-                  helperText={errors.schoolName}
-                  sx={{mb: 3}}
+                  value={formData.name}
+                  onChange={handleInputChange("name")}
+                  error={!!errors.name}
+                  helperText={errors.name}
+                  sx={{ mb: 3 }}
                   slotProps={{
                     input: {
                       startAdornment: (
-                        <School sx={{color: "text.secondary", mr: 1}} />
+                        <School sx={{ color: "text.secondary", mr: 1 }} />
                       ),
                     },
                   }}
@@ -161,11 +178,11 @@ export default function AddNewSchool() {
                   onChange={handleInputChange("college")}
                   error={!!errors.college}
                   helperText={errors.college}
-                  sx={{mb: 3}}
+                  sx={{ mb: 3 }}
                   slotProps={{
                     input: {
                       startAdornment: (
-                        <Business sx={{color: "text.secondary", mr: 1}} />
+                        <Business sx={{ color: "text.secondary", mr: 1 }} />
                       ),
                     },
                   }}
@@ -180,11 +197,11 @@ export default function AddNewSchool() {
                   onChange={handleInputChange("email")}
                   error={!!errors.email}
                   helperText={errors.email}
-                  sx={{mb: 4}}
+                  sx={{ mb: 4 }}
                   slotProps={{
                     input: {
                       startAdornment: (
-                        <Email sx={{color: "text.secondary", mr: 1}} />
+                        <Email sx={{ color: "text.secondary", mr: 1 }} />
                       ),
                     },
                   }}
@@ -201,7 +218,8 @@ export default function AddNewSchool() {
                     "&:hover": {
                       background: "linear-gradient(45deg, #5b21b6, #7c3aed)",
                     },
-                  }}>
+                  }}
+                >
                   {isSubmitting ? "Adding School..." : "Add School"}
                 </Button>
               </Box>
@@ -214,11 +232,13 @@ export default function AddNewSchool() {
         open={showSuccess}
         autoHideDuration={4000}
         onClose={handleCloseSuccess}
-        anchorOrigin={{vertical: "top", horizontal: "center"}}>
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
         <Alert
           onClose={handleCloseSuccess}
           severity="success"
-          sx={{width: "100%"}}>
+          sx={{ width: "100%" }}
+        >
           School added successfully! 🎉
         </Alert>
       </Snackbar>
