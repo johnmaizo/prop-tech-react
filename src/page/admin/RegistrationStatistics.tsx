@@ -111,7 +111,7 @@ export default function StatisticsDashboard() {
               fontWeight: 800,
               color: "#111827",
             }}>
-            Registration Analytics
+            Registration Statistics
           </Typography>
         </Box>
 
